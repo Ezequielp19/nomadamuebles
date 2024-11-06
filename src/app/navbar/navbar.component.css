@@ -1,0 +1,46 @@
+/* Navbar general styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Logo styling */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+}
+
+.navbar-logo img {
+  width: 200px; /* Tamaño del logo */
+  margin-right: 10px;
+}
+
+/* Links styling */
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 700;
+    font-family: 'Montserrat', sans-serif; /* Añadir la fuente Montserrat */
+}
+
+/* Icons styling */
+.navbar-icons a {
+  color: #c05300; /* Color similar al de la imagen */
+  font-size: 40px;
+  margin-left: 20px;
+}
+
+/* Add Font Awesome for icons */
+/* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'); */

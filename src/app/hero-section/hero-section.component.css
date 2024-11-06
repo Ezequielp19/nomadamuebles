@@ -1,0 +1,131 @@
+/* General section styling */
+.featured-section {
+  display: flex;
+  align-items: center;
+  background-color: #D5BC9D;
+  padding: 40px;
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  position: relative;
+}
+
+/* Content styling */
+.content {
+  max-width: 50%; /* Cambiar a porcentaje para una mejor adaptación */
+  padding-right: 20px;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
+      font-family: 'Montserrat', sans-serif; /* Añadir la fuente Montserrat */
+
+}
+
+h2 {
+  font-size: 24px;
+  margin: 10px 0;
+  font-weight: normal;
+  color: #333;
+      font-family: 'Montserrat', sans-serif; /* Añadir la fuente Montserrat */
+
+}
+
+.description {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+      font-family: 'Montserrat', sans-serif; /* Añadir la fuente Montserrat */
+
+}
+
+/* Button styling */
+.buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.primary-button, .secondary-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.primary-button {
+  background-color: #333;
+  color: #fff;
+}
+
+.secondary-button {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #333;
+}
+
+
+
+
+/* Carousel styling */
+.carousel {
+  position: relative;
+  width: 45%; /* Cambiar a porcentaje para una mejor adaptación */
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel-item img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Carousel buttons */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+/* Carousel indicator */
+.carousel-indicator {
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5px 10px;
+  border-radius: 15px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
