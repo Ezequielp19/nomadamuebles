@@ -1,4 +1,48 @@
-/* Navbar general styling */
+/* .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+}
+
+.navbar-logo img {
+  width: 200px;
+  margin-right: 10px;
+}
+
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.navbar-icons a {
+  color: #c05300;
+  font-size: 40px;
+  margin-left: 20px;
+} */
+
+
+
+/* Estilos base */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -18,11 +62,10 @@
 }
 
 .navbar-logo img {
-  width: 200px; /* Tamaño del logo */
+  width: 200px;
   margin-right: 10px;
 }
 
-/* Links styling */
 .navbar-links {
   display: flex;
   gap: 20px;
@@ -32,15 +75,65 @@
   text-decoration: none;
   color: #333;
   font-weight: 700;
-    font-family: 'Montserrat', sans-serif; /* Añadir la fuente Montserrat */
+  font-family: 'Montserrat', sans-serif;
 }
 
-/* Icons styling */
 .navbar-icons a {
-  color: #c05300; /* Color similar al de la imagen */
-  font-size: 40px;
+  color: #c05300;
+  font-size: 24px;
   margin-left: 20px;
 }
 
-/* Add Font Awesome for icons */
-/* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'); */
+/* Estilo del menú hamburguesa */
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Media Query para pantallas medianas (tablets) */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none; /* Ocultar links en tabletas */
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .navbar-logo img {
+    width: 150px;
+  }
+}
+
+/* Media Query para pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Logo centrado y ajustado */
+  .navbar-logo img {
+    width: 100px;
+    margin: 0;
+  }
+
+  /* Iconos más pequeños */
+  .navbar-icons a {
+    font-size: 18px;
+    margin-left: 10px;
+  }
+
+  /* Estilos del menú desplegable */
+  .navbar-links.responsive {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #fff;
+  }
+}

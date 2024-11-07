@@ -11,14 +11,12 @@
     </div>
   </div>
 
-  <!-- Carrusel de imágenes -->
   <div class="carousel">
     <div #carouselTrack class="carousel-track">
       <div class="carousel-item" *ngFor="let image of images">
         <img [src]="image" alt="Imagen de carrusel" />
       </div>
     </div>
-    <!-- Botones para navegar -->
     <button class="carousel-button prev" (click)="moveSlide(-1)">&#10094;</button>
     <button class="carousel-button next" (click)="moveSlide(1)">&#10095;</button>
   </div>

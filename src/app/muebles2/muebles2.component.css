@@ -1,0 +1,110 @@
+/* Estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f9f9f9; /* Fondo general */
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Animación de desvanecimiento */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.background-frame {
+  background-color: #D8B89A; /* Color de fondo */
+  position: relative;
+  width: 500px; /* Ajusta el tamaño según sea necesario */
+  /* height: 380px; */
+  height: 567px;
+  top: 20px;
+  left: 250px; /* Ajuste de posición */
+  z-index: 1;
+  transform: scale(0.9);
+  animation: frameAppear 0.8s ease forwards 0.2s;
+}
+
+
+
+
+
+/* Animación de aparición del fondo */
+@keyframes frameAppear {
+  to {
+    transform: scale(1);
+  }
+}
+
+.kitchen-image {
+  width: 500px;
+  height: auto;
+  position: relative;
+  z-index: 2; /* Asegura que esté delante del fondo */
+  margin-left: -250px; /* Ajuste de superposición */
+  transform: translateX(50px); /* Desplazamiento inicial para la animación */
+  opacity: 0;
+  animation: slideIn 0.8s ease forwards 0.4s;
+}
+
+/* Animación de deslizamiento */
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.text-content {
+  max-width: 400px;
+  z-index: 3; /* Capa superior */
+  color: #333;
+  margin-right: 150px; /* Ajuste de margen para mejor alineación */
+  transform: translateY(20px); /* Desplazamiento inicial */
+  opacity: 0;
+  animation: textAppear 1s ease forwards 0.6s;
+}
+
+/* Animación de aparición */
+@keyframes textAppear {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.text-content h2 {
+  font-weight: bold;
+  color: #333;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.text-content span {
+  font-weight: normal;
+  font-size: 24px;
+}
+
+.text-content p {
+  color: #333;
+  font-size: 18px;
+  line-height: 1.6;
+}

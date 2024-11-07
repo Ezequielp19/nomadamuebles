@@ -65,7 +65,13 @@ body {
 } */
 
 
-/* Estilos base */
+
+
+
+
+
+
+/* Estilos generales */
 * {
   margin: 0;
   padding: 0;
@@ -85,18 +91,38 @@ body {
   align-items: center;
   position: relative;
   padding: 20px;
-  margin-left: 200px;
   opacity: 0;
-  animation: fadeIn 1s ease forwards; /* Añade animación de desvanecimiento */
+  animation: fadeIn 1s ease forwards;
 }
 
-/* Animación de desvanecimiento */
+/* Animaciones */
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
 }
 
+@keyframes frameAppear {
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes textAppear {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Fondo y contenedor de la imagen */
 .background-frame {
   background-color: #BA5825;
   position: absolute;
@@ -111,13 +137,6 @@ body {
   animation: frameAppear 0.8s ease forwards 0.2s;
 }
 
-/* Animación de aparición del fondo */
-@keyframes frameAppear {
-  to {
-    transform: scale(1);
-  }
-}
-
 .kitchen-image {
   width: 400px;
   height: auto;
@@ -126,17 +145,10 @@ body {
   margin-right: 30px;
   transform: translateX(-50px);
   opacity: 0;
-  animation: slideIn 0.8s ease forwards 0.4s; /* Ajusta la animación */
+  animation: slideIn 0.8s ease forwards 0.4s;
 }
 
-/* Animación de deslizamiento y aparición */
-@keyframes slideIn {
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
+/* Contenido de texto */
 .text-content {
   max-width: 500px;
   z-index: 3;
@@ -144,15 +156,7 @@ body {
   margin-left: 80px;
   transform: translateY(20px);
   opacity: 0;
-  animation: textAppear 1s ease forwards 0.6s; /* Ajusta la animación */
-}
-
-/* Animación de deslizamiento hacia arriba y aparición */
-@keyframes textAppear {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  animation: textAppear 1s ease forwards 0.6s;
 }
 
 .text-content h2 {
@@ -170,4 +174,69 @@ body {
   color: #333;
   font-size: 24px;
   line-height: 1.6;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .background-frame {
+    width: 300px;
+    height: 300px;
+    top: -10px;
+    left: auto;
+    right: auto;
+    transform: scale(1);
+  }
+
+  .kitchen-image {
+    width: 80%;
+    margin: 0 auto 20px auto;
+    transform: translateX(0);
+  }
+
+  .text-content {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .text-content h2 {
+    font-size: 26px;
+  }
+
+  .text-content span {
+    font-size: 20px;
+  }
+
+  .text-content p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .background-frame {
+    width: 260px;
+    height: 260px;
+  }
+
+  .kitchen-image {
+    width: 90%;
+  }
+
+  .text-content h2 {
+    font-size: 22px;
+  }
+
+  .text-content span {
+    font-size: 18px;
+  }
+
+  .text-content p {
+    font-size: 16px;
+  }
 }
