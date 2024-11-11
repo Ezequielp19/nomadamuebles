@@ -1,0 +1,123 @@
+.modules-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.tab {
+  padding: 8px 16px;
+  border: none;
+  background-color: #d1763e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab:hover {
+  background-color: #af5c2e;
+}
+
+.tab.active {
+  background-color: #af5c2e;
+}
+
+.description {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.info {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  padding: 10px 20px;
+  background-color: #d1763e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #af5c2e;
+}
+
+/* Responsividad para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .tab {
+    width: 100%;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .info {
+    font-size: 14px;
+  }
+
+  .cta-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+/* Responsividad para pantallas grandes (computadoras) */
+@media (min-width: 992px) {
+  .modules-container {
+    max-width: 1000px; /* Limita el ancho del contenedor */
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .tab {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+
+  .info {
+    font-size: 20px;
+  }
+
+  .cta-button {
+    font-size: 20px;
+    padding: 14px 28px;
+  }
+}
