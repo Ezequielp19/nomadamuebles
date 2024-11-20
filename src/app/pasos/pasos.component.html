@@ -1,1 +1,63 @@
-<p>pasos works!</p>
+<div class="pasos-container">
+  <!-- Sidebar for steps -->
+  <div class="steps-sidebar">
+    <button
+      *ngFor="let step of steps"
+      (click)="goToStep(step.id)"
+      [class.active]="currentStep === step.id"
+    >
+      {{ step.title }}
+    </button>
+  </div>
+
+  <!-- Content area for the selected step -->
+  <div class="step-content">
+    <!-- Step 1: Select island type -->
+    <ng-container *ngIf="currentStep === 1">
+      <h2>Elige el tipo de isla</h2>
+      <p>Selecciona un diseño para tu isla:</p>
+      <div class="tipo-isla-options">
+        <div
+          class="tipo-isla-option"
+          *ngFor="let isla of tipoIslaOptions"
+          (click)="selectIsla(isla.name, isla.size)"
+        >
+          <img [src]="isla.imagePath" [alt]="isla.name" />
+          <span>{{ isla.name }}</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Step 2: Select countertop color -->
+    <ng-container *ngIf="currentStep === 2">
+      <h2>Color de la mesada</h2>
+      <p>Selecciona el color de la mesada:</p>
+      <div class="color-options">
+        <div
+          class="color-option"
+          *ngFor="let color of colorOptions"
+          (click)="selectColor(color.name, color.prefix)"
+        >
+          <img [src]="color.imagePath" [alt]="color.name" />
+          <span>{{ color.name }}</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Step 3: Show orientations -->
+    <ng-container *ngIf="currentStep === 3">
+      <h2>Medida y orientación de la mesada</h2>
+      <p>Selecciona la orientación:</p>
+      <div class="orientation-options" *ngIf="orientationImages">
+        <div class="orientation-option">
+          <img [src]="orientationImages.left" alt="Izquierda" />
+          <span>Izquierda</span>
+        </div>
+        <div class="orientation-option">
+          <img [src]="orientationImages.right" alt="Derecha" />
+          <span>Derecha</span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

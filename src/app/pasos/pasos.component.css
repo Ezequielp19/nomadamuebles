@@ -1,0 +1,102 @@
+.pasos-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.steps-sidebar {
+  width: 25%;
+  background-color: #f4f4f4;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-right: 1px solid #ddd;
+}
+
+.steps-sidebar button {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.steps-sidebar button.active {
+  font-weight: bold;
+  color: #ff6600;
+}
+
+.step-content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.color-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.color-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  width: 100px;
+}
+
+.color-option img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.color-option span {
+  margin-top: 0.5rem;
+}
+
+.tipo-isla-options,
+.color-options {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tipo-isla-option,
+.color-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.tipo-isla-option:hover,
+.color-option:hover {
+  transform: scale(1.05);
+  border-color: #007bff;
+}
+
+.tipo-isla-option img,
+.color-option img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.tipo-isla-option span,
+.color-option span {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
