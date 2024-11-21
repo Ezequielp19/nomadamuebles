@@ -131,6 +131,35 @@ selectOrientation(orientation: 'left' | 'right') {
     }
   }
 
+
+  generateFinalImagePath(): { countertop: string; modules: string[] } {
+    const size = this.selectedOptions.size;
+    const colorOption = this.colorOptions.find(
+      (option) => option.name === this.selectedOptions.colorMesada
+    );
+    const moduleColor = this.selectedOptions.moduleColor;
+
+    if (!size || !colorOption || !moduleColor || !this.selectedOptions.modules) {
+      console.error('Faltan opciones para generar el mueble.');
+      return { countertop: '', modules: [] };
+    }
+
+    // Generar imagen de la mesada
+    const countertopImage = `../../assets/finalFrente/${colorOption.prefix}${size}FRENTE.png`;
+
+    // Generar imágenes de módulos
+    const modulesImages = this.selectedOptions.modules.map((module) => {
+      // Quitar el prefijo duplicado y la extensión .png
+      const moduleId = module.replace(`${moduleColor}`, '').replace('.png', '');
+      return `../../assets/finalFrente/${moduleColor}${moduleId}FRENTE.png`;
+    });
+
+    return {
+      countertop: countertopImage,
+      modules: modulesImages,
+    };
+  }
+
 }
 
 

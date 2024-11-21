@@ -281,3 +281,29 @@
     }
   }
 }
+
+.final-container {
+  display: grid;
+  grid-template-rows: auto 1fr; /* Mesada en la fila superior, módulos abajo */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Módulos ajustados dinámicamente */
+  gap: 10px;
+  justify-items: center; /* Centrar contenido */
+}
+
+.countertop {
+  grid-column: span 3; /* Mesada ocupa toda la fila superior */
+  text-align: center;
+}
+
+.modules {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.modules img {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+  border: 1px solid #ccc;
+}
