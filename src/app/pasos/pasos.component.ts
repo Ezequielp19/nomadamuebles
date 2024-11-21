@@ -10,20 +10,21 @@ import { CommonModule } from '@angular/common';
 })
 export class PasosComponent {
   currentStep: number = 1;
-  selectedIsla: string | null = null; // Tipo de isla seleccionada
-  selectedColor: string | null = null; // Color de mesada seleccionado
+  orientations: ('left' | 'right')[] = ['left', 'right'];
+  steps: { id: number; title: string }[] = [];
+  selectedOptions: {
+    isla?: string;
+    colorMesada?: string;
+    orientation?: 'left' | 'right';
+    size?: string;
+    moduleColor?: string;
+    modules?: string[];
+  } = { modules: [] };
 
-  // Data for each step
-  steps = [
-    { id: 1, title: 'Tipo de isla' },
-    { id: 2, title: 'Color de la mesada' },
-    { id: 3, title: 'Medida y orientación de la mesada' },
-    { id: 4, title: 'Color módulo' },
-    { id: 5, title: 'Módulo 1' },
-    { id: 6, title: 'Módulo 2' },
-    { id: 7, title: 'Módulo 3' },
-    { id: 8, title: 'Final' },
-  ];
+  moduleSteps: number = 0; // Número de módulos según la isla seleccionada
+  moduleOptions: string[] = []; // Opciones de módulos según el color
+  availableModules = ['01', '02', '03', '04', '05', '06', '07'];
+
 
   // List of available island types
   tipoIslaOptions = [
@@ -40,35 +41,96 @@ export class PasosComponent {
     { name: 'Roble Kendall Natural', prefix: 'K', imagePath: '../../assets/colorMesadas/RobleK.webp' },
   ];
 
-  // Images for orientations based on selected island and color
-  orientationImages: { left: string; right: string } | null = null;
+  moduleColorOptions = [
+    { name: 'Blanco Liso', prefix: 'B', imagePath: '../../assets/colorModulos/BlancoL.jpg' },
+    { name: 'Verde Safari', prefix: 'S', imagePath: '../../assets/colorModulos/VerdeS.jpg' },
+  ];
 
-  // Handle step navigation
+
+  orientationImages: Record<string, string> = {
+    left: '../../assets/sentidoMedida/left.png',
+    right: '../../assets/sentidoMedida/right.png',
+  };
+
+  constructor() {
+    this.initializeSteps();
+  }
+
+  initializeSteps() {
+    this.steps = [
+      { id: 1, title: 'Tipo de isla' },
+      { id: 2, title: 'Color de la mesada' },
+      { id: 3, title: 'Medida y orientación de la mesada' },
+      { id: 4, title: 'Color módulo' },
+    ];
+  }
+
   goToStep(step: number) {
+    if (step > this.steps.length) {
+      // Agregar pasos dinámicamente según los módulos seleccionados
+      const moduleSteps = this.selectedOptions.modules?.length || 0;
+      for (let i = 1; i <= moduleSteps; i++) {
+        this.steps.push({ id: 4 + i, title: `Módulo ${i}` });
+      }
+      this.steps.push({ id: 4 + moduleSteps + 1, title: 'Final' });
+    }
     this.currentStep = step;
   }
 
   // Handle island type selection
   selectIsla(tipo: string, size: string) {
-    this.selectedIsla = tipo;
-    this.orientationImages = null; // Reset orientation images
+    this.selectedOptions.isla = tipo;
+    this.selectedOptions.size = size; // Assign the size of the island
+    this.moduleSteps = size === '57' ? 1 : size === '107' ? 2 : 3;
     this.goToStep(2); // Move to the next step
   }
 
-  // Handle countertop color selection
-  selectColor(color: string, prefix: string) {
-    this.selectedColor = color;
-    const selectedIsland = this.tipoIslaOptions.find((isla) => isla.name === this.selectedIsla);
+ // Handle countertop color selection
+ selectColor(color: string, prefix: string) {
+  this.selectedOptions.colorMesada = color;
 
-    if (selectedIsland) {
-      // Generate paths for both orientations
-      const size = selectedIsland.size;
-      this.orientationImages = {
-        left: `../../assets/sentidoMedida/${prefix}${size}.png`,
-        right: `../../assets/sentidoMedida/${prefix}${size}Opuesto.png`,
-      };
-    }
-
-    this.goToStep(3); // Move to the next step
+  // Generate image paths for the orientations based on selected size and prefix
+  const size = this.selectedOptions.size;
+  if (size) {
+    this.orientationImages = {
+      left: `../../assets/sentidoMedida/${prefix}${size}.png`,
+      right: `../../assets/sentidoMedida/${prefix}${size}Opuesto.png`,
+    };
   }
+
+  this.goToStep(3); // Move to the next step
 }
+
+selectOrientation(orientation: 'left' | 'right') {
+  this.selectedOptions.orientation = orientation;
+  this.goToStep(4); // Proceed to the next step
+}
+
+
+  // Seleccionar color de módulo
+  selectModuleColor(color: string) {
+    const selectedColor = this.moduleColorOptions.find((option) => option.name === color);
+    if (selectedColor) {
+      this.selectedOptions.moduleColor = selectedColor.prefix;
+      this.moduleOptions = this.availableModules.map(
+        (module) => `${selectedColor.prefix}${module}.png`
+      );
+    }
+    this.goToStep(5);
+  }
+
+   // Seleccionar módulo
+   selectModule(module: string, step: number) {
+    if (this.selectedOptions.modules) {
+      this.selectedOptions.modules[step - 5] = module;
+    }
+    if (step < 4 + this.moduleSteps) {
+      this.goToStep(step + 1);
+    } else {
+      this.goToStep(4 + this.moduleSteps + 1);
+    }
+  }
+
+}
+
+
