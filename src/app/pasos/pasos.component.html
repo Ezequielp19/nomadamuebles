@@ -88,28 +88,19 @@
 </ng-container>
 
 
-<!-- Paso Final: Resumen del mueble -->
 <ng-container *ngIf="currentStep === (4 + moduleSteps + 1)">
   <h2>Resultado Final</h2>
   <div class="final-container">
-    <!-- Mesada -->
-    <div class="countertop">
-      <img
-        [src]="generateFinalImagePath().countertop"
-        alt="Mesada seleccionada de frente"
-      />
-    </div>
-
-    <!-- Módulos -->
-    <div class="modules">
-      <img
-        *ngFor="let moduleImage of generateFinalImagePath().modules"
-        [src]="moduleImage"
-        [alt]="'Módulo seleccionado de frente'"
-      />
+    <!-- Contenedor principal con la mesada como fondo -->
+    <div class="island-container" [style.background-image]="'url(' + generateFinalImagePath().countertop + ')'">
+      <!-- Contenedores de los módulos -->
+      <div class="module-container" *ngFor="let moduleImage of generateFinalImagePath().modules">
+        <img [src]="moduleImage" alt="Módulo seleccionado de frente" />
+      </div>
     </div>
   </div>
 </ng-container>
+
 
 
     </ng-container>

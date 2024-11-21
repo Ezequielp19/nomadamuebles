@@ -283,27 +283,44 @@
 }
 
 .final-container {
-  display: grid;
-  grid-template-rows: auto 1fr; /* Mesada en la fila superior, módulos abajo */
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Módulos ajustados dinámicamente */
-  gap: 10px;
-  justify-items: center; /* Centrar contenido */
-}
-
-.countertop {
-  grid-column: span 3; /* Mesada ocupa toda la fila superior */
-  text-align: center;
-}
-
-.modules {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
 }
 
-.modules img {
-  max-width: 100%;
-  max-height: 150px;
-  object-fit: contain;
+.island-container {
+  position: relative;
+  width: 100%; /* Ajusta según sea necesario */
+  max-width: 600px;
+  aspect-ratio: 3 / 1; /* Proporción para la mesada */
+  background-size: cover;
+  background-position: center top;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 10px; /* Espacio para ajustar módulos */
   border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.module-container {
+  position: relative;
+  width: calc(100% / 3); /* Divide el espacio entre los módulos (ajustar según cantidad) */
+  max-width: 120px; /* Tamaño máximo de cada módulo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.module-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 5px;
 }
