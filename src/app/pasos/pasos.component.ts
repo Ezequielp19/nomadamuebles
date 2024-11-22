@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-pasos',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavbarComponent, FooterComponent],
   templateUrl: './pasos.component.html',
   styleUrls: ['./pasos.component.css'],
 })
@@ -25,7 +27,7 @@ export class PasosComponent {
   moduleOptions: string[] = []; // Opciones de módulos según el color
   availableModules = ['01', '02', '03', '04', '05', '06', '07'];
 
-
+  completedSteps: number[] = [];
   // List of available island types
   tipoIslaOptions = [
     { name: 'Isla Soledad', size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
@@ -65,24 +67,63 @@ export class PasosComponent {
     ];
   }
 
+  get totalSteps(): number {
+    return this.steps.length;
+  }
+
+  get progressPercentage(): number {
+    return (this.currentStep / this.totalSteps) * 100;
+  }
+
   goToStep(step: number) {
-    if (step > this.steps.length) {
-      // Agregar pasos dinámicamente según los módulos seleccionados
-      const moduleSteps = this.selectedOptions.modules?.length || 0;
-      for (let i = 1; i <= moduleSteps; i++) {
-        this.steps.push({ id: 4 + i, title: `Módulo ${i}` });
-      }
-      this.steps.push({ id: 4 + moduleSteps + 1, title: 'Final' });
+    // Si el paso actual no está marcado como completado, agrégalo a la lista de completados
+    if (!this.completedSteps.includes(this.currentStep) && this.currentStep < step) {
+      this.completedSteps.push(this.currentStep);
     }
+
+    if (step <= this.steps.length) {
+      // Asegurar que no se repitan pasos innecesarios
+      this.currentStep = step;
+      return;
+    }
+
+    const moduleSteps = this.moduleSteps || 0;
+    const finalStepIndex = 4 + moduleSteps + 1;
+
+    // Agregar pasos dinámicos solo si aún no se han agregado
+    if (step > this.steps.length && this.steps.length < finalStepIndex) {
+      for (let i = 1; i <= moduleSteps; i++) {
+        if (!this.steps.some((s) => s.title === `Módulo ${i}`)) {
+          this.steps.push({ id: 4 + i, title: `Módulo ${i}` });
+        }
+      }
+
+      // Asegurar que el paso "Final" solo se agregue después de los módulos
+      if (!this.steps.some((s) => s.title === 'Final')) {
+        this.steps.push({ id: finalStepIndex, title: 'Final' });
+      }
+    }
+
     this.currentStep = step;
   }
 
-  // Handle island type selection
+
   selectIsla(tipo: string, size: string) {
     this.selectedOptions.isla = tipo;
-    this.selectedOptions.size = size; // Assign the size of the island
-    this.moduleSteps = size === '57' ? 1 : size === '107' ? 2 : 3;
-    this.goToStep(2); // Move to the next step
+    this.selectedOptions.size = size;
+
+    // Definir número de módulos permitidos según el tipo de isla
+    if (tipo === 'Isla Gran Malvina') {
+      this.moduleSteps = 2; // Solo 2 módulos
+    } else if (tipo === 'Isla Trinidad') {
+      this.moduleSteps = 3; // Hasta 3 módulos
+    } else if (tipo === 'Isla Soledad') {
+      this.moduleSteps = 1; // Solo 1 módulo
+    } else {
+      this.moduleSteps = 2; // Default
+    }
+
+    this.goToStep(2); // Mover al siguiente paso
   }
 
  // Handle countertop color selection
@@ -119,15 +160,16 @@ selectOrientation(orientation: 'left' | 'right') {
     this.goToStep(5);
   }
 
-   // Seleccionar módulo
-   selectModule(module: string, step: number) {
+  selectModule(module: string, step: number) {
     if (this.selectedOptions.modules) {
       this.selectedOptions.modules[step - 5] = module;
     }
+
+    // Ir al siguiente módulo o al paso final
     if (step < 4 + this.moduleSteps) {
       this.goToStep(step + 1);
     } else {
-      this.goToStep(4 + this.moduleSteps + 1);
+      this.goToStep(4 + this.moduleSteps + 1); // Paso final
     }
   }
 

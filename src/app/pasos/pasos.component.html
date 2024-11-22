@@ -1,29 +1,36 @@
-<div class="pasos-container">
-  <!-- Barra de progreso -->
-  <div class="progress-bar">
-    <div class="progress" [style.width]="(currentStep / steps.length) * 100 + '%'"></div>
-  </div>
+<app-navbar></app-navbar>
 
+<div class="pasos-container">
   <!-- Barra lateral -->
   <div class="steps-sidebar">
     <button
       *ngFor="let step of steps"
       (click)="goToStep(step.id)"
       [class.active]="currentStep === step.id"
+      [class.completed]="completedSteps.includes(step.id)"
     >
       {{ step.title }}
     </button>
   </div>
 
+
+
+
   <!-- Contenido dinámico -->
   <div class="step-content">
+      <!-- Barra de progreso -->
+<!-- Barra de progreso -->
+<div class="progress-bar">
+  <div class="progress" [style.width]="progressPercentage + '%'"></div>
+</div>
+
     <ng-container [ngSwitch]="currentStep">
      <!-- Paso 1: Selección de tipo de isla -->
 <ng-container *ngIf="currentStep === 1">
   <h2>Selecciona el tipo de isla</h2>
-  <div class="island-options">
+  <div class="color-options">
     <div
-      class="island-option"
+      class="color-option"
       *ngFor="let isla of tipoIslaOptions"
       (click)="selectIsla(isla.name, isla.size)"
     >
@@ -48,21 +55,27 @@
   </div>
 </ng-container>
 
-    <!-- Paso 3: Medida y orientación -->
-    <ng-container *ngSwitchCase="3">
-      <h2>Medida y orientación</h2>
-      <div *ngFor="let orientation of orientations" (click)="selectOrientation(orientation)">
-        <img [src]="orientationImages[orientation]" [alt]="orientation" />
-        <span>{{ orientation }}</span>
-      </div>
-    </ng-container>
+<!-- Paso 3: Medida y orientación -->
+<ng-container *ngIf="currentStep === 3">
+  <h2>Medida y orientación</h2>
+  <div class="color-options">
+    <div
+      class="color-option"
+      *ngFor="let orientation of orientations"
+      (click)="selectOrientation(orientation)"
+    >
+      <img [src]="orientationImages[orientation]" [alt]="orientation" />
+      <span>{{ orientation }}</span>
+    </div>
+  </div>
+</ng-container>
 
 <!-- Paso 4: Selección de color de módulo -->
 <ng-container *ngIf="currentStep === 4">
   <h2>Selecciona el color del módulo</h2>
-  <div class="module-color-options">
+  <div class="color-options">
     <div
-      class="module-color-option"
+      class="color-option"
       *ngFor="let moduleColor of moduleColorOptions"
       (click)="selectModuleColor(moduleColor.name)"
     >
@@ -75,9 +88,9 @@
 <!-- Pasos 5 a N: Selección de módulos -->
 <ng-container *ngIf="currentStep >= 5 && currentStep <= (4 + moduleSteps)">
   <h2>Módulo {{ currentStep - 4 }}</h2>
-  <div class="module-options">
+  <div class="color-options">
     <div
-      class="module-option"
+      class="color-option"
       *ngFor="let module of moduleOptions"
       (click)="selectModule(module, currentStep)"
     >
@@ -87,22 +100,26 @@
   </div>
 </ng-container>
 
-
+<!-- Paso final -->
 <ng-container *ngIf="currentStep === (4 + moduleSteps + 1)">
   <h2>Resultado Final</h2>
   <div class="final-container">
-    <!-- Contenedor principal con la mesada como fondo -->
-    <div class="island-container" [style.background-image]="'url(' + generateFinalImagePath().countertop + ')'">
-      <!-- Contenedores de los módulos -->
-      <div class="module-container" *ngFor="let moduleImage of generateFinalImagePath().modules">
-        <img [src]="moduleImage" alt="Módulo seleccionado de frente" />
+    <div
+      class="island-container"
+      [style.background-image]="'url(' + generateFinalImagePath().countertop + ')'"
+    >
+      <div
+        class="module-container"
+        *ngFor="let moduleImage of generateFinalImagePath().modules"
+      >
+        <img [src]="moduleImage" alt="Módulo" />
       </div>
     </div>
   </div>
 </ng-container>
 
-
-
     </ng-container>
   </div>
 </div>
+
+
