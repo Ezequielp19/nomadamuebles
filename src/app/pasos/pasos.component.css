@@ -178,7 +178,7 @@
 
 .island-container {
   position: relative;
-  width: 23%; /* Ajusta según sea necesario */
+  width: 30%; /* Ajusta según sea necesario */
   max-width: 600px;
   aspect-ratio: 3 / 1; /* Proporción para la mesada */
   background-size: cover;
