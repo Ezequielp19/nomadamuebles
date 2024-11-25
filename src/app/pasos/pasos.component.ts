@@ -28,6 +28,7 @@ export class PasosComponent {
   availableModules = ['01', '02', '03', '04', '05', '06', '07'];
 
   completedSteps: number[] = [];
+  selectedIslandType: string = '';
   // List of available island types
   tipoIslaOptions = [
     { name: 'Isla Soledad', size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
@@ -112,6 +113,9 @@ export class PasosComponent {
     this.selectedOptions.isla = tipo;
     this.selectedOptions.size = size;
 
+    // Asignar el tipo de isla seleccionado
+    this.selectedIslandType = tipo;
+
     // Definir número de módulos permitidos según el tipo de isla
     if (tipo === 'Isla Gran Malvina') {
       this.moduleSteps = 2; // Solo 2 módulos
@@ -123,8 +127,10 @@ export class PasosComponent {
       this.moduleSteps = 2; // Default
     }
 
-    this.goToStep(2); // Mover al siguiente paso
+    // Ir al siguiente paso
+    this.goToStep(2);
   }
+
 
  // Handle countertop color selection
  selectColor(color: string, prefix: string) {
@@ -186,8 +192,16 @@ selectOrientation(orientation: 'left' | 'right') {
       return { countertop: '', modules: [] };
     }
 
-    // Generar imagen de la mesada
-    const countertopImage = `../../assets/finalFrente/${colorOption.prefix}${size}FRENTE.png`;
+    // Determinar la orientación de la mesada
+    let countertopImage: string;
+    if (this.selectedOptions.orientation === 'left') {
+      countertopImage = `../../assets/finalFrente/${colorOption.prefix}${size}FRENTE.png`;
+    } else if (this.selectedOptions.orientation === 'right') {
+      countertopImage = `../../assets/finalFrente/${colorOption.prefix}${size}FRENTEOpuesto.png`;
+    } else {
+      console.error('La orientación de la mesada no es válida.');
+      countertopImage = ''; // Imagen vacía en caso de error
+    }
 
     // Generar imágenes de módulos
     const modulesImages = this.selectedOptions.modules.map((module) => {
@@ -201,6 +215,27 @@ selectOrientation(orientation: 'left' | 'right') {
       modules: modulesImages,
     };
   }
+
+  onIslandTypeSelected(islandType: string): void {
+    this.selectedIslandType = islandType;
+  }
+
+
+  getIslandClass(): string {
+    switch (this.selectedIslandType) {
+      case 'Isla Soledad':
+        return 'island-soledad';
+      case 'Isla Victoria':
+        return 'island-victoria';
+      case 'Isla Gran Malvina':
+      case 'Isla Trinidad': // Ambos comparten tamaño
+        return 'island-gran-malvina-trinidad';
+      default:
+        return 'island-default';
+    }
+  }
+
+
 
 }
 

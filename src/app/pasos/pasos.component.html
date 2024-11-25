@@ -100,23 +100,26 @@
   </div>
 </ng-container>
 
-<!-- Paso final -->
 <ng-container *ngIf="currentStep === (4 + moduleSteps + 1)">
   <h2>Resultado Final</h2>
   <div class="final-container">
+    <!-- Contenedor de la isla -->
     <div
       class="island-container"
-      [style.background-image]="'url(' + generateFinalImagePath().countertop + ')'"
-    >
+      [ngClass]="getIslandClass()"
+      [style.background-image]="'url(' + generateFinalImagePath().countertop + ')'">
+      <!-- Módulos sobre la mesada -->
       <div
         class="module-container"
-        *ngFor="let moduleImage of generateFinalImagePath().modules"
-      >
+        *ngFor="let moduleImage of generateFinalImagePath().modules">
         <img [src]="moduleImage" alt="Módulo" />
       </div>
     </div>
   </div>
 </ng-container>
+
+
+
 
     </ng-container>
   </div>
