@@ -3,15 +3,23 @@
 <div class="pasos-container">
   <!-- Barra lateral -->
   <div class="steps-sidebar">
+    <!-- Botón para limpiar todo -->
+    <div class="reset-button-container">
+      <button (click)="resetSelections()" class="reset-button">Limpiar Selección</button>
+    </div>
     <button
       *ngFor="let step of steps"
       (click)="goToStep(step.id)"
       [class.active]="currentStep === step.id"
       [class.completed]="completedSteps.includes(step.id)"
+      [disabled]="step.id === 1 && selectedOptions.isla"
     >
       {{ step.title }}
     </button>
   </div>
+
+
+
 
 
 
@@ -106,17 +114,21 @@
     <!-- Contenedor de la isla -->
     <div
       class="island-container"
-      [ngClass]="getIslandClass()"
-      [style.background-image]="'url(' + generateFinalImagePath().countertop + ')'">
-      <!-- Módulos sobre la mesada -->
-      <div
-        class="module-container"
-        *ngFor="let moduleImage of generateFinalImagePath().modules">
-        <img [src]="moduleImage" alt="Módulo" />
+      [ngStyle]="{ 'background-image': 'url(' + generateFinalImagePath().countertop + ')' }"
+    >
+      <!-- Contenedor para agrupar módulos como un solo mueble -->
+      <div [ngClass]="getIslandClass()">
+        <div
+          class="module-container"
+          *ngFor="let moduleImage of generateFinalImagePath().modules"
+        >
+          <img [src]="moduleImage" alt="Módulo" />
+        </div>
       </div>
     </div>
   </div>
 </ng-container>
+
 
 
 

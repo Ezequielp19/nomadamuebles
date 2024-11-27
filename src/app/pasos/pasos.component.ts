@@ -29,6 +29,7 @@ export class PasosComponent {
 
   completedSteps: number[] = [];
   selectedIslandType: string = '';
+  warningMessage: string = ''; // Mensaje de advertencia
   // List of available island types
   tipoIslaOptions = [
     { name: 'Isla Soledad', size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
@@ -76,37 +77,7 @@ export class PasosComponent {
     return (this.currentStep / this.totalSteps) * 100;
   }
 
-  goToStep(step: number) {
-    // Si el paso actual no está marcado como completado, agrégalo a la lista de completados
-    if (!this.completedSteps.includes(this.currentStep) && this.currentStep < step) {
-      this.completedSteps.push(this.currentStep);
-    }
 
-    if (step <= this.steps.length) {
-      // Asegurar que no se repitan pasos innecesarios
-      this.currentStep = step;
-      return;
-    }
-
-    const moduleSteps = this.moduleSteps || 0;
-    const finalStepIndex = 4 + moduleSteps + 1;
-
-    // Agregar pasos dinámicos solo si aún no se han agregado
-    if (step > this.steps.length && this.steps.length < finalStepIndex) {
-      for (let i = 1; i <= moduleSteps; i++) {
-        if (!this.steps.some((s) => s.title === `Módulo ${i}`)) {
-          this.steps.push({ id: 4 + i, title: `Módulo ${i}` });
-        }
-      }
-
-      // Asegurar que el paso "Final" solo se agregue después de los módulos
-      if (!this.steps.some((s) => s.title === 'Final')) {
-        this.steps.push({ id: finalStepIndex, title: 'Final' });
-      }
-    }
-
-    this.currentStep = step;
-  }
 
 
   selectIsla(tipo: string, size: string) {
@@ -222,17 +193,75 @@ selectOrientation(orientation: 'left' | 'right') {
 
 
   getIslandClass(): string {
-    switch (this.selectedIslandType) {
-      case 'Isla Soledad':
-        return 'island-soledad';
-      case 'Isla Victoria':
-        return 'island-victoria';
-      case 'Isla Gran Malvina':
-      case 'Isla Trinidad': // Ambos comparten tamaño
-        return 'island-gran-malvina-trinidad';
-      default:
-        return 'island-default';
+    const size = this.selectedOptions.size; // Tamaño seleccionado (e.g., '175', '105', '57', '107')
+    const orientation = this.selectedOptions.orientation; // Orientación seleccionada ('left' o 'right')
+    const islandType = this.selectedIslandType; // Tipo de isla seleccionada (e.g., 'Gran Malvina')
+    console.log(islandType)
+    if (!size || !orientation) {
+      console.error('Faltan opciones para determinar la clase de la mesada.');
+      return 'module-wrapper-default'; // Clase por defecto si faltan opciones
     }
+
+    // Determinar la clase base según el tipo de isla
+    let className = `module-wrapper-${size}`;
+
+  // Añadir orientación al final de la clase
+  className += orientation === 'left' ? 'L' : 'R';
+
+    // Manejo especial para la Isla "Gran Malvina" con medida 107 y 2 módulos
+    if (islandType === 'Isla Gran Malvina' && size === '157') {
+      className += '2M';
+    }
+
+
+    console.log(className)
+    return className;
+  }
+
+  resetSelections(): void {
+    // Limpia las selecciones
+    this.selectedOptions = { modules: [] };
+    this.selectedIslandType = '';
+    this.moduleSteps = 0;
+    this.completedSteps = [];
+
+    // Reinicia al paso inicial
+    this.steps = [
+      { id: 1, title: 'Tipo de isla' },
+      { id: 2, title: 'Color de la mesada' },
+      { id: 3, title: 'Medida y orientación de la mesada' },
+      { id: 4, title: 'Color módulo' },
+    ];
+    this.currentStep = 1;
+  }
+
+  goToStep(step: number): void {
+    if (step === 1 && this.selectedOptions.isla) {
+      // Evitar volver manualmente al paso 1 si ya se seleccionó una isla
+      return;
+    }
+
+    // Marca el paso actual como completado si avanzamos
+    if (!this.completedSteps.includes(this.currentStep) && this.currentStep < step) {
+      this.completedSteps.push(this.currentStep);
+    }
+
+    // Manejar pasos dinámicos como antes
+    const moduleSteps = this.moduleSteps || 0;
+    const finalStepIndex = 4 + moduleSteps + 1;
+
+    if (step > this.steps.length && this.steps.length < finalStepIndex) {
+      for (let i = 1; i <= moduleSteps; i++) {
+        if (!this.steps.some((s) => s.title === `Módulo ${i}`)) {
+          this.steps.push({ id: 4 + i, title: `Módulo ${i}` });
+        }
+      }
+      if (!this.steps.some((s) => s.title === 'Final')) {
+        this.steps.push({ id: finalStepIndex, title: 'Final' });
+      }
+    }
+
+    this.currentStep = step;
   }
 
 

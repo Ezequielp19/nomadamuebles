@@ -18,7 +18,9 @@
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);
-      border-color: #ff6600;
+      border-color: #20200F;
+      border: 1px solid #60603C; /* Borde marrón anaranjado */
+      box-shadow: 0 0 5px #60603C; /* Efecto de resplandor */
     }
 
     img {
@@ -75,7 +77,7 @@
 
       .progress {
         height: 100%;
-        background-color: #c05300;
+        background-color: #60603C;
         transition: width 0.3s ease;
       }
     }
@@ -117,22 +119,22 @@
       /* Paso activo */
       &.active {
         color: #fff; /* Texto blanco */
-        background-color: #c05300; /* Marrón anaranjado */
-        border-color: #c05300; /* Borde marrón anaranjado */
+        background-color: #60603C; /* Marrón anaranjado */
+        border-color: black; /* Borde marrón anaranjado */
       }
 
       /* Paso completado */
       &.completed {
         background-color: #f4f4f4; /* Fondo gris claro */
-        color: #c05300; /* Texto marrón anaranjado */
-        border: 1px solid #c05300; /* Borde marrón anaranjado */
-        box-shadow: 0 0 5px #c05300; /* Efecto de resplandor */
+        color: #60603C; /* Texto marrón anaranjado */
+        border: 1px solid #60603C; /* Borde marrón anaranjado */
+        box-shadow: 0 0 5px #60603C; /* Efecto de resplandor */
 
         /* Icono de checklist */
         &::after {
           content: '✔'; /* Check icon */
           font-size: 1.2rem;
-          color: #c05300; /* Mismo color marrón anaranjado */
+          color: #60603C; /* Mismo color marrón anaranjado */
           margin-left: 0.5rem;
         }
       }
@@ -154,7 +156,7 @@
     display: inline-block;
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
-    background-color: #ff6600;
+    background-color: #60603C;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -162,7 +164,7 @@
     text-decoration: none;
 
     &:hover {
-      background-color: #e65c00;
+      background-color: #60603C;
     }
   }
 
@@ -171,57 +173,127 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
+    /* gap: 20px;
+    margin: 20px 0; */
   }
 
   .island-container {
     position: relative;
     display: flex;
-    justify-content: center; /* Centra los módulos horizontalmente */
-    align-items: flex-end; /* Alinea los módulos al fondo */
+    justify-content: center;
+    align-items: flex-end;
     background-size: contain; /* Imagen de mesada contenida */
     background-repeat: no-repeat;
-    background-position: top center; /* Asegura que la mesada esté cerca de los módulos */
-    /* border: 1px solid #ccc; */
+    background-position: top center;
+    height: 280px;
+    width: 600px;
     border-radius: 8px;
     overflow: hidden;
-    height: 250px; /* Altura reducida para acercar la mesada */
-    width: 800px; /* Ancho base */
-    transition: all 0.3s ease-in-out; /* Transiciones suaves para cambios */
+    transition: all 0.3s ease-in-out;
   }
 
-  /* Ajustes específicos según el tipo de isla */
-  .island-container.island-soledad {
-    width: 700px;
+    /* Agrupador de los módulos para mantenerlos como un solo bloque */
+    /* .module-wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 0;
+      margin-right: 17px;
+    } */
+
+     /* Agrupador de los módulos para mantenerlos como un solo bloque */
+  .module-wrapper-157L {
+    display: flex;
+    flex-direction: row; /* Los módulos en una fila */
+    gap: 0; /* Sin espacio entre módulos */
+    margin-right: 50px;
   }
 
-  .island-container.island-victoria {
-    width: 850px;
+  /* Agrupador de los módulos para mantenerlos como un solo bloque */
+  .module-wrapper-157L2M {
+    display: flex;
+    flex-direction: row; /* Los módulos en una fila */
+    gap: 0; /* Sin espacio entre módulos */
+    margin-right: 200px;
   }
 
-  .island-container.island-gran-malvina-trinidad {
-    width: 900px;
+      /* Agrupador de los módulos para mantenerlos como un solo bloque */
+  .module-wrapper-107L {
+    display: flex;
+    flex-direction: row; /* Los módulos en una fila */
+    gap: 0; /* Sin espacio entre módulos */
+    margin-right:  33px;
   }
 
-  .island-container.island-default {
-    width: 800px;
+        /* Agrupador de los módulos para mantenerlos como un solo bloque */
+.module-wrapper-57L {
+  display: flex;
+  flex-direction: row; /* Los módulos en una fila */
+  gap: 0; /* Sin espacio entre módulos */
+  margin-right: 15px;
+}
+
+  /* Agrupador de los módulos para mantenerlos como un solo bloque */
+  .module-wrapper-157R {
+    display: flex;
+    flex-direction: row; /* Los módulos en una fila */
+    gap: 0; /* Sin espacio entre módulos */
+    margin-left: 50px;
   }
 
+  /* Agrupador de los módulos para mantenerlos como un solo bloque */
+  .module-wrapper-157R2M {
+    display: flex;
+    flex-direction: row; /* Los módulos en una fila */
+    gap: 0; /* Sin espacio entre módulos */
+    margin-left: 200px;
+  }
+
+      /* Agrupador de los módulos para mantenerlos como un solo bloque */
+  .module-wrapper-107R {
+    display: flex;
+    flex-direction: row; /* Los módulos en una fila */
+    gap: 0; /* Sin espacio entre módulos */
+    margin-left:  33px;
+  }
+
+        /* Agrupador de los módulos para mantenerlos como un solo bloque */
+.module-wrapper-57R {
+  display: flex;
+  flex-direction: row; /* Los módulos en una fila */
+  gap: 0; /* Sin espacio entre módulos */
+  margin-left: 15px;
+}
+
+  /* Módulos individuales */
   .module-container {
-    position: relative;
+    height: 267px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 150px; /* Tamaño fijo para todos los módulos */
-    height: 200px; /* Tamaño fijo para todos los módulos */
-    margin: 5px;
-    background-color: transparent; /* Quita el fondo si no es necesario */
+    background-color: black; /* Fondo transparente */
+    margin: 0; /* Sin margen */
     overflow: hidden;
 
     img {
-      width: 100%; /* La imagen ocupa todo el módulo */
+      width: 100%; /* Imagen llena el módulo */
       height: 100%;
-      object-fit: contain; /* Mantiene proporciones */
+      /* object-fit: contain;  */
     }
   }
+
+  .reset-button-container {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .reset-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+
