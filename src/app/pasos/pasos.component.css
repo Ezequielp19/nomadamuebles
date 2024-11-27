@@ -270,7 +270,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black; /* Fondo transparente */
+    /* background-color: black;  */
     margin: 0; /* Sin margen */
     overflow: hidden;
 
