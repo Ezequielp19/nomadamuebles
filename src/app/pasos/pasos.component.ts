@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-pasos',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, NavbarComponent, FooterComponent, FormsModule],
   templateUrl: './pasos.component.html',
   styleUrls: ['./pasos.component.css'],
 })
@@ -26,10 +27,12 @@ export class PasosComponent {
   moduleSteps: number = 0; // Número de módulos según la isla seleccionada
   moduleOptions: string[] = []; // Opciones de módulos según el color
   availableModules = ['01', '02', '03', '04', '05', '06', '07'];
-
+  searchCode: string = '';
+  isSearchActive: boolean = false;
   completedSteps: number[] = [];
   selectedIslandType: string = '';
   warningMessage: string = ''; // Mensaje de advertencia
+  codigoFinal: string = '';
   // List of available island types
   tipoIslaOptions = [
     { name: 'Isla Soledad', size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
@@ -220,6 +223,8 @@ selectOrientation(orientation: 'left' | 'right') {
 
   resetSelections(): void {
     // Limpia las selecciones
+    this.searchCode = '';
+    this.isSearchActive = false; // Restablecer el estado de la búsqueda al limpiar
     this.selectedOptions = { modules: [] };
     this.selectedIslandType = '';
     this.moduleSteps = 0;
@@ -236,36 +241,109 @@ selectOrientation(orientation: 'left' | 'right') {
   }
 
   goToStep(step: number): void {
-    if (step === 1 && this.selectedOptions.isla) {
-      // Evitar volver manualmente al paso 1 si ya se seleccionó una isla
+    if (this.isSearchActive) {
+      console.log('Navegación deshabilitada durante la búsqueda.');
       return;
     }
 
-    // Marca el paso actual como completado si avanzamos
+    if (step === 1 && this.selectedOptions.isla) {
+      return;
+    }
+
     if (!this.completedSteps.includes(this.currentStep) && this.currentStep < step) {
       this.completedSteps.push(this.currentStep);
     }
 
-    // Manejar pasos dinámicos como antes
-    const moduleSteps = this.moduleSteps || 0;
-    const finalStepIndex = 4 + moduleSteps + 1;
-
-    if (step > this.steps.length && this.steps.length < finalStepIndex) {
-      for (let i = 1; i <= moduleSteps; i++) {
-        if (!this.steps.some((s) => s.title === `Módulo ${i}`)) {
-          this.steps.push({ id: 4 + i, title: `Módulo ${i}` });
-        }
-      }
-      if (!this.steps.some((s) => s.title === 'Final')) {
-        this.steps.push({ id: finalStepIndex, title: 'Final' });
-      }
-    }
-
     this.currentStep = step;
+    console.log('Paso actual:', this.currentStep);
+  }
+
+  clearSearch(): void {
+    this.isSearchActive = false;
+    this.searchCode = '';
+    this.selectedOptions = {};
+    console.log('Búsqueda limpiada.');
   }
 
 
+  generateFinalCode(): string {
+    const size = this.selectedOptions.size; // Tamaño de la isla (57, 107, 157)
+    const orientation = this.selectedOptions.orientation === 'left' ? 'I' : 'D'; // Orientación
+    const colorMesada = this.colorOptions.find(option => option.name === this.selectedOptions.colorMesada)?.prefix || ''; // Prefijo de color de mesada
+    const colorModulo = this.selectedOptions.moduleColor || ''; // Prefijo del color de módulo
+    const modules = this.selectedOptions.modules?.map((module, index) => {
+      const position = ['A', 'B', 'C'][index] || ''; // Asignar posición: A, B, C
+      const moduleNumber = module.replace(`${colorModulo}`, '').replace('.png', ''); // Número de módulo sin prefijo
+      return `${position}${moduleNumber}`;
+    }).join(''); // Unir módulos con sus posiciones
+
+    this.codigoFinal =  `${size}${colorMesada}${orientation}-${colorModulo}${modules}`;
+    return this.codigoFinal;
+  }
+
+
+  searchByCode(): void {
+    if (!this.searchCode) {
+      alert('Por favor, introduce un código.');
+      return;
+    }
+
+    console.log('Código ingresado:', this.searchCode);
+
+    // Regex actualizado para validar prefijos de 1 o 2 letras y más colores de módulos
+    const regex = /^(\d{2,3})([A-Z]{1,2})([ID])-(B|VS|S)([A-C]\d{2})([A-C]\d{2})?([A-C]\d{2})?$/;
+    const match = this.searchCode.match(regex);
+
+    if (match) {
+      const [
+        _, // ignoramos el grupo completo
+        size,
+        colorMesada,
+        orientation,
+        moduleColor,
+        module1,
+        module2,
+        module3,
+      ] = match;
+
+      // Asignamos los valores decodificados a `selectedOptions`
+      this.selectedOptions.size = size;
+      this.selectedOptions.orientation = orientation === 'I' ? 'left' : 'right';
+      this.selectedOptions.colorMesada = this.getMesadaByPrefix(colorMesada);
+      this.selectedOptions.moduleColor = moduleColor;
+
+      // Procesar los módulos seleccionados (1 a 3 módulos)
+      const modules = [module1, module2, module3].filter(Boolean); // Ignorar valores `null` o `undefined`
+      this.selectedOptions.modules = this.parseModules(modules);
+
+      console.log('Opciones seleccionadas:', this.selectedOptions);
+
+      this.isSearchActive = true; // Activar búsqueda
+    } else {
+      alert('Código no válido. Inténtalo de nuevo.');
+      this.isSearchActive = false; // Desactivar búsqueda
+    }
+  }
+
+
+    private getMesadaByPrefix(prefix: string): string {
+      console.log('Buscando mesada con prefijo:', prefix);
+      const mesada = this.colorOptions.find(option => option.prefix === prefix);
+      console.log('Mesada encontrada:', mesada);
+      return mesada ? mesada.name : 'Color desconocido';
+    }
+
+
+    private parseModules(modules: string[]): string[] {
+      console.log('Procesando módulos:', modules);
+
+      return modules.map(module => {
+        const number = module.slice(1); // Obtener número del módulo (ej. "02")
+        const modulePath = `../../assets/finalFrente/${this.selectedOptions.moduleColor}${number}FRENTE.png`; // Ruta del módulo
+        console.log('Path generado para el módulo:', modulePath);
+        return modulePath;
+      });
+    }
+
 
 }
-
-

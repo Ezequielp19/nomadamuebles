@@ -1,36 +1,67 @@
 <app-navbar></app-navbar>
 
 <div class="pasos-container">
-  <!-- Barra lateral -->
+
   <div class="steps-sidebar">
-    <!-- Botón para limpiar todo -->
-    <div class="reset-button-container">
-      <button (click)="resetSelections()" class="reset-button">Limpiar Selección</button>
-    </div>
-    <button
-      *ngFor="let step of steps"
-      (click)="goToStep(step.id)"
-      [class.active]="currentStep === step.id"
-      [class.completed]="completedSteps.includes(step.id)"
-      [disabled]="step.id === 1 && selectedOptions.isla"
-    >
-      {{ step.title }}
-    </button>
+  <!-- Campo de búsqueda de código -->
+  <div class="code-search-container">
+    <input
+      type="text"
+      placeholder="Buscar por código"
+      [(ngModel)]="searchCode"
+      (keyup.enter)="searchByCode()"
+      class="code-input"
+    />
+    <button (click)="searchByCode()" class="search-button">Buscar</button>
+  </div>
+
+  <!-- Botón para limpiar selección -->
+  <div class="reset-button-container">
+    <button (click)="resetSelections()" class="reset-button">Limpiar Selección</button>
   </div>
 
 
-
-
+    <!-- Botones de los pasos (ocultos si hay una búsqueda activa) -->
+    <ng-container *ngIf="!isSearchActive">
+      <button
+        *ngFor="let step of steps"
+        (click)="goToStep(step.id)"
+        [class.active]="currentStep === step.id"
+        [class.completed]="completedSteps.includes(step.id)"
+        [disabled]="step.id === 1 && selectedOptions.isla"
+      >
+        {{ step.title }}
+      </button>
+    </ng-container>
+  </div>
+<div *ngIf="isSearchActive" class="step-content">
+ <!-- Resultado de la búsqueda (visible solo si hay búsqueda activa) -->
+ <ng-container >
+  <h2>Resultado Búsqueda</h2>
+  <div class="final-container">
+    <!-- Contenido del resultado -->
+    <div class="island-container" [ngStyle]="{ 'background-image': 'url(' + generateFinalImagePath().countertop + ')' }">
+      <div [ngClass]="getIslandClass()">
+        <div class="module-container" *ngFor="let moduleImage of selectedOptions.modules">
+          <img [src]="moduleImage" alt="Módulo" />
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+</div>
 
 
 
   <!-- Contenido dinámico -->
-  <div class="step-content">
+  <div *ngIf="!isSearchActive" class="step-content">
       <!-- Barra de progreso -->
 <!-- Barra de progreso -->
 <div class="progress-bar">
   <div class="progress" [style.width]="progressPercentage + '%'"></div>
 </div>
+
+
 
     <ng-container [ngSwitch]="currentStep">
      <!-- Paso 1: Selección de tipo de isla -->
@@ -126,12 +157,9 @@
         </div>
       </div>
     </div>
+    <p>Código Generado: {{ generateFinalCode() }}</p>
   </div>
 </ng-container>
-
-
-
-
 
     </ng-container>
   </div>
