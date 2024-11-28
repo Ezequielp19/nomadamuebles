@@ -388,3 +388,34 @@
   }
 
 
+/* Botón con ícono de información */
+.info-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #60603C; /* Borde marrón anaranjado */
+  color: #20200F;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: white;
+  box-shadow: 0 0 5px #60603C; /* Efecto de resplandor */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.info-button:hover .info-icon {
+  background-color: #60603C; /* Marrón anaranjado */
+  color: white;
+}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { ModalService } from '../../service/modal.service';
 
 @Component({
   selector: 'app-pasos',
@@ -33,25 +34,30 @@ export class PasosComponent {
   selectedIslandType: string = '';
   warningMessage: string = ''; // Mensaje de advertencia
   codigoFinal: string = '';
+  infoItems: Array<{ id: string; title: string; description: string }> = [];
+  infoMap: Map<string, { title: string; description: string }> = new Map();
   // List of available island types
   tipoIslaOptions = [
-    { name: 'Isla Soledad', size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
-    { name: 'Isla Victoria', size: '107', imagePath: '../../assets/tipoIsla/2modulos.png' },
-    { name: 'Isla Gran Malvina', size: '157', imagePath: '../../assets/tipoIsla/2modulos2.png' },
-    { name: 'Isla Trinidad', size: '157', imagePath: '../../assets/tipoIsla/3modulos.png' },
+    { id: 'isla1', name: 'Isla Soledad', size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
+    { id: 'isla2', name: 'Isla Victoria', size: '107', imagePath: '../../assets/tipoIsla/2modulos.png' },
+    { id: 'isla3', name: 'Isla Gran Malvina', size: '157', imagePath: '../../assets/tipoIsla/2modulos2.png' },
+    { id: 'isla4', name: 'Isla Trinidad', size: '157', imagePath: '../../assets/tipoIsla/3modulos.png' },
   ];
+
 
   // List of available countertop colors
   colorOptions = [
-    { name: 'Blanco Nature', prefix: 'BN', imagePath: '../../assets/colorMesadas/BlancoN.jpg' },
-    { name: 'Negro Sauco', prefix: 'SA', imagePath: '../../assets/colorMesadas/NegroS.jpg' },
-    { name: 'Roble Kendall Natural', prefix: 'K', imagePath: '../../assets/colorMesadas/RobleK.webp' },
+    { id: 'mesada_BN', name: 'Blanco Nature', prefix: 'BN', imagePath: '../../assets/colorMesadas/BlancoN.jpg' },
+    { id: 'mesada_SA', name: 'Negro Sauco', prefix: 'SA', imagePath: '../../assets/colorMesadas/NegroS.jpg' },
+    { id: 'mesada_K', name: 'Roble Kendall Natural', prefix: 'K', imagePath: '../../assets/colorMesadas/RobleK.webp' },
   ];
 
+
   moduleColorOptions = [
-    { name: 'Blanco Liso', prefix: 'B', imagePath: '../../assets/colorModulos/BlancoL.jpg' },
-    { name: 'Verde Safari', prefix: 'S', imagePath: '../../assets/colorModulos/VerdeS.jpg' },
+    { id: 'modulo_B', name: 'Blanco Liso', prefix: 'B', imagePath: '../../assets/colorModulos/BlancoL.jpg' },
+    { id: 'modulo_S', name: 'Verde Safari', prefix: 'S', imagePath: '../../assets/colorModulos/VerdeS.jpg' },
   ];
+
 
 
   orientationImages: Record<string, string> = {
@@ -59,18 +65,128 @@ export class PasosComponent {
     right: '../../assets/sentidoMedida/right.png',
   };
 
-  constructor() {
+  constructor(private modalService: ModalService) {
     this.initializeSteps();
+    this.initializeInfoItems();
   }
 
-  initializeSteps() {
-    this.steps = [
-      { id: 1, title: 'Tipo de isla' },
-      { id: 2, title: 'Color de la mesada' },
-      { id: 3, title: 'Medida y orientación de la mesada' },
-      { id: 4, title: 'Color módulo' },
+    // Inicializar el arreglo de infoItems
+    initializeInfoItems(): void {
+      // Datos estáticos
+      const staticInfoItems = [
+        { id: 'isla1', title: 'Isla Soledad', description: 'La Isla Soledad es esencial para quienes valoran lo fundamental y buscan eficiencia en lo compacto. Con un único módulo a elección, es ideal para cocinas que requieren un mueble práctico y optimizado. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante. Las ruedas permiten moverla con facilidad, haciendo que tus espacios se adapten dinámicamente a tus necesidades.' },
+        { id: 'isla2', title: 'Isla Victoria', description: 'La Isla Victoria es ideal para quienes desean expandir su cocina con mayor superficie de trabajo y almacenamiento. Con dos módulos personalizables, este mueble ofrece una combinación perfecta de funcionalidad y eficiencia. Su diseño con mesada en caída tipo cascada añade un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptándose dinámicamente a tus espacios y necesidades.' },
+        { id: 'isla3', title: 'Isla Gran Malvina', description: 'La Isla Gran Malvina es ideal para quienes desean maximizar la superficie de trabajo en su cocina. Su amplia mesada con vuelo es perfecta para usar como mesa diaria o zona de preparación, brindando comodidad y funcionalidad en un solo mueble. Con dos módulos a elección para almacenamiento adicional, esta isla combina perfectamente estilo y practicidad. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante, mientras que las ruedas permiten moverla fácilmente, adaptándose a las necesidades de tu espacio.' },
+        { id: 'isla4', title: 'Isla Trinidad', description: 'La Isla Trinidad es ideal para quienes desean expandir su cocina y organizarla meticulosamente. Con tres módulos personalizables, este mueble se convierte en la verdadera estrella del hogar, ofreciendo un amplio espacio para almacenamiento y superficie de trabajo. Su diseño con mesada en caída tipo cascada agrega un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptando dinámicamente el espacio a tus necesidades.' },
+        { id: 'mesada_BN', title: 'Blanco Nature', description: 'Tono de blanco con un sutil veteado que imita la textura de la madera natural.' },
+        { id: 'mesada_SA', title: 'Negro Sauco', description: 'De color intenso, este diseño de madera negra quemada resalta a la perfección la textura BARK.' },
+        { id: 'mesada_K', title: 'Roble Kendall Natural', description: 'Tono suave y luminoso, similar a la madera veteada, pero con un toque tenue y delicado.' },
+        { id: 'orientation_left', title: 'Orientación Izquierda', description: 'La orientación izquierda...' },
+        { id: 'orientation_right', title: 'Orientación Derecha', description: 'La orientación derecha...' },
+        { id: 'modulo_B', title: 'Blanco Liso', description: 'Un color neutro que combina con cualquier ambiente.' },
+        { id: 'modulo_S', title: 'Verde Safari', description: 'Para crear el equilibrio perfecto entre la naturaleza y la armonía de las maderas, su tonalidad transmite la conexión con tus raíces.' },
+        { id: 'modulo_01', title: 'Módulo 01', description: 'Con 3 espacios de guardado exhibidores. Perfecta para canastos, ollas grandes y esos objetos únicos que son parte de tu vida que te encantaría tener a la vista y al alcance de tu mano. ¡Sentite orgulloso de tus tesoros y exhibilos!' },
+        { id: 'modulo_02', title: 'Módulo 02', description: 'Con 3 espacios de guardado y puerta. Para una experiencia más íntima con una visión minimalista y limpia del desorden cotidiano en tu cocina. ¿Qué esperás para cerrarle la puerta al caos y disfrutar de una cocina más ordenada?' },
+        { id: 'modulo_03', title: 'Módulo 03', description: 'Con 2 cajones grandes y profundos. Ideal para almacenar accesorios, utensilios voluminosos y electrodomésticos de mano. Todo al alcance sin necesidad de quedarte buscando en un montón de cosas apiladas. Abrí un cajón y encontrá fácilmente lo que buscás.' },
+        { id: 'modulo_04', title: 'Módulo 04', description: 'Con 2 cajones medianos y 1 grande. Ideal para tener siempre a mano lo que más usás: cubiertos, utensilios voluminosos, electrodomésticos de mano y accesorios de cocina. Disfrutá de una cocina bien organizada con espacio para todo.' },
+        { id: 'modulo_05', title: 'Módulo 05', description: 'Combina privacidad y organización con 2 estantes con puerta y un espacio “box”. Tené a la vista y al alcance de tu mano tus accesorios indispensables. Preparate para cocinar de una forma rápida y fácil. Disfrutá de una cocina siempre lista para vos.' },
+        { id: 'modulo_06', title: 'Módulo 06', description: 'Con 2 cajones y un espacio “box”. Combiná funcionalidad y orden. Tené tus utensilios y accesorios a la vista y guardados o siempre al alcance de tu mano. Disfrutá de manera eficiente tu cocina, organizála y dejála lista para usar.' },
+        { id: 'modulo_07', title: 'Módulo 07', description: 'Con estantes visibles y una cava lateral. Te permite almacenar 6 botellas, listas para disfrutar. Tené todo organizado y al alcance. ¡Perfecto para compartir momentos únicos!' }
     ];
-  }
+
+   // Generar información dinámica para los módulos cargados
+   const dynamicModulesInfo = (this.moduleOptions || []).map((module) => {
+    const moduleType = this.getModuleType(module); // Usa una función para extraer el tipo
+    return {
+      id: `modulo_${moduleType}`, // ID dinámico
+      title: `Módulo ${moduleType}`,
+      description: `Este es el módulo de tipo ${moduleType}, diseñado para tu configuración.`,
+    };
+  });
+
+  // Combinar ítems estáticos y dinámicos
+  const combinedItems = [...staticInfoItems, ...dynamicModulesInfo];
+  this.infoMap = new Map(
+    combinedItems.map((item) => [item.id, { title: item.title, description: item.description }])
+  );
+}
+
+// Extrae el tipo de módulo dinámico basado en el nombre del archivo
+getModuleType(module: string): string {
+  return module.substring(1).replace(/\.(png|jpg|jpeg|svg)$/, ''); // Quita el prefijo y la extensión
+}
+
+// Retorna el ID del módulo en base al tipo
+getModuleId(module: string): string {
+  const moduleType = this.getModuleType(module);
+  return `modulo_${moduleType}`;
+}
+
+    openInfoModal(itemId: string): void {
+      const item = this.infoMap.get(itemId);
+      if (item) {
+        this.modalService.openModal(item.title, item.description);
+      } else {
+        this.modalService.openModal(
+          'Información no encontrada',
+          'No hay información disponible para el artículo seleccionado.'
+        );
+      }
+    }
+
+    getOrientationInfoId(orientation: 'left' | 'right'): string {
+      return `orientation_${orientation}`; // Ajusta según el formato necesario
+    }
+
+    getOrientationAltText(orientation: 'left' | 'right'): string {
+      return orientation === 'left' ? 'Orientación izquierda' : 'Orientación derecha';
+    }
+
+    getOrientationDisplayName(orientation: 'left' | 'right'): string {
+      return orientation === 'left' ? 'Izquierda' : 'Derecha';
+    }
+    getModuleDisplayName(module: string): string {
+      // Elimina la extensión del archivo
+      const moduleName = module.replace(/\.[^/.]+$/, '');
+
+      // Mapeo para convertir nombres de archivos en títulos legibles
+      const moduleMap: { [key: string]: string } = {
+        B01: 'Módulo 01',
+        B02: 'Módulo 02',
+        B03: 'Módulo 03',
+        B04: 'Módulo 04',
+        B05: 'Módulo 05',
+        B06: 'Módulo 06',
+        B07: 'Módulo 07',
+        // Agrega más mapeos según tus necesidades
+      };
+
+      // Devuelve el nombre del módulo o el nombre original si no está en el mapeo
+      return moduleMap[moduleName] || moduleName;
+    }
+
+    onModuleSelectionChange(): void {
+      this.initializeSteps(); // Regenerar los pasos cuando cambien los módulos.
+    }
+
+    initializeSteps(): void {
+      this.steps = [
+        { id: 1, title: 'Tipo de isla' },
+        { id: 2, title: 'Color de la mesada' },
+        { id: 3, title: 'Medida y orientación de la mesada' },
+        { id: 4, title: 'Color módulo' },
+      ];
+
+      const modules = this.selectedOptions.modules ?? [];
+      modules.forEach((_, index) => {
+        this.steps.push({ id: 5 + index, title: `Módulo ${index + 1}` });
+      });
+
+      this.steps.push({ id: 5 + modules.length, title: 'Resultado Final' });
+
+      console.log('Pasos inicializados:', this.steps);
+    }
+
 
   get totalSteps(): number {
     return this.steps.length;
@@ -128,22 +244,24 @@ selectOrientation(orientation: 'left' | 'right') {
 }
 
 
-  // Seleccionar color de módulo
-  selectModuleColor(color: string) {
-    const selectedColor = this.moduleColorOptions.find((option) => option.name === color);
-    if (selectedColor) {
-      this.selectedOptions.moduleColor = selectedColor.prefix;
-      this.moduleOptions = this.availableModules.map(
-        (module) => `${selectedColor.prefix}${module}.png`
-      );
-    }
-    this.goToStep(5);
+selectModuleColor(color: string) {
+  const selectedColor = this.moduleColorOptions.find((option) => option.name === color);
+  if (selectedColor) {
+    this.selectedOptions.moduleColor = selectedColor.prefix;
+    this.moduleOptions = this.availableModules.map(
+      (module) => `${selectedColor.prefix}${module}.png`
+    );
   }
+  this.initializeSteps(); // Recalcular pasos después de seleccionar color de módulo
+  this.goToStep(5);
+}
+
 
   selectModule(module: string, step: number) {
     if (this.selectedOptions.modules) {
       this.selectedOptions.modules[step - 5] = module;
     }
+    this.initializeSteps(); // Recalcular pasos después de seleccionar módulo
 
     // Ir al siguiente módulo o al paso final
     if (step < 4 + this.moduleSteps) {
@@ -255,8 +373,11 @@ selectOrientation(orientation: 'left' | 'right') {
     }
 
     this.currentStep = step;
+
     console.log('Paso actual:', this.currentStep);
   }
+
+
 
   clearSearch(): void {
     this.isSearchActive = false;

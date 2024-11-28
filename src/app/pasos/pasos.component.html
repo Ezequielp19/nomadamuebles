@@ -80,6 +80,9 @@
          >
            <img [src]="isla.imagePath" [alt]="isla.name" />
            <span>{{ isla.name }}</span>
+           <button class="info-button" (click)="openInfoModal(isla.id); $event.stopPropagation()">
+            <span class="info-icon">i</span>
+          </button>
          </div>
        </div>
      </ng-container>
@@ -90,6 +93,7 @@
   <div class="explanatory-container">
     Selecciona el color que prefieras para la mesada. Este color se aplicará únicamente a la superficie de la isla.
   </div>
+
   <div class="color-options">
     <div
       class="color-option"
@@ -98,14 +102,18 @@
     >
       <img [src]="color.imagePath" [alt]="color.name" />
       <span>{{ color.name }}</span>
+      <button class="info-button" (click)="openInfoModal(color.id); $event.stopPropagation()">
+        <span class="info-icon">i</span>
+      </button>
     </div>
   </div>
+
+
 </ng-container>
 
 
-<!-- Paso 3: Modificación de la orientación -->
 <ng-container *ngIf="currentStep === 3">
-  <h2>Medida y orientación</h2>
+  <h2>Orientación</h2>
   <!-- Contenedor explicativo -->
   <div class="explanatory-container">
     Configura la orientación de tu isla. Puedes girarla para ajustarla al diseño de tu cocina.
@@ -116,11 +124,20 @@
       *ngFor="let orientation of orientations"
       (click)="selectOrientation(orientation)"
     >
-      <img [src]="orientationImages[orientation]" [alt]="orientation" />
-      <span>{{ orientation }}</span>
+      <img [src]="orientationImages[orientation]" [alt]="getOrientationAltText(orientation)" />
+      <span>{{ getOrientationDisplayName(orientation) }}</span>
+      <!-- Botón Info -->
+      <button
+        class="info-button"
+        (click)="openInfoModal(getOrientationInfoId(orientation)); $event.stopPropagation()"
+      >
+        <span class="info-icon">i</span>
+      </button>
     </div>
   </div>
 </ng-container>
+
+
 
 <!-- Paso 4: Selección de color de módulo -->
 <ng-container *ngIf="currentStep === 4">
@@ -137,14 +154,17 @@
     >
       <img [src]="moduleColor.imagePath" [alt]="moduleColor.name" />
       <span>{{ moduleColor.name }}</span>
+      <!-- Botón Info -->
+      <button class="info-button" (click)="openInfoModal(moduleColor.id); $event.stopPropagation()">
+        <span class="info-icon">i</span>
+      </button>
     </div>
   </div>
 </ng-container>
 
-<!-- Pasos 5 a N: Selección de módulos -->
+
 <ng-container *ngIf="currentStep >= 5 && currentStep <= (4 + moduleSteps)">
   <h2>Módulo {{ currentStep - 4 }}</h2>
-  <!-- Contenedor explicativo -->
   <div class="explanatory-container">
     Estás seleccionando el módulo número {{ currentStep - 4 }}. Elige una opción como cajones, gabinetes o estantes para completar tu diseño.
   </div>
@@ -156,9 +176,14 @@
     >
       <img [src]="'../../assets/modulos/' + module" [alt]="module" />
       <span>{{ module }}</span>
+      <!-- Botón Info -->
+      <button class="info-button" (click)="openInfoModal(getModuleId(module)); $event.stopPropagation()">
+        <span class="info-icon">i</span>
+      </button>
     </div>
   </div>
 </ng-container>
+
 
 <!-- Paso final: Resultado -->
 <ng-container *ngIf="currentStep === (4 + moduleSteps + 1)">

@@ -1,0 +1,56 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo más oscuro para un mejor contraste */
+  z-index: 1000;
+}
+
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #F7F7E8; /* Fondo en un tono claro para contraste */
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #60603C; /* Borde marrón anaranjado */
+  box-shadow: 0 0 10px #60603C; /* Resplandor suave */
+  z-index: 1001;
+  min-width: 300px;
+  max-width: 500px;
+  color: #20200F; /* Texto oscuro */
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #20200F; /* Título en color oscuro */
+}
+
+p {
+  margin-bottom: 20px;
+  color: #333; /* Texto secundario en un tono gris */
+}
+
+.close-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #60603C; /* Botón marrón anaranjado */
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #404020; /* Color más oscuro al pasar el mouse */
+}
+
+.hide-modal {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
