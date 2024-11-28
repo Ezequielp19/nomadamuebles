@@ -55,33 +55,41 @@
 
   <!-- Contenido dinámico -->
   <div *ngIf="!isSearchActive" class="step-content">
-      <!-- Barra de progreso -->
 <!-- Barra de progreso -->
-<div class="progress-bar">
-  <div class="progress" [style.width]="progressPercentage + '%'"></div>
+<div class="progress-bar-container">
+  <div class="progress-bar">
+    <div class="progress" [style.width]="progressPercentage + '%'"></div>
+  </div>
 </div>
 
 
 
     <ng-container [ngSwitch]="currentStep">
      <!-- Paso 1: Selección de tipo de isla -->
-<ng-container *ngIf="currentStep === 1">
-  <h2>Selecciona el tipo de isla</h2>
-  <div class="color-options">
-    <div
-      class="color-option"
-      *ngFor="let isla of tipoIslaOptions"
-      (click)="selectIsla(isla.name, isla.size)"
-    >
-      <img [src]="isla.imagePath" [alt]="isla.name" />
-      <span>{{ isla.name }}</span>
-    </div>
-  </div>
-</ng-container>
+     <ng-container *ngIf="currentStep === 1">
+       <h2>Selecciona el tipo de isla</h2>
+       <!-- Contenedor explicativo -->
+       <div class="explanatory-container">
+         Elige el tipo de isla que deseas para tu cocina. Puedes seleccionar entre diferentes tamaños y diseños según tus preferencias.
+       </div>
+       <div class="color-options">
+         <div
+           class="color-option"
+           *ngFor="let isla of tipoIslaOptions"
+           (click)="selectIsla(isla.name, isla.size)"
+         >
+           <img [src]="isla.imagePath" [alt]="isla.name" />
+           <span>{{ isla.name }}</span>
+         </div>
+       </div>
+     </ng-container>
 
-<!-- Paso 2: Selección de color de mesada -->
 <ng-container *ngIf="currentStep === 2">
   <h2>Selecciona el color de la mesada</h2>
+  <!-- Contenedor explicativo -->
+  <div class="explanatory-container">
+    Selecciona el color que prefieras para la mesada. Este color se aplicará únicamente a la superficie de la isla.
+  </div>
   <div class="color-options">
     <div
       class="color-option"
@@ -94,9 +102,14 @@
   </div>
 </ng-container>
 
-<!-- Paso 3: Medida y orientación -->
+
+<!-- Paso 3: Modificación de la orientación -->
 <ng-container *ngIf="currentStep === 3">
   <h2>Medida y orientación</h2>
+  <!-- Contenedor explicativo -->
+  <div class="explanatory-container">
+    Configura la orientación de tu isla. Puedes girarla para ajustarla al diseño de tu cocina.
+  </div>
   <div class="color-options">
     <div
       class="color-option"
@@ -112,6 +125,10 @@
 <!-- Paso 4: Selección de color de módulo -->
 <ng-container *ngIf="currentStep === 4">
   <h2>Selecciona el color del módulo</h2>
+  <!-- Contenedor explicativo -->
+  <div class="explanatory-container">
+    Elige el color que tendrán los módulos de tu isla. Este color se aplicará a los muebles y cajones de la estructura.
+  </div>
   <div class="color-options">
     <div
       class="color-option"
@@ -127,6 +144,10 @@
 <!-- Pasos 5 a N: Selección de módulos -->
 <ng-container *ngIf="currentStep >= 5 && currentStep <= (4 + moduleSteps)">
   <h2>Módulo {{ currentStep - 4 }}</h2>
+  <!-- Contenedor explicativo -->
+  <div class="explanatory-container">
+    Estás seleccionando el módulo número {{ currentStep - 4 }}. Elige una opción como cajones, gabinetes o estantes para completar tu diseño.
+  </div>
   <div class="color-options">
     <div
       class="color-option"
@@ -139,8 +160,13 @@
   </div>
 </ng-container>
 
+<!-- Paso final: Resultado -->
 <ng-container *ngIf="currentStep === (4 + moduleSteps + 1)">
   <h2>Resultado Final</h2>
+  <!-- Contenedor explicativo -->
+  <div class="explanatory-container">
+    Este es el diseño final de tu isla. Puedes verificar el resultado, guardar el código generado y realizar ajustes si es necesario.
+  </div>
   <div class="final-container">
     <!-- Contenedor de la isla -->
     <div
