@@ -337,53 +337,6 @@
     border-radius: 8px;
   }
 
-  @supports (-webkit-touch-callout: none) {
-    .final-container,
-    .island-container {
-      min-height: -webkit-fill-available;
-    }
-  }
-
-/* Ajustes específicos para Safari y iOS */
-@supports (-webkit-touch-callout: none) {
-  .final-container {
-    min-height: -webkit-fill-available;
-    padding: 10px;
-  }
-
-  .island-container {
-    height: auto;
-    min-height: 280px;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .module-container {
-    img {
-      width: auto !important;
-      max-width: 100%;
-      height: auto !important;
-      object-fit: contain !important;
-    }
-  }
-
-  .module-wrapper-157L,
-  .module-wrapper-157L2M,
-  .module-wrapper-107L,
-  .module-wrapper-57L,
-  .module-wrapper-157R,
-  .module-wrapper-157R2M,
-  .module-wrapper-107R,
-  .module-wrapper-57R {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    width: 100%;
-    justify-content: center;
-    align-items: flex-end;
-  }
-}
-
   .reset-button-container {
     text-align: center;
     margin-top: 1rem;
@@ -432,6 +385,108 @@
   color: white;
 }
 
+@supports (-webkit-touch-callout: none) {
+  .final-container {
+    min-height: -webkit-fill-available;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column-reverse; /* Asegura el orden correcto en pantallas pequeñas */
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    @media (max-width: 768px) {
+      gap: 15px;
+      margin: 10px 0;
+      padding: 0.5rem;
+    }
+  }
+
+  .island-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+    height: auto;
+    min-height: 280px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease-in-out;
+
+    @media (max-width: 768px) {
+      max-width: 95%;
+      height: auto;
+    }
+  }
+
+  .module-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+  }
+
+  .module-wrapper-157L,
+  .module-wrapper-157L2M,
+  .module-wrapper-107L,
+  .module-wrapper-57L,
+  .module-wrapper-157R,
+  .module-wrapper-157R2M,
+  .module-wrapper-107R,
+  .module-wrapper-57R {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    gap: 0;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      justify-content: space-evenly;
+    }
+  }
+
+  /* Ajustes específicos de márgenes para diferentes módulos */
+  .module-wrapper-157L { margin-right: 80px; }
+  .module-wrapper-157R { margin-left: 80px; }
+  .module-wrapper-157L2M { margin-right: 235px; }
+  .module-wrapper-157R2M { margin-left: 235px; }
+  .module-wrapper-107L { margin-right: 50px; }
+  .module-wrapper-107R { margin-left: 50px; }
+  .module-wrapper-57L { margin-right: 23px; }
+  .module-wrapper-57R { margin-left: 23px; }
+
+  @media (max-width: 768px) {
+    .module-wrapper-157L { margin-right: 34px; }
+    .module-wrapper-157R { margin-left: 34px; }
+    .module-wrapper-157L2M { margin-right: 100px; }
+    .module-wrapper-157R2M { margin-left: 100px; }
+    .module-wrapper-107L { margin-right: 25px; }
+    .module-wrapper-107R { margin-left: 25px; }
+    .module-wrapper-57L { margin-right: 9px; }
+    .module-wrapper-57R { margin-left: 10px; }
+  }
+}
+
 
 .final-container {
   display: flex;
@@ -471,18 +526,6 @@
   justify-content: center;
   align-items: center;
 }
-
-/* .module-wrapper {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-right: 35px;
-  gap: 5px;
-} */
 
   /* Agrupadores de módulos con márgenes individuales */
   .module-wrapper-157L {
