@@ -343,8 +343,48 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* gap: 20px;
-    margin: 20px 0; */
+    gap: 20px;
+    margin: 20px 0;
+    padding: 1rem;
+
+    @media (max-width: 768px) {
+      gap: 15px;
+      margin: 10px 0;
+      padding: 0.5rem;
+      transform: scale(0.9); /* Escala ligeramente para dispositivos móviles */
+      max-width: 100%; /* Asegura que no sobresalga del contenedor padre */
+    }
+  }
+
+  .module-container {
+    height: 267px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      width: 91%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 91%;
+        object-fit: contain;
+      }
+    }
   }
 
   .island-container {
@@ -352,7 +392,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    background-size: contain; /* Imagen de mesada contenida */
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: top center;
     height: 280px;
@@ -360,96 +400,156 @@
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
-  }
 
-    /* Agrupador de los módulos para mantenerlos como un solo bloque */
-    /* .module-wrapper {
-      display: flex;
-      flex-direction: row;
-      gap: 0;
-      margin-right: 17px;
-    } */
-
-     /* Agrupador de los módulos para mantenerlos como un solo bloque */
-  .module-wrapper-157L {
-    display: flex;
-    flex-direction: row; /* Los módulos en una fila */
-    gap: 0; /* Sin espacio entre módulos */
-    margin-right: 50px;
-  }
-
-  /* Agrupador de los módulos para mantenerlos como un solo bloque */
-  .module-wrapper-157L2M {
-    display: flex;
-    flex-direction: row; /* Los módulos en una fila */
-    gap: 0; /* Sin espacio entre módulos */
-    margin-right: 200px;
-  }
-
-      /* Agrupador de los módulos para mantenerlos como un solo bloque */
-  .module-wrapper-107L {
-    display: flex;
-    flex-direction: row; /* Los módulos en una fila */
-    gap: 0; /* Sin espacio entre módulos */
-    margin-right:  33px;
-  }
-
-        /* Agrupador de los módulos para mantenerlos como un solo bloque */
-.module-wrapper-57L {
-  display: flex;
-  flex-direction: row; /* Los módulos en una fila */
-  gap: 0; /* Sin espacio entre módulos */
-  margin-right: 15px;
-}
-
-  /* Agrupador de los módulos para mantenerlos como un solo bloque */
-  .module-wrapper-157R {
-    display: flex;
-    flex-direction: row; /* Los módulos en una fila */
-    gap: 0; /* Sin espacio entre módulos */
-    margin-left: 50px;
-  }
-
-  /* Agrupador de los módulos para mantenerlos como un solo bloque */
-  .module-wrapper-157R2M {
-    display: flex;
-    flex-direction: row; /* Los módulos en una fila */
-    gap: 0; /* Sin espacio entre módulos */
-    margin-left: 200px;
-  }
-
-      /* Agrupador de los módulos para mantenerlos como un solo bloque */
-  .module-wrapper-107R {
-    display: flex;
-    flex-direction: row; /* Los módulos en una fila */
-    gap: 0; /* Sin espacio entre módulos */
-    margin-left:  33px;
-  }
-
-        /* Agrupador de los módulos para mantenerlos como un solo bloque */
-.module-wrapper-57R {
-  display: flex;
-  flex-direction: row; /* Los módulos en una fila */
-  gap: 0; /* Sin espacio entre módulos */
-  margin-left: 15px;
-}
-
-  /* Módulos individuales */
-  .module-container {
-    height: 267px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: black;  */
-    margin: 0; /* Sin margen */
-    overflow: hidden;
-
-    img {
-      width: 100%; /* Imagen llena el módulo */
-      height: 100%;
-      object-fit: contain;
+    @media (max-width: 768px) {
+      width: 100%;
+      max-width: 95%;
+      height: auto;
+      margin-bottom: 15px;
     }
   }
+
+  .final-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+    padding: 1rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column-reverse; /* La mesada se posiciona encima de los módulos */
+      gap: 15px;
+      margin: 10px 0;
+      padding: 0.5rem;
+      transform: scale(0.9);
+      max-width: 100%;
+    }
+  }
+
+
+  .explanatory-container {
+    font-size: 16px;
+    text-align: center;
+    padding: 0.5rem;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+      padding: 0.25rem;
+    }
+  }
+
+  h2 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    text-align: center;
+    word-wrap: break-word;
+    margin: 0.5rem 0;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
+  }
+
+  /* Agrupadores de módulos con márgenes individuales */
+  .module-wrapper-157L {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    margin-right: 50px;
+
+    @media (max-width: 768px) {
+      margin-right: 50px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-157L2M {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    margin-right: 200px;
+
+    @media (max-width: 768px) {
+      margin-right: 200px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-107L {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    margin-right: 33px;
+
+    @media (max-width: 768px) {
+      margin-right: 16px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-57L {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    margin-right: 15px;
+
+    @media (max-width: 768px) {
+      margin-right: 8px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-157R {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    margin-left: 50px;
+
+    @media (max-width: 768px) {
+      margin-left: 25px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-157R2M {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    margin-left: 200px;
+
+    @media (max-width: 768px) {
+      margin-left: 100px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-107R {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    margin-left: 33px;
+
+    @media (max-width: 768px) {
+      margin-left: 16px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-57R {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    margin-left: 15px;
+
+    @media (max-width: 768px) {
+      margin-left: 8px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
 
   @supports (-webkit-touch-callout: none) {
     .final-container,
@@ -545,3 +645,5 @@
   background-color: #60603C; /* Marrón anaranjado */
   color: white;
 }
+
+
