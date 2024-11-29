@@ -387,13 +387,14 @@
 
 @supports (-webkit-touch-callout: none) {
   .final-container {
-    min-height: -webkit-fill-available;
-    padding: 1rem;
     display: flex;
-    flex-direction: column-reverse; /* Asegura el orden correcto en pantallas pequeñas */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
+    margin: 20px 0;
+    padding: 1rem;
+
     @media (max-width: 768px) {
       gap: 15px;
       margin: 10px 0;
@@ -403,44 +404,33 @@
 
   .island-container {
     position: relative;
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 2 / 1; /* Relación de aspecto de la isla */
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100%;
-    max-width: 600px;
-    aspect-ratio: 2 / 1;
-    overflow: hidden;
-    height: auto;
-    min-height: 280px;
-    margin-bottom: 15px;
-    transition: all 0.3s ease-in-out;
-
-    @media (max-width: 768px) {
-      max-width: 95%;
-      height: auto;
-    }
   }
 
   .module-container {
-    height: 100%;
+    /* width: 33.33%; */
+    height: 100%; /* Asegura que los módulos ocupen todo el alto del contenedor */
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Asegura que no haya espacios adicionales por padding/border */
 
     img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      margin: 0;
-      padding: 0;
-      border: none;
+      width: 100%; /* La imagen ocupa todo el ancho del módulo */
+      height: 100%; /* La imagen ocupa todo el alto del módulo */
+      object-fit: cover; /* Se asegura de llenar el módulo sin dejar espacios */
+      margin: 0; /* Sin márgenes */
+      padding: 0; /* Sin relleno */
+      border: none; /* Sin bordes */
     }
   }
+
 
   .module-wrapper-157L,
   .module-wrapper-157L2M,
