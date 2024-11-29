@@ -58,10 +58,18 @@
   <h2>Resultado Búsqueda</h2>
   <div class="final-container">
     <!-- Contenido del resultado -->
-    <div class="island-container" [ngStyle]="{ 'background-image': 'url(' + generateFinalImagePath().countertop + ')' }">
-      <div [ngClass]="getIslandClass()">
-        <div class="module-container" *ngFor="let moduleImage of selectedOptions.modules">
-          <img [src]="moduleImage" alt="Módulo" />
+    <div class="island-container">
+      <div
+        class="background-countertop"
+        [ngStyle]="{
+          'background-image': 'url(' + generateFinalImagePath().countertop + ')'
+        }"
+      >
+        <!-- Contenedor para agrupar módulos como un solo mueble -->
+        <div [ngClass]="getIslandClass()">
+          <div class="module-container" *ngFor="let moduleImage of selectedOptions.modules">
+            <img [src]="moduleImage" alt="Módulo" />
+          </div>
         </div>
       </div>
     </div>
