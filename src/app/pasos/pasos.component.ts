@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -36,6 +36,8 @@ export class PasosComponent {
   codigoFinal: string = '';
   infoItems: Array<{ id: string; title: string; description: string }> = [];
   infoMap: Map<string, { title: string; description: string }> = new Map();
+  isMobileView = window.innerWidth <= 768; // Detectar vista móvil
+  menuOpen = false;
   // List of available island types
   tipoIslaOptions = [
     { id: 'isla1', name: 'Isla Soledad', size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
@@ -164,6 +166,15 @@ getModuleId(module: string): string {
       // Devuelve el nombre del módulo o el nombre original si no está en el mapeo
       return moduleMap[moduleName] || moduleName;
     }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.isMobileView = window.innerWidth <= 768;
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 
     onModuleSelectionChange(): void {
       this.initializeSteps(); // Regenerar los pasos cuando cambien los módulos.
