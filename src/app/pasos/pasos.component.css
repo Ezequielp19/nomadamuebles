@@ -337,220 +337,6 @@
     border-radius: 8px;
   }
 
-
-  .final-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
-    padding: 1rem;
-
-    @media (max-width: 768px) {
-      gap: 15px;
-      margin: 10px 0;
-      padding: 0.5rem;
-      transform: scale(0.9); /* Escala ligeramente para dispositivos móviles */
-      max-width: 100%; /* Asegura que no sobresalga del contenedor padre */
-    }
-  }
-
-  .module-container {
-    height: 267px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    @media (max-width: 768px) {
-      width: 91%;
-      height: auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        height: 91%;
-        object-fit: contain;
-      }
-    }
-  }
-
-  .island-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: top center;
-    height: 280px;
-    width: 600px;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-
-    @media (max-width: 768px) {
-      width: 100%;
-      max-width: 95%;
-      height: auto;
-      margin-bottom: 15px;
-    }
-  }
-
-  .final-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
-    padding: 1rem;
-
-    @media (max-width: 768px) {
-      flex-direction: column-reverse; /* La mesada se posiciona encima de los módulos */
-      gap: 15px;
-      margin: 10px 0;
-      padding: 0.5rem;
-      transform: scale(0.9);
-      max-width: 100%;
-    }
-  }
-
-
-  .explanatory-container {
-    font-size: 16px;
-    text-align: center;
-    padding: 0.5rem;
-
-    @media (max-width: 768px) {
-      font-size: 14px;
-      padding: 0.25rem;
-    }
-  }
-
-  h2 {
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 1rem;
-
-    @media (max-width: 768px) {
-      font-size: 18px;
-    }
-  }
-
-  p {
-    font-size: 16px;
-    text-align: center;
-    word-wrap: break-word;
-    margin: 0.5rem 0;
-
-    @media (max-width: 768px) {
-      font-size: 14px;
-    }
-  }
-
-  /* Agrupadores de módulos con márgenes individuales */
-  .module-wrapper-157L {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    margin-right: 50px;
-
-    @media (max-width: 768px) {
-      margin-right: 50px; /* Ajusta el margen para dispositivos pequeños */
-    }
-  }
-
-  .module-wrapper-157L2M {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    margin-right: 200px;
-
-    @media (max-width: 768px) {
-      margin-right: 200px; /* Ajusta el margen para dispositivos pequeños */
-    }
-  }
-
-  .module-wrapper-107L {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    margin-right: 33px;
-
-    @media (max-width: 768px) {
-      margin-right: 16px; /* Ajusta el margen para dispositivos pequeños */
-    }
-  }
-
-  .module-wrapper-57L {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    margin-right: 15px;
-
-    @media (max-width: 768px) {
-      margin-right: 8px; /* Ajusta el margen para dispositivos pequeños */
-    }
-  }
-
-  .module-wrapper-157R {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    margin-left: 50px;
-
-    @media (max-width: 768px) {
-      margin-left: 25px; /* Ajusta el margen para dispositivos pequeños */
-    }
-  }
-
-  .module-wrapper-157R2M {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    margin-left: 200px;
-
-    @media (max-width: 768px) {
-      margin-left: 100px; /* Ajusta el margen para dispositivos pequeños */
-    }
-  }
-
-  .module-wrapper-107R {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    margin-left: 33px;
-
-    @media (max-width: 768px) {
-      margin-left: 16px; /* Ajusta el margen para dispositivos pequeños */
-    }
-  }
-
-  .module-wrapper-57R {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    margin-left: 15px;
-
-    @media (max-width: 768px) {
-      margin-left: 8px; /* Ajusta el margen para dispositivos pequeños */
-    }
-  }
-
-
   @supports (-webkit-touch-callout: none) {
     .final-container,
     .island-container {
@@ -647,3 +433,226 @@
 }
 
 
+.final-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  padding: 1rem;
+
+  @media (max-width: 768px) {
+    gap: 15px;
+    margin: 10px 0;
+    padding: 0.5rem;
+  }
+}
+
+.island-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 2 / 1; /* Relación de aspecto de la isla */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-countertop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: contain; /* Asegura que la imagen respete su proporción */
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .module-wrapper {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-right: 35px;
+  gap: 5px;
+} */
+
+  /* Agrupadores de módulos con márgenes individuales */
+  .module-wrapper-157L {
+    position: absolute; /* Asegura que los módulos estén dentro de la mesada */
+    width: 90%; /* Ajusta al tamaño de la mesada */
+    height: 90%; /* Ajusta al tamaño de la mesada */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los módulos se organicen en filas */
+    justify-content: center; /* Centra los módulos horizontalmente */
+    align-items: center; /* Centra los módulos verticalmente */
+    margin-right: 80px;
+    gap: 0;
+    @media (max-width: 768px) {
+      margin-right: 34px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-157R {
+    position: absolute; /* Asegura que los módulos estén dentro de la mesada */
+    width: 90%; /* Ajusta al tamaño de la mesada */
+    height: 90%; /* Ajusta al tamaño de la mesada */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los módulos se organicen en filas */
+    justify-content: center; /* Centra los módulos horizontalmente */
+    align-items: center; /* Centra los módulos verticalmente */
+    margin-left: 80px;
+    gap: 0;
+    @media (max-width: 768px) {
+      margin-left: 34px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-157L2M {
+    position: absolute; /* Asegura que los módulos estén dentro de la mesada */
+    width: 90%; /* Ajusta al tamaño de la mesada */
+    height: 90%; /* Ajusta al tamaño de la mesada */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los módulos se organicen en filas */
+    justify-content: center; /* Centra los módulos horizontalmente */
+    align-items: center; /* Centra los módulos verticalmente */
+    margin-right: 235px;
+    gap: 0;
+    @media (max-width: 768px) {
+      margin-right: 100px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-157R2M {
+    position: absolute; /* Asegura que los módulos estén dentro de la mesada */
+    width: 90%; /* Ajusta al tamaño de la mesada */
+    height: 90%; /* Ajusta al tamaño de la mesada */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los módulos se organicen en filas */
+    justify-content: center; /* Centra los módulos horizontalmente */
+    align-items: center; /* Centra los módulos verticalmente */
+    margin-left: 235px;
+    gap: 0;
+    @media (max-width: 768px) {
+      margin-left: 100px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-107L {
+    position: absolute; /* Asegura que los módulos estén dentro de la mesada */
+    width: 90%; /* Ajusta al tamaño de la mesada */
+    height: 90%; /* Ajusta al tamaño de la mesada */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los módulos se organicen en filas */
+    justify-content: center; /* Centra los módulos horizontalmente */
+    align-items: center; /* Centra los módulos verticalmente */
+    margin-right: 50px;
+    gap: 0;
+    @media (max-width: 768px) {
+      margin-right: 25px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-107R {
+    position: absolute; /* Asegura que los módulos estén dentro de la mesada */
+    width: 90%; /* Ajusta al tamaño de la mesada */
+    height: 90%; /* Ajusta al tamaño de la mesada */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los módulos se organicen en filas */
+    justify-content: center; /* Centra los módulos horizontalmente */
+    align-items: center; /* Centra los módulos verticalmente */
+    margin-left: 50px;
+    gap: 0;
+    @media (max-width: 768px) {
+      margin-left: 25px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-57L {
+    position: absolute; /* Asegura que los módulos estén dentro de la mesada */
+    width: 90%; /* Ajusta al tamaño de la mesada */
+    height: 90%; /* Ajusta al tamaño de la mesada */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los módulos se organicen en filas */
+    justify-content: center; /* Centra los módulos horizontalmente */
+    align-items: center; /* Centra los módulos verticalmente */
+    margin-right: 23px;
+    gap: 0;
+
+    @media (max-width: 768px) {
+      margin-right: 9px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-wrapper-57R {
+    position: absolute; /* Asegura que los módulos estén dentro de la mesada */
+    width: 90%; /* Ajusta al tamaño de la mesada */
+    height: 90%; /* Ajusta al tamaño de la mesada */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los módulos se organicen en filas */
+    justify-content: center; /* Centra los módulos horizontalmente */
+    align-items: center; /* Centra los módulos verticalmente */
+    margin-left: 23px;
+    gap: 0;
+    @media (max-width: 768px) {
+      margin-left: 10px; /* Ajusta el margen para dispositivos pequeños */
+    }
+  }
+
+  .module-container {
+    /* width: 33.33%; */
+    height: 100%; /* Asegura que los módulos ocupen todo el alto del contenedor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Asegura que no haya espacios adicionales por padding/border */
+
+    img {
+      width: 100%; /* La imagen ocupa todo el ancho del módulo */
+      height: 100%; /* La imagen ocupa todo el alto del módulo */
+      object-fit: cover; /* Se asegura de llenar el módulo sin dejar espacios */
+      margin: 0; /* Sin márgenes */
+      padding: 0; /* Sin relleno */
+      border: none; /* Sin bordes */
+    }
+  }
+
+
+.explanatory-container {
+  font-size: 16px;
+  text-align: center;
+  padding: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 0.25rem;
+  }
+}
+
+h2 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+p {
+  font-size: 16px;
+  text-align: center;
+  word-wrap: break-word;
+  margin: 0.5rem 0;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}

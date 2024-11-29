@@ -203,7 +203,6 @@
 </ng-container>
 
 
-
 <!-- Paso final: Resultado -->
 <ng-container *ngIf="currentStep === (4 + moduleSteps + 1)">
   <h2>Resultado Final</h2>
@@ -213,17 +212,21 @@
   </div>
   <div class="final-container">
     <!-- Contenedor de la isla -->
-    <div
-      class="island-container"
-      [ngStyle]="{ 'background-image': 'url(' + generateFinalImagePath().countertop + ')' }"
-    >
-      <!-- Contenedor para agrupar módulos como un solo mueble -->
-      <div [ngClass]="getIslandClass()">
-        <div
-          class="module-container"
-          *ngFor="let moduleImage of generateFinalImagePath().modules"
-        >
-          <img [src]="moduleImage" alt="Módulo" />
+    <div class="island-container">
+      <div
+        class="background-countertop"
+        [ngStyle]="{
+          'background-image': 'url(' + generateFinalImagePath().countertop + ')'
+        }"
+      >
+        <!-- Contenedor para agrupar módulos como un solo mueble -->
+        <div [ngClass]="getIslandClass()">
+          <div
+            class="module-container"
+            *ngFor="let moduleImage of generateFinalImagePath().modules"
+          >
+            <img [src]="moduleImage" alt="Módulo" />
+          </div>
         </div>
       </div>
     </div>
