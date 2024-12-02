@@ -239,6 +239,38 @@
       </div>
     </div>
     <p>Código Generado: {{ generateFinalCode() }}</p>
+    <div class="color-options">
+      <!-- Contenedor del título -->
+      <div class="color-options-title">
+        <h3>Mesada y módulos seleccionados</h3>
+      </div>
+
+      <!-- Contenedor de las opciones -->
+      <div class="color-options-container">
+        <!-- Tarjeta de la mesada seleccionada -->
+     <!-- Botón de información para la mesada -->
+<div class="color-option">
+  <img [src]="generateSelectableImages().countertop" alt="Mesada seleccionada" />
+  <!-- <span> {{selectedOptions.colorMesada}} </span>  -->
+  <button class="info-button" (click)="openInfoModal(getColorOptionId(selectedOptions.colorMesada)); $event.stopPropagation()">
+    <span class="info-icon">i</span>
+  </button>
+</div>
+
+<!-- Botones de información para los módulos -->
+<div
+  class="color-option"
+  *ngFor="let module of selectedOptions.modules"
+>
+  <img [src]="getModuleImagePath(module)" alt="Módulo seleccionado" />
+  <button class="info-button" (click)="openInfoModal(getModuleId(module)); $event.stopPropagation()">
+    <span class="info-icon">i</span>
+  </button>
+</div>
+      </div>
+    </div>
+
+
   </div>
 </ng-container>
 

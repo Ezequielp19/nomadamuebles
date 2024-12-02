@@ -106,8 +106,25 @@ export class PasosComponent {
     };
   });
 
-  // Combinar ítems estáticos y dinámicos
-  const combinedItems = [...staticInfoItems, ...dynamicModulesInfo];
+// Agregar mesadas seleccionadas dinámicamente con descripción del array estático
+const dynamicCountertops = this.colorOptions.map((color) => {
+  const matchingItem = staticInfoItems.find((item) => item.id === color.id);
+  return {
+    id: color.id, // Asegúrate de que `color.id` sea correcto
+    title: color.name,
+    description: matchingItem?.description || 'Descripción de la mesada seleccionada.',
+  };
+});
+
+  // Agregar módulos seleccionados dinámicamente
+  const dynamicModules = (this.moduleOptions || []).map((module) => ({
+    id: this.getInfoItemIdForModule(module),
+    title: `Módulo ${module}`,
+    description: `Descripción para el módulo ${module}.`,
+  }));
+
+  // Combinar ítems
+  const combinedItems = [...staticInfoItems, ...dynamicCountertops, ...dynamicModules, ...dynamicModulesInfo];
   this.infoMap = new Map(
     combinedItems.map((item) => [item.id, { title: item.title, description: item.description }])
   );
@@ -124,21 +141,44 @@ getModuleId(module: string): string {
   return `modulo_${moduleType}`;
 }
 
-    openInfoModal(itemId: string): void {
-      const item = this.infoMap.get(itemId);
-      if (item) {
-        this.modalService.openModal(item.title, item.description);
-      } else {
-        this.modalService.openModal(
-          'Información no encontrada',
-          'No hay información disponible para el artículo seleccionado.'
-        );
-      }
-    }
+openInfoModal(itemId: string): void {
+  console.log('Buscando información para:', itemId);
+  const item = this.infoMap.get(itemId);
+  if (item) {
+    this.modalService.openModal(item.title, item.description);
+  } else {
+    console.warn('No se encontró información para:', itemId);
+    this.modalService.openModal(
+      'Información no encontrada',
+      'No hay información disponible para el artículo seleccionado.'
+    );
+  }
+}
+
 
     getOrientationInfoId(orientation: 'left' | 'right'): string {
       return `orientation_${orientation}`; // Ajusta según el formato necesario
     }
+
+    getColorOptionId(name: string | undefined): string {
+      if (!name) return ''; // Devuelve una cadena vacía si no hay un nombre válido
+      const colorOption = this.colorOptions.find((option) => option.name === name);
+      return colorOption?.id || ''; // Asegúrate de que devuelva el `id` correcto o una cadena vacía
+    }
+
+
+
+    getModuleImagePath(module: string): string {
+      const moduleColor = this.selectedOptions.moduleColor;
+      const moduleId = module.replace(`${moduleColor}`, '').replace('.png', '');
+      return `../../assets/modulos/${moduleColor}${moduleId}.png`;
+    }
+
+    getInfoItemIdForModule(module: string): string {
+      const moduleColor = this.selectedOptions.moduleColor;
+      return module.replace(`${moduleColor}`, '').replace('.png', '');
+    }
+
 
     getOrientationAltText(orientation: 'left' | 'right'): string {
       return orientation === 'left' ? 'Orientación izquierda' : 'Orientación derecha';
@@ -166,6 +206,7 @@ getModuleId(module: string): string {
       // Devuelve el nombre del módulo o el nombre original si no está en el mapeo
       return moduleMap[moduleName] || moduleName;
     }
+
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
@@ -318,6 +359,34 @@ selectModuleColor(color: string) {
       modules: modulesImages,
     };
   }
+
+  generateSelectableImages(): { countertop: string; modules: string[] } {
+    const size = this.selectedOptions.size;
+    const colorOption = this.colorOptions.find(
+      (option) => option.name === this.selectedOptions.colorMesada
+    );
+    const moduleColor = this.selectedOptions.moduleColor;
+
+    if (!size || !colorOption || !moduleColor || !this.selectedOptions.modules) {
+      console.error('Faltan opciones para generar las imágenes seleccionables.');
+      return { countertop: '', modules: [] };
+    }
+
+    // Generar la imagen de la mesada
+    const countertopImage = `../../assets/sentidoMedida/${colorOption.prefix}${size}.png`;
+
+    // Generar imágenes de los módulos seleccionados
+    const modulesImages = this.selectedOptions.modules.map((module) => {
+      const moduleId = module.replace(`${moduleColor}`, '').replace('.png', '');
+      return `../../assets/modulos/${moduleColor}${moduleId}.png`;
+    });
+
+    return {
+      countertop: countertopImage,
+      modules: modulesImages,
+    };
+  }
+
 
   onIslandTypeSelected(islandType: string): void {
     this.selectedIslandType = islandType;

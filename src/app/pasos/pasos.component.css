@@ -1,28 +1,50 @@
-
 .color-options {
   display: flex;
+  align-items: flex-start; /* Alinea el contenido al inicio vertical */
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
 
+  /* Contenedor para el título */
+  .color-options-title {
+    flex-basis: 100%; /* Hace que el título ocupe toda la fila */
+    text-align: center;
+    margin-bottom: 1rem;
+
+    h3 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  /* Contenedor genérico para opciones seleccionables */
+  .color-options-container {
+    display: flex; /* Coloca los ítems en fila */
+    flex-wrap: wrap; /* Permite que las tarjetas pasen a otra línea si no caben */
+    gap: 1rem; /* Espaciado uniforme entre las tarjetas */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+  }
+
+  /* Estilo para cada tarjeta */
   .color-option {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Mantiene los elementos internos apilados */
     align-items: center;
     cursor: pointer;
     text-align: center;
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 8px;
-    transition: border-color 0.3s ease;
-    transition: transform 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+
     &:hover {
       transform: scale(1.05);
-      border-color: #20200F;
       border: 1px solid #60603C; /* Borde marrón anaranjado */
-      box-shadow: 0 0 5px #60603C; /* Efecto de resplandor */
+      box-shadow: 0 0 5px #60603C;
     }
 
+    /* Estilo de la imagen en las tarjetas */
     img {
       width: 200px;
       height: 200px;
@@ -31,21 +53,38 @@
       margin-bottom: 0.5rem;
     }
 
+    /* Títulos dentro de las tarjetas */
     span {
       font-size: 14px;
       color: #333;
       font-weight: 600;
     }
+
+    /* Botón de información */
+    .info-button {
+      margin-top: 0.5rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+
+      .info-icon {
+        font-size: 16px;
+        color: #60603C;
+        font-weight: bold;
+      }
+    }
   }
 }
+
 
 /* Estilos responsivos para dispositivos móviles */
 @media (max-width: 768px) {
   .color-options {
-    display: grid; /* Cambia a un diseño de cuadrícula */
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas por fila */
+    display: flex; /* Cambia a Flexbox */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente fila */
     gap: 0.5rem; /* Espaciado entre las opciones */
     padding: 0.5rem;
+    justify-content: center; /* Centra los elementos horizontalmente */
   }
 
   .color-option {
@@ -58,6 +97,9 @@
     border-radius: 8px;
     text-align: center;
     overflow: hidden; /* Evita que contenido adicional se salga */
+    flex: 1 1 calc(50% - 1rem); /* Cada contenedor ocupará el 50% del ancho menos el espacio del gap */
+    max-width: 120px; /* Limita el ancho máximo */
+    box-sizing: border-box; /* Incluye padding y border en el ancho */
   }
 
   .color-option img {
@@ -75,6 +117,7 @@
     word-wrap: break-word; /* Asegura que el texto largo se ajuste */
   }
 }
+
 
 
 /* Indicar la opción seleccionada */
@@ -689,3 +732,5 @@ p {
     font-size: 14px;
   }
 }
+
+
