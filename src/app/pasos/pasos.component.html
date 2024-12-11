@@ -18,7 +18,7 @@
         <!-- Mostrar precio actual -->
     <div class="total-price-container">
       <h3>Precio Total:</h3>
-      <p>{{ totalPrice | currency:'ARS' }}</p>
+      <p>$ {{ totalPrice | currency:'ARS' }}</p>
     </div>
 
     <!-- Botón para limpiar selección -->
@@ -45,17 +45,19 @@
     </div>
 
     <!-- Botones de los pasos para pantallas grandes -->
-    <ng-container *ngIf="!isMobileView && !isSearchActive">
-      <button
-        *ngFor="let step of steps"
-        (click)="goToStep(step.id)"
-        [class.active]="currentStep === step.id"
-        [class.completed]="completedSteps.includes(step.id)"
-        [disabled]="step.id === 1 && selectedOptions.isla"
-      >
-        {{ step.title }}
-      </button>
-    </ng-container>
+<!-- Botones de los pasos para pantallas grandes -->
+<ng-container *ngIf="!isMobileView && !isSearchActive">
+  <button
+    *ngFor="let step of steps"
+    (click)="goToStep(step.id)"
+    [class.active]="currentStep === step.id"
+    [class.completed]="completedSteps.includes(step.id)"
+    [disabled]="step.id === 1 && selectedOptions.isla"
+  >
+    {{ step.title }}
+  </button>
+</ng-container>
+
   </div>
 
 <div *ngIf="isSearchActive" class="step-content">
@@ -98,35 +100,34 @@
 
     <ng-container [ngSwitch]="currentStep">
      <!-- Paso 1: Selección de tipo de isla -->
-     <ng-container *ngIf="currentStep === 1">
-       <h2>Selecciona el tipo de isla</h2>
-       <!-- Contenedor explicativo -->
-       <div class="explanatory-container">
-         Elige el tipo de isla que deseas para tu cocina. Puedes seleccionar entre diferentes tamaños y diseños según tus preferencias.
-       </div>
-       <div class="color-options">
-        <div
-          class="color-option"
-          *ngFor="let isla of tipoIslaOptions"
-          (click)="selectIsla(isla.name, isla.size, isla.price)"
-        >
-          <img [src]="isla.imagePath" [alt]="isla.name" />
-          <div class="details">
-            <span class="name">{{ isla.name }}</span>
-            <br>
-            <span class="price">Precio: ${{ isla.price }}$</span>
-          </div>
-          <button class="info-button" (click)="openInfoModal(isla.id); $event.stopPropagation()">
-            <span class="info-icon">i</span>
-          </button>
-        </div>
+<!-- Paso 1: Selección de tipo de isla -->
+<ng-container *ngIf="currentStep === 1">
+  <h2>Selecciona el tipo de isla</h2>
+  <div class="explanatory-container">
+    Elige el tipo de isla que deseas para tu cocina. Puedes seleccionar entre diferentes tamaños y diseños según tus preferencias.
+  </div>
+  <div class="color-options">
+    <div
+      class="color-option"
+      *ngFor="let isla of tipoIslaOptions"
+      (click)="selectIsla(isla.name, isla.size, isla.price)"
+    >
+      <img [src]="isla.imagePath" [alt]="isla.name" />
+      <div class="details">
+        <span class="name">{{ isla.name }}</span>
+        <br>
+        <span class="price">Precio: ${{ isla.price }}</span>
       </div>
+      <button class="info-button" (click)="openInfoModal(isla.id); $event.stopPropagation()">
+        <span class="info-icon">i</span>
+      </button>
+    </div>
+  </div>
+</ng-container>
 
-     </ng-container>
 
 <ng-container *ngIf="currentStep === 2">
   <h2>Selecciona el color de la mesada</h2>
-  <!-- Contenedor explicativo -->
   <div class="explanatory-container">
     Selecciona el color que prefieras para la mesada. Este color se aplicará únicamente a la superficie de la isla.
   </div>
@@ -138,20 +139,18 @@
       (click)="selectColor(color.name, color.prefix)"
     >
       <img [src]="color.imagePath" [alt]="color.name" />
-      <span>{{ color.name }}</span>
+      <span class="name">{{ color.name }}</span>
       <button class="info-button" (click)="openInfoModal(color.id); $event.stopPropagation()">
         <span class="info-icon">i</span>
       </button>
     </div>
   </div>
-
-
 </ng-container>
+
 
 
 <ng-container *ngIf="currentStep === 3">
   <h2>Orientación</h2>
-  <!-- Contenedor explicativo -->
   <div class="explanatory-container">
     Configura la orientación de tu isla. Puedes girarla para ajustarla al diseño de tu cocina.
   </div>
@@ -162,8 +161,7 @@
       (click)="selectOrientation(orientation)"
     >
       <img [src]="orientationImages[orientation]" [alt]="getOrientationAltText(orientation)" />
-      <span>{{ getOrientationDisplayName(orientation) }}</span>
-      <!-- Botón Info -->
+      <span class="name">{{ getOrientationDisplayName(orientation) }}</span>
       <button
         class="info-button"
         (click)="openInfoModal(getOrientationInfoId(orientation)); $event.stopPropagation()"
@@ -173,6 +171,7 @@
     </div>
   </div>
 </ng-container>
+
 
 
 
@@ -190,7 +189,7 @@
       (click)="selectModuleColor(moduleColor.name)"
     >
       <img [src]="moduleColor.imagePath" [alt]="moduleColor.name" />
-      <span>{{ moduleColor.name }}</span>
+      <span class="name">{{ moduleColor.name }}</span>
       <!-- Botón Info -->
       <button class="info-button" (click)="openInfoModal(moduleColor.id); $event.stopPropagation()">
         <span class="info-icon">i</span>
@@ -212,8 +211,8 @@
       (click)="selectModule(module, currentStep)"
     >
       <img [src]="'../../assets/modulos/' + module" [alt]="module" />
-      <span>{{ getModuleDisplayName(module) }}</span>
-      <span class="module-price">Precio: ${{ getModulePrice(module) }}</span>
+      <span class="name">{{ getModuleDisplayName(module) }}</span>
+      <span class="price">Precio: ${{ getModulePrice(module) }}</span>
       <!-- Botón Info -->
       <button class="info-button" (click)="openInfoModal(getModuleId(module)); $event.stopPropagation()">
         <span class="info-icon">i</span>
@@ -249,14 +248,24 @@
         </div>
       </div>
     </div>
-    <p>Código Generado: {{ generateFinalCode() }}</p>
+    <div class="results-container">
+      <p class="highlighted-result">
+        Código de isla: <br>
+        {{ generateFinalCode() }}
+      </p>
+      <p class="highlighted-result">
+        Precio total de la isla: <br>
+        $ {{ totalPrice | currency: 'ARS' }}
+      </p>
+    </div>
 
     <!-- Botón para mostrar/ocultar la sección de pago -->
     <button
       class="payment-toggle-button"
       (click)="showPaymentInputs = !showPaymentInputs"
     >
-      {{ showPaymentInputs ? 'Ocultar sección de pago' : 'Realizar pago con MercadoPago' }}
+      <span>{{ showPaymentInputs ? 'Ocultar sección de pago' : 'Pagar con MercadoPago' }}</span>
+      <img src="assets/mpLogo.png" alt="MercadoPago" />
     </button>
 
     <!-- Sección de pago -->

@@ -363,12 +363,12 @@ openInfoModal(itemId: string): void {
     };
   }
 
-  this.goToStep(3); // Move to the next step
+  this.goToStep(3);
 }
 
 selectOrientation(orientation: 'left' | 'right') {
   this.selectedOptions.orientation = orientation;
-  this.goToStep(4); // Proceed to the next step
+  this.goToStep(4);
 }
 
 
@@ -565,19 +565,52 @@ selectModule(module: string, step: number) {
       return;
     }
 
-    if (step === 1 && this.selectedOptions.isla) {
+    if (!this.isStepComplete(this.currentStep) && this.currentStep < step) {
+      const errorMessage = this.getStepIncompleteMessage(this.currentStep);
+      console.log(`Error mostrado al usuario: ${errorMessage}`); // Confirmar en consola
+      alert(errorMessage); // Mostrar el mensaje específico del paso
       return;
     }
 
-    if (!this.completedSteps.includes(this.currentStep) && this.currentStep < step) {
+
+    // Marcar el paso como completado si se avanza
+    if (!this.completedSteps.includes(this.currentStep)) {
       this.completedSteps.push(this.currentStep);
     }
 
     this.currentStep = step;
-
-    // console.log('Paso actual:', this.currentStep);
   }
 
+  getStepIncompleteMessage(step: number): string {
+    switch (step) {
+      case 1:
+        return 'Por favor, selecciona una isla antes de continuar.';
+      case 2:
+        return 'Por favor, selecciona un color de mesada antes de continuar.';
+      case 3:
+        return 'Por favor, selecciona la orientación de la isla antes de continuar.';
+      case 4:
+        return 'Por favor, selecciona un color para los módulos antes de continuar.';
+      default:
+        return 'Por favor, completa el paso actual antes de continuar.';
+    }
+  }
+
+
+  isStepComplete(step: number): boolean {
+    switch (step) {
+      case 1:
+        return !!this.selectedOptions.isla; // Verifica que se haya seleccionado una isla
+      case 2:
+        return !!this.selectedOptions.colorMesada; // Verifica que se haya seleccionado un color de mesada
+      case 3:
+        return !!this.selectedOptions.orientation; // Verifica que se haya seleccionado una orientación
+      case 4:
+        return !!this.selectedOptions.moduleColor; // Verifica que se haya seleccionado un color de módulo
+      default:
+        return true; // Asumir que los demás pasos están completos por ahora
+    }
+  }
 
 
   clearSearch(): void {

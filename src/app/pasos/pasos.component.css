@@ -33,7 +33,7 @@
     align-items: center;
     cursor: pointer;
     text-align: center;
-    padding: 1rem;
+    padding: 0.5rem;
     border: 1px solid #ddd;
     border-radius: 8px;
     transition: border-color 0.3s ease, transform 0.3s ease;
@@ -54,11 +54,11 @@
     }
 
     /* Títulos dentro de las tarjetas */
-    span {
+    /* span {
       font-size: 14px;
       color: #333;
       font-weight: 600;
-    }
+    } */
 
     /* Botón de información */
     .info-button {
@@ -869,18 +869,53 @@ p {
   }
 }
 
+
+.payment-toggle-button {
+  display: flex; /* Usar flexbox para alinear contenido */
+  align-items: center; /* Centrar texto e imagen verticalmente */
+  justify-content: center; /* Centrar contenido horizontalmente */
+  padding: 10px 20px; /* Ajustar espacio interno */
+  font-size: 16px; /* Tamaño de fuente más legible */
+  font-weight: bold; /* Texto en negrita */
+  color: #ffffff; /* Texto blanco */
+  background-color: #009ee3; /* Color principal de MercadoPago */
+  border: none; /* Eliminar bordes por defecto */
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer; /* Cambiar cursor al pasar por encima */
+  transition: background-color 0.3s ease; /* Animación suave al cambiar color */
+}
+
+.payment-toggle-button:hover {
+  background-color: #007bb6; /* Color más oscuro al pasar el mouse */
+}
+
+.payment-toggle-button img {
+  height: 20px; /* Altura fija para el logo */
+  margin-left: 10px; /* Espacio entre el texto y el logo */
+}
+
+.payment-toggle-button span {
+  white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
+}
+
+
 .payment-button {
   display: inline-flex;
   align-items: center;
+  justify-content: center; /* Centrar el contenido */
   gap: 10px;
   padding: 10px 20px;
+  width: 300px; /* Ancho fijo uniforme */
+  min-height: 40px; /* Altura mínima para uniformidad */
   background-color: #3baf4a; /* Verde MercadoPago */
   border: none;
   color: #fff;
   border-radius: 8px;
   font-size: 16px;
+  text-align: center; /* Asegura que el texto esté centrado */
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-sizing: border-box; /* Garantiza que padding y bordes estén incluidos */
 
   &:hover {
     background-color: #34a043; /* Verde oscuro */
@@ -893,5 +928,64 @@ p {
 
   img {
     height: 20px;
+    /* max-width: 20px; */
+  }
+}
+
+
+.name {
+  font-size: 16px; /* Tamaño estándar */
+  font-weight: bold; /* Peso normal para el nombre */
+  color: #333; /* Color oscuro pero neutro */
+  margin-bottom: 5px; /* Espaciado con el precio */
+}
+
+.price {
+  font-size: 22px; /* Tamaño más grande */
+  font-weight: bold; /* Resaltado en negrita */
+  color: #e63946; /* Un color llamativo como rojo */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra para mayor enfoque */
+}
+
+.results-container {
+  display: flex; /* Usar flexbox para alinear los elementos */
+  justify-content: space-between; /* Espaciado uniforme entre los elementos */
+  align-items: center; /* Alinear elementos verticalmente al centro */
+  gap: 20px; /* Separación entre los elementos */
+  margin-top: 20px; /* Separación superior del contenedor */
+}
+
+.highlighted-result {
+  font-size: 18px; /* Tamaño de fuente más grande */
+  font-weight: bold; /* Negrita para destacar */
+  color: #60603C; /* Verde destacado */
+  background-color: #f1f8e9; /* Fondo suave para resaltar */
+  padding: 15px 20px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  border: 2px solid #60603C; /* Borde del mismo color que el texto */
+  text-align: center; /* Alineación central del texto */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  flex: 1; /* Los elementos ocupan el mismo ancho */
+  max-width: 45%; /* Evitar que se estiren demasiado */
+  min-height: 50px; /* Altura mínima para evitar variaciones */
+  display: flex; /* Flexbox interno */
+  flex-direction: column; /* Apilar texto verticalmente */
+  justify-content: center; /* Centrar verticalmente el contenido */
+  white-space: nowrap; /* Evitar que las palabras se dividan en varias líneas */
+  overflow: hidden; /* Esconder texto si es demasiado */
+  text-overflow: ellipsis; /* Añadir puntos suspensivos si el texto es demasiado largo */
+}
+
+/* Estilos para vistas móviles */
+@media screen and (max-width: 768px) {
+  .results-container {
+    flex-direction: column; /* Cambiar a diseño vertical */
+    gap: 10px; /* Reducir el espacio entre los elementos */
+    align-items: stretch; /* Alinear al ancho completo del contenedor */
+  }
+
+  .highlighted-result {
+    max-width: 100%; /* Asegurarse de que ocupe todo el ancho del contenedor */
+    text-align: left; /* Opcional: Cambiar alineación del texto a la izquierda si prefieres */
   }
 }
