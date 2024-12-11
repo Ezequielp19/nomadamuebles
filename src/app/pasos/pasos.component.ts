@@ -529,7 +529,7 @@ selectModule(module: string, step: number) {
   className += orientation === 'left' ? 'L' : 'R';
 
     // Manejo especial para la Isla "Gran Malvina" con medida 107 y 2 módulos
-    if (islandType === 'Isla Gran Malvina' && size === '157') {
+    if (islandType === 'Gran Malvina' && size === '157') {
       className += '2M';
     }
 

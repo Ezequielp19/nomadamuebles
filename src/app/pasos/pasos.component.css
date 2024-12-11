@@ -510,8 +510,8 @@
   @media (max-width: 768px) {
     .module-wrapper-157L { margin-right: 34px; }
     .module-wrapper-157R { margin-left: 34px; }
-    .module-wrapper-157L2M { margin-right: 100px; }
-    .module-wrapper-157R2M { margin-left: 100px; }
+    .module-wrapper-157L2M { margin-right: 115px; }
+    .module-wrapper-157R2M { margin-left: 115px; }
     .module-wrapper-107L { margin-right: 25px; }
     .module-wrapper-107R { margin-left: 25px; }
     .module-wrapper-57L { margin-right: 9px; }
@@ -601,7 +601,7 @@
     margin-right: 235px;
     gap: 0;
     @media (max-width: 768px) {
-      margin-right: 100px; /* Ajusta el margen para dispositivos pequeños */
+      margin-right: 115px; /* Ajusta el margen para dispositivos pequeños */
     }
   }
 
@@ -616,7 +616,7 @@
     margin-left: 235px;
     gap: 0;
     @media (max-width: 768px) {
-      margin-left: 100px; /* Ajusta el margen para dispositivos pequeños */
+      margin-left: 115px; /* Ajusta el margen para dispositivos pequeños */
     }
   }
 
