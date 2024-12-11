@@ -54,10 +54,10 @@ export class PasosComponent implements OnInit {
 
   // List of available island types
   tipoIslaOptions = [
-    { id: 'isla1', name: 'Isla Soledad', price: 130000 , size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
-    { id: 'isla2', name: 'Isla Victoria', price: 180000 ,size: '107', imagePath: '../../assets/tipoIsla/2modulos.png' },
-    { id: 'isla3', name: 'Isla Gran Malvina',price: 210000 , size: '157', imagePath: '../../assets/tipoIsla/2modulos2.png' },
-    { id: 'isla4', name: 'Isla Trinidad',price: 210000 , size: '157', imagePath: '../../assets/tipoIsla/3modulos.png' },
+    { id: 'isla1', name: 'Soledad', price: 130000 , size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
+    { id: 'isla2', name: 'Victoria', price: 180000 ,size: '107', imagePath: '../../assets/tipoIsla/2modulos.png' },
+    { id: 'isla3', name: 'Gran Malvina',price: 210000 , size: '157', imagePath: '../../assets/tipoIsla/2modulos2.png' },
+    { id: 'isla4', name: 'Trinidad',price: 210000 , size: '157', imagePath: '../../assets/tipoIsla/3modulos.png' },
   ];
 
 

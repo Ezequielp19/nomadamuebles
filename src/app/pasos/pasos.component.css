@@ -118,26 +118,6 @@
   }
 }
 
-/* Estilos específicos para 355px o menos */
-@media (max-width: 355px) {
-  .color-option {
-    flex: 1 1 100%; /* Las tarjetas ocuparán todo el ancho disponible */
-    max-width: 100%; /* Se asegura que no se limiten a un ancho fijo */
-    align-items: stretch; /* Asegura que el contenido llene toda la tarjeta */
-  }
-
-  .color-option img {
-    max-width: 80px; /* Ajusta el tamaño de las imágenes para evitar desbordes */
-    max-height: 80px;
-  }
-
-  .color-option span {
-    font-size: 11px; /* Reduce un poco el tamaño del texto para adaptarlo mejor */
-  }
-}
-
-
-
 
 /* Indicar la opción seleccionada */
 .orientation-option.selected {
