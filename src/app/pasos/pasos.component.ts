@@ -149,10 +149,10 @@ export class PasosComponent implements OnInit {
     initializeInfoItems(): void {
       // Datos estáticos
       const staticInfoItems = [
-        { id: 'isla1', title: 'Isla Soledad', price: 130000 ,description: 'La Isla Soledad es esencial para quienes valoran lo fundamental y buscan eficiencia en lo compacto. Con un único módulo a elección, es ideal para cocinas que requieren un mueble práctico y optimizado. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante. Las ruedas permiten moverla con facilidad, haciendo que tus espacios se adapten dinámicamente a tus necesidades.' },
-        { id: 'isla2', title: 'Isla Victoria', price: 180000 ,description: 'La Isla Victoria es ideal para quienes desean expandir su cocina con mayor superficie de trabajo y almacenamiento. Con dos módulos personalizables, este mueble ofrece una combinación perfecta de funcionalidad y eficiencia. Su diseño con mesada en caída tipo cascada añade un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptándose dinámicamente a tus espacios y necesidades.' },
-        { id: 'isla3', title: 'Isla Gran Malvina',price: 210000 , description: 'La Isla Gran Malvina es ideal para quienes desean maximizar la superficie de trabajo en su cocina. Su amplia mesada con vuelo es perfecta para usar como mesa diaria o zona de preparación, brindando comodidad y funcionalidad en un solo mueble. Con dos módulos a elección para almacenamiento adicional, esta isla combina perfectamente estilo y practicidad. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante, mientras que las ruedas permiten moverla fácilmente, adaptándose a las necesidades de tu espacio.' },
-        { id: 'isla4', title: 'Isla Trinidad', price: 210000 ,description: 'La Isla Trinidad es ideal para quienes desean expandir su cocina y organizarla meticulosamente. Con tres módulos personalizables, este mueble se convierte en la verdadera estrella del hogar, ofreciendo un amplio espacio para almacenamiento y superficie de trabajo. Su diseño con mesada en caída tipo cascada agrega un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptando dinámicamente el espacio a tus necesidades.' },
+        { id: 'isla1', title: 'Soledad', price: 130000 ,description: 'La Isla Soledad es esencial para quienes valoran lo fundamental y buscan eficiencia en lo compacto. Con un único módulo a elección, es ideal para cocinas que requieren un mueble práctico y optimizado. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante. Las ruedas permiten moverla con facilidad, haciendo que tus espacios se adapten dinámicamente a tus necesidades.' },
+        { id: 'isla2', title: 'Victoria', price: 180000 ,description: 'La Isla Victoria es ideal para quienes desean expandir su cocina con mayor superficie de trabajo y almacenamiento. Con dos módulos personalizables, este mueble ofrece una combinación perfecta de funcionalidad y eficiencia. Su diseño con mesada en caída tipo cascada añade un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptándose dinámicamente a tus espacios y necesidades.' },
+        { id: 'isla3', title: 'Gran Malvina',price: 210000 , description: 'La Isla Gran Malvina es ideal para quienes desean maximizar la superficie de trabajo en su cocina. Su amplia mesada con vuelo es perfecta para usar como mesa diaria o zona de preparación, brindando comodidad y funcionalidad en un solo mueble. Con dos módulos a elección para almacenamiento adicional, esta isla combina perfectamente estilo y practicidad. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante, mientras que las ruedas permiten moverla fácilmente, adaptándose a las necesidades de tu espacio.' },
+        { id: 'isla4', title: 'Trinidad', price: 210000 ,description: 'La Isla Trinidad es ideal para quienes desean expandir su cocina y organizarla meticulosamente. Con tres módulos personalizables, este mueble se convierte en la verdadera estrella del hogar, ofreciendo un amplio espacio para almacenamiento y superficie de trabajo. Su diseño con mesada en caída tipo cascada agrega un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptando dinámicamente el espacio a tus necesidades.' },
         { id: 'mesada_BN', title: 'Blanco Nature', description: 'Tono de blanco con un sutil veteado que imita la textura de la madera natural.' },
         { id: 'mesada_SA', title: 'Negro Sauco', description: 'De color intenso, este diseño de madera negra quemada resalta a la perfección la textura BARK.' },
         { id: 'mesada_K', title: 'Roble Kendall Natural', description: 'Tono suave y luminoso, similar a la madera veteada, pero con un toque tenue y delicado.' },
@@ -335,11 +335,11 @@ openInfoModal(itemId: string): void {
     this.totalPrice = price; // Actualizar el precio total
 
     // Definir número de módulos permitidos según el tipo de isla
-    if (tipo === 'Isla Gran Malvina') {
+    if (tipo === 'Gran Malvina') {
       this.moduleSteps = 2;
-    } else if (tipo === 'Isla Trinidad') {
+    } else if (tipo === 'Trinidad') {
       this.moduleSteps = 3;
-    } else if (tipo === 'Isla Soledad') {
+    } else if (tipo === 'Soledad') {
       this.moduleSteps = 1;
     } else {
       this.moduleSteps = 2;
