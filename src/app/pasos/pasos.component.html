@@ -12,7 +12,13 @@
         (keyup.enter)="searchByCode()"
         class="code-input"
       />
-      <button (click)="searchByCode()" class="search-button">Buscar</button>
+      <button (click)="searchByCode()" class="search-button">Buscar Isla</button>
+    </div>
+
+        <!-- Mostrar precio actual -->
+    <div class="total-price-container">
+      <h3>Precio Total:</h3>
+      <p>{{ totalPrice | currency:'ARS' }}</p>
     </div>
 
     <!-- Botón para limpiar selección -->
@@ -99,18 +105,23 @@
          Elige el tipo de isla que deseas para tu cocina. Puedes seleccionar entre diferentes tamaños y diseños según tus preferencias.
        </div>
        <div class="color-options">
-         <div
-           class="color-option"
-           *ngFor="let isla of tipoIslaOptions"
-           (click)="selectIsla(isla.name, isla.size)"
-         >
-           <img [src]="isla.imagePath" [alt]="isla.name" />
-           <span>{{ isla.name }}</span>
-           <button class="info-button" (click)="openInfoModal(isla.id); $event.stopPropagation()">
+        <div
+          class="color-option"
+          *ngFor="let isla of tipoIslaOptions"
+          (click)="selectIsla(isla.name, isla.size, isla.price)"
+        >
+          <img [src]="isla.imagePath" [alt]="isla.name" />
+          <div class="details">
+            <span class="name">{{ isla.name }}</span>
+            <br>
+            <span class="price">Precio: ${{ isla.price }}$</span>
+          </div>
+          <button class="info-button" (click)="openInfoModal(isla.id); $event.stopPropagation()">
             <span class="info-icon">i</span>
           </button>
-         </div>
-       </div>
+        </div>
+      </div>
+
      </ng-container>
 
 <ng-container *ngIf="currentStep === 2">
@@ -202,6 +213,7 @@
     >
       <img [src]="'../../assets/modulos/' + module" [alt]="module" />
       <span>{{ getModuleDisplayName(module) }}</span>
+      <span class="module-price">Precio: ${{ getModulePrice(module) }}</span>
       <!-- Botón Info -->
       <button class="info-button" (click)="openInfoModal(getModuleId(module)); $event.stopPropagation()">
         <span class="info-icon">i</span>
@@ -209,6 +221,7 @@
     </div>
   </div>
 </ng-container>
+
 
 
 <!-- Paso final: Resultado -->
@@ -239,6 +252,30 @@
       </div>
     </div>
     <p>Código Generado: {{ generateFinalCode() }}</p>
+
+        <!-- Inputs para nombre, email y teléfono -->
+        <div class="user-inputs">
+          <label>
+            Nombre:
+            <input type="text" [(ngModel)]="guestData.nombre" placeholder="Ingresa tu nombre" />
+          </label>
+          <label>
+            Email:
+            <input type="email" [(ngModel)]="guestData.email" placeholder="Ingresa tu email" />
+          </label>
+          <label>
+            Teléfono:
+            <input type="text" [(ngModel)]="guestData.telefono" placeholder="Ingresa tu teléfono" />
+          </label>
+        </div>
+
+        <!-- Botón de pago -->
+        <div class="payment-button-container">
+          <button (click)="sendPaymentData()" class="payment-button">
+            Pagar ahora
+          </button>
+        </div>
+
     <div class="color-options">
       <!-- Contenedor del título -->
       <div class="color-options-title">

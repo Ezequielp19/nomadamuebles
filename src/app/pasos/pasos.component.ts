@@ -1,18 +1,19 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { ModalService } from '../../service/modal.service';
-
+import { FirestoreService } from '../../service/firestore.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-pasos',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FooterComponent, FormsModule],
+  imports: [CommonModule, NavbarComponent, FormsModule],
   templateUrl: './pasos.component.html',
   styleUrls: ['./pasos.component.css'],
 })
-export class PasosComponent {
+export class PasosComponent implements OnInit {
+  private apiUrl = 'http://localhost:3333/create_preference';
   currentStep: number = 1;
   orientations: ('left' | 'right')[] = ['left', 'right'];
   steps: { id: number; title: string }[] = [];
@@ -20,10 +21,17 @@ export class PasosComponent {
     isla?: string;
     colorMesada?: string;
     orientation?: 'left' | 'right';
+    price?: number; // Cambiado a opcional
     size?: string;
     moduleColor?: string;
     modules?: string[];
   } = { modules: [] };
+
+  guestData = {
+    nombre: '',
+    email: '',
+    telefono: ''
+  };
 
   moduleSteps: number = 0; // Número de módulos según la isla seleccionada
   moduleOptions: string[] = []; // Opciones de módulos según el color
@@ -38,12 +46,13 @@ export class PasosComponent {
   infoMap: Map<string, { title: string; description: string }> = new Map();
   isMobileView = window.innerWidth <= 768; // Detectar vista móvil
   menuOpen = false;
+  totalPrice: number = 0; // Variable para almacenar el precio total
   // List of available island types
   tipoIslaOptions = [
-    { id: 'isla1', name: 'Isla Soledad', size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
-    { id: 'isla2', name: 'Isla Victoria', size: '107', imagePath: '../../assets/tipoIsla/2modulos.png' },
-    { id: 'isla3', name: 'Isla Gran Malvina', size: '157', imagePath: '../../assets/tipoIsla/2modulos2.png' },
-    { id: 'isla4', name: 'Isla Trinidad', size: '157', imagePath: '../../assets/tipoIsla/3modulos.png' },
+    { id: 'isla1', name: 'Isla Soledad', price: 130000 , size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
+    { id: 'isla2', name: 'Isla Victoria', price: 180000 ,size: '107', imagePath: '../../assets/tipoIsla/2modulos.png' },
+    { id: 'isla3', name: 'Isla Gran Malvina',price: 210000 , size: '157', imagePath: '../../assets/tipoIsla/2modulos2.png' },
+    { id: 'isla4', name: 'Isla Trinidad',price: 210000 , size: '157', imagePath: '../../assets/tipoIsla/3modulos.png' },
   ];
 
 
@@ -60,26 +69,44 @@ export class PasosComponent {
     { id: 'modulo_S', name: 'Verde Safari', prefix: 'S', imagePath: '../../assets/colorModulos/VerdeS.jpg' },
   ];
 
-
+  MODULE_PRICES= [
+    { id: 'modulo_01', title: 'Módulo 01', price: 120000 },
+    { id: 'modulo_02', title: 'Módulo 02', price: 120000 },
+    { id: 'modulo_03', title: 'Módulo 03', price: 195000 },
+    { id: 'modulo_04', title: 'Módulo 04', price: 195000 },
+    { id: 'modulo_05', title: 'Módulo 05', price: 120000 },
+    { id: 'modulo_06', title: 'Módulo 06', price: 195000 },
+    { id: 'modulo_07', title: 'Módulo 07', price: 120000 }
+  ]
 
   orientationImages: Record<string, string> = {
     left: '../../assets/sentidoMedida/left.png',
     right: '../../assets/sentidoMedida/right.png',
   };
 
-  constructor(private modalService: ModalService) {
+  constructor(private modalService: ModalService,
+    private firestoreService: FirestoreService,
+    private http: HttpClient
+  ) {
     this.initializeSteps();
     this.initializeInfoItems();
+  }
+
+  ngOnInit(): void {
+    this.firestoreService
+      .createDocument({ prueba: 'Hola, Firestore!' }, 'hola/miDocumento')
+      .then(() => console.log('Documento creado con éxito'))
+      .catch((err) => console.error('Error al crear el documento:', err));
   }
 
     // Inicializar el arreglo de infoItems
     initializeInfoItems(): void {
       // Datos estáticos
       const staticInfoItems = [
-        { id: 'isla1', title: 'Isla Soledad', description: 'La Isla Soledad es esencial para quienes valoran lo fundamental y buscan eficiencia en lo compacto. Con un único módulo a elección, es ideal para cocinas que requieren un mueble práctico y optimizado. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante. Las ruedas permiten moverla con facilidad, haciendo que tus espacios se adapten dinámicamente a tus necesidades.' },
-        { id: 'isla2', title: 'Isla Victoria', description: 'La Isla Victoria es ideal para quienes desean expandir su cocina con mayor superficie de trabajo y almacenamiento. Con dos módulos personalizables, este mueble ofrece una combinación perfecta de funcionalidad y eficiencia. Su diseño con mesada en caída tipo cascada añade un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptándose dinámicamente a tus espacios y necesidades.' },
-        { id: 'isla3', title: 'Isla Gran Malvina', description: 'La Isla Gran Malvina es ideal para quienes desean maximizar la superficie de trabajo en su cocina. Su amplia mesada con vuelo es perfecta para usar como mesa diaria o zona de preparación, brindando comodidad y funcionalidad en un solo mueble. Con dos módulos a elección para almacenamiento adicional, esta isla combina perfectamente estilo y practicidad. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante, mientras que las ruedas permiten moverla fácilmente, adaptándose a las necesidades de tu espacio.' },
-        { id: 'isla4', title: 'Isla Trinidad', description: 'La Isla Trinidad es ideal para quienes desean expandir su cocina y organizarla meticulosamente. Con tres módulos personalizables, este mueble se convierte en la verdadera estrella del hogar, ofreciendo un amplio espacio para almacenamiento y superficie de trabajo. Su diseño con mesada en caída tipo cascada agrega un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptando dinámicamente el espacio a tus necesidades.' },
+        { id: 'isla1', title: 'Isla Soledad', price: 130000 ,description: 'La Isla Soledad es esencial para quienes valoran lo fundamental y buscan eficiencia en lo compacto. Con un único módulo a elección, es ideal para cocinas que requieren un mueble práctico y optimizado. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante. Las ruedas permiten moverla con facilidad, haciendo que tus espacios se adapten dinámicamente a tus necesidades.' },
+        { id: 'isla2', title: 'Isla Victoria', price: 180000 ,description: 'La Isla Victoria es ideal para quienes desean expandir su cocina con mayor superficie de trabajo y almacenamiento. Con dos módulos personalizables, este mueble ofrece una combinación perfecta de funcionalidad y eficiencia. Su diseño con mesada en caída tipo cascada añade un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptándose dinámicamente a tus espacios y necesidades.' },
+        { id: 'isla3', title: 'Isla Gran Malvina',price: 210000 , description: 'La Isla Gran Malvina es ideal para quienes desean maximizar la superficie de trabajo en su cocina. Su amplia mesada con vuelo es perfecta para usar como mesa diaria o zona de preparación, brindando comodidad y funcionalidad en un solo mueble. Con dos módulos a elección para almacenamiento adicional, esta isla combina perfectamente estilo y practicidad. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante, mientras que las ruedas permiten moverla fácilmente, adaptándose a las necesidades de tu espacio.' },
+        { id: 'isla4', title: 'Isla Trinidad', price: 210000 ,description: 'La Isla Trinidad es ideal para quienes desean expandir su cocina y organizarla meticulosamente. Con tres módulos personalizables, este mueble se convierte en la verdadera estrella del hogar, ofreciendo un amplio espacio para almacenamiento y superficie de trabajo. Su diseño con mesada en caída tipo cascada agrega un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptando dinámicamente el espacio a tus necesidades.' },
         { id: 'mesada_BN', title: 'Blanco Nature', description: 'Tono de blanco con un sutil veteado que imita la textura de la madera natural.' },
         { id: 'mesada_SA', title: 'Negro Sauco', description: 'De color intenso, este diseño de madera negra quemada resalta a la perfección la textura BARK.' },
         { id: 'mesada_K', title: 'Roble Kendall Natural', description: 'Tono suave y luminoso, similar a la madera veteada, pero con un toque tenue y delicado.' },
@@ -87,13 +114,13 @@ export class PasosComponent {
         { id: 'orientation_right', title: 'Orientación Derecha', description: 'La orientación derecha...' },
         { id: 'modulo_B', title: 'Blanco Liso', description: 'Un color neutro que combina con cualquier ambiente.' },
         { id: 'modulo_S', title: 'Verde Safari', description: 'Para crear el equilibrio perfecto entre la naturaleza y la armonía de las maderas, su tonalidad transmite la conexión con tus raíces.' },
-        { id: 'modulo_01', title: 'Módulo 01', description: 'Con 3 espacios de guardado exhibidores. Perfecta para canastos, ollas grandes y esos objetos únicos que son parte de tu vida que te encantaría tener a la vista y al alcance de tu mano. ¡Sentite orgulloso de tus tesoros y exhibilos!' },
-        { id: 'modulo_02', title: 'Módulo 02', description: 'Con 3 espacios de guardado y puerta. Para una experiencia más íntima con una visión minimalista y limpia del desorden cotidiano en tu cocina. ¿Qué esperás para cerrarle la puerta al caos y disfrutar de una cocina más ordenada?' },
-        { id: 'modulo_03', title: 'Módulo 03', description: 'Con 2 cajones grandes y profundos. Ideal para almacenar accesorios, utensilios voluminosos y electrodomésticos de mano. Todo al alcance sin necesidad de quedarte buscando en un montón de cosas apiladas. Abrí un cajón y encontrá fácilmente lo que buscás.' },
-        { id: 'modulo_04', title: 'Módulo 04', description: 'Con 2 cajones medianos y 1 grande. Ideal para tener siempre a mano lo que más usás: cubiertos, utensilios voluminosos, electrodomésticos de mano y accesorios de cocina. Disfrutá de una cocina bien organizada con espacio para todo.' },
-        { id: 'modulo_05', title: 'Módulo 05', description: 'Combina privacidad y organización con 2 estantes con puerta y un espacio “box”. Tené a la vista y al alcance de tu mano tus accesorios indispensables. Preparate para cocinar de una forma rápida y fácil. Disfrutá de una cocina siempre lista para vos.' },
-        { id: 'modulo_06', title: 'Módulo 06', description: 'Con 2 cajones y un espacio “box”. Combiná funcionalidad y orden. Tené tus utensilios y accesorios a la vista y guardados o siempre al alcance de tu mano. Disfrutá de manera eficiente tu cocina, organizála y dejála lista para usar.' },
-        { id: 'modulo_07', title: 'Módulo 07', description: 'Con estantes visibles y una cava lateral. Te permite almacenar 6 botellas, listas para disfrutar. Tené todo organizado y al alcance. ¡Perfecto para compartir momentos únicos!' }
+        { id: 'modulo_01', title: 'Módulo 01', price: 120000 ,description: 'Con 3 espacios de guardado exhibidores. Perfecta para canastos, ollas grandes y esos objetos únicos que son parte de tu vida que te encantaría tener a la vista y al alcance de tu mano. ¡Sentite orgulloso de tus tesoros y exhibilos!' },
+        { id: 'modulo_02', title: 'Módulo 02', price: 120000 ,description: 'Con 3 espacios de guardado y puerta. Para una experiencia más íntima con una visión minimalista y limpia del desorden cotidiano en tu cocina. ¿Qué esperás para cerrarle la puerta al caos y disfrutar de una cocina más ordenada?' },
+        { id: 'modulo_03', title: 'Módulo 03', price: 195000 ,description: 'Con 2 cajones grandes y profundos. Ideal para almacenar accesorios, utensilios voluminosos y electrodomésticos de mano. Todo al alcance sin necesidad de quedarte buscando en un montón de cosas apiladas. Abrí un cajón y encontrá fácilmente lo que buscás.' },
+        { id: 'modulo_04', title: 'Módulo 04', price: 195000 ,description: 'Con 2 cajones medianos y 1 grande. Ideal para tener siempre a mano lo que más usás: cubiertos, utensilios voluminosos, electrodomésticos de mano y accesorios de cocina. Disfrutá de una cocina bien organizada con espacio para todo.' },
+        { id: 'modulo_05', title: 'Módulo 05', price: 120000 ,description: 'Combina privacidad y organización con 2 estantes con puerta y un espacio “box”. Tené a la vista y al alcance de tu mano tus accesorios indispensables. Preparate para cocinar de una forma rápida y fácil. Disfrutá de una cocina siempre lista para vos.' },
+        { id: 'modulo_06', title: 'Módulo 06', price: 195000 ,description: 'Con 2 cajones y un espacio “box”. Combiná funcionalidad y orden. Tené tus utensilios y accesorios a la vista y guardados o siempre al alcance de tu mano. Disfrutá de manera eficiente tu cocina, organizála y dejála lista para usar.' },
+        { id: 'modulo_07', title: 'Módulo 07', price: 120000 ,description: 'Con estantes visibles y una cava lateral. Te permite almacenar 6 botellas, listas para disfrutar. Tené todo organizado y al alcance. ¡Perfecto para compartir momentos únicos!' }
     ];
 
    // Generar información dinámica para los módulos cargados
@@ -200,6 +227,13 @@ openInfoModal(itemId: string): void {
         B05: 'Módulo 05',
         B06: 'Módulo 06',
         B07: 'Módulo 07',
+        S01: 'Módulo 01',
+        S02: 'Módulo 02',
+        S03: 'Módulo 03',
+        S04: 'Módulo 04',
+        S05: 'Módulo 05',
+        S06: 'Módulo 06',
+        S07: 'Módulo 07',
         // Agrega más mapeos según tus necesidades
       };
 
@@ -236,7 +270,7 @@ openInfoModal(itemId: string): void {
 
       this.steps.push({ id: 5 + modules.length, title: 'Resultado Final' });
 
-      console.log('Pasos inicializados:', this.steps);
+      // console.log('Pasos inicializados:', this.steps);
     }
 
 
@@ -248,25 +282,21 @@ openInfoModal(itemId: string): void {
     return (this.currentStep / this.totalSteps) * 100;
   }
 
-
-
-
-  selectIsla(tipo: string, size: string) {
+  selectIsla(tipo: string, size: string, price: number): void {
     this.selectedOptions.isla = tipo;
     this.selectedOptions.size = size;
-
-    // Asignar el tipo de isla seleccionado
-    this.selectedIslandType = tipo;
+    this.selectedOptions.price = price; // Asignar el precio de la isla seleccionada
+    this.totalPrice = price; // Actualizar el precio total
 
     // Definir número de módulos permitidos según el tipo de isla
     if (tipo === 'Isla Gran Malvina') {
-      this.moduleSteps = 2; // Solo 2 módulos
+      this.moduleSteps = 2;
     } else if (tipo === 'Isla Trinidad') {
-      this.moduleSteps = 3; // Hasta 3 módulos
+      this.moduleSteps = 3;
     } else if (tipo === 'Isla Soledad') {
-      this.moduleSteps = 1; // Solo 1 módulo
+      this.moduleSteps = 1;
     } else {
-      this.moduleSteps = 2; // Default
+      this.moduleSteps = 2;
     }
 
     // Ir al siguiente paso
@@ -309,19 +339,62 @@ selectModuleColor(color: string) {
 }
 
 
-  selectModule(module: string, step: number) {
-    if (this.selectedOptions.modules) {
-      this.selectedOptions.modules[step - 5] = module;
-    }
-    this.initializeSteps(); // Recalcular pasos después de seleccionar módulo
+selectModule(module: string, step: number) {
+  const moduleIndex = step - 5;
 
-    // Ir al siguiente módulo o al paso final
-    if (step < 4 + this.moduleSteps) {
-      this.goToStep(step + 1);
-    } else {
-      this.goToStep(4 + this.moduleSteps + 1); // Paso final
+  // Asegurarse de que 'selectedOptions.modules' esté inicializado
+  if (!this.selectedOptions.modules) {
+    this.selectedOptions.modules = [];
+  }
+
+  // Restar el precio anterior si ya había un módulo seleccionado
+  if (this.selectedOptions.modules[moduleIndex]) {
+    const previousModuleName = this.selectedOptions.modules[moduleIndex].replace(/\.[^/.]+$/, '');
+    const previousModule = this.MODULE_PRICES.find(
+      (item) => item.title === this.getModuleDisplayName(previousModuleName)
+    );
+    if (previousModule) {
+      this.totalPrice -= previousModule.price; // Restar precio anterior
     }
   }
+
+  // Guardar el nuevo módulo
+  this.selectedOptions.modules[moduleIndex] = module;
+
+  // Sumar el nuevo precio
+  const moduleName = module.replace(/\.[^/.]+$/, ''); // Quita la extensión
+  const selectedModule = this.MODULE_PRICES.find(
+    (item) => item.title === this.getModuleDisplayName(moduleName)
+  );
+
+  if (selectedModule) {
+    this.totalPrice += selectedModule.price; // Sumar el nuevo precio
+  }
+
+  this.initializeSteps(); // Recalcular pasos después de seleccionar módulo
+
+  // Ir al siguiente módulo o al paso final
+  if (step < 4 + this.moduleSteps) {
+    this.goToStep(step + 1);
+  } else {
+    this.goToStep(4 + this.moduleSteps + 1); // Paso final
+  }
+}
+
+
+
+  getModulePrice(module: string): number | string {
+    // Elimina la extensión del archivo
+    const moduleName = module.replace(/\.[^/.]+$/, '');
+
+    // Busca el precio correspondiente en MODULE_PRICES
+    const modulePrice = this.MODULE_PRICES.find(
+      (item) => item.title === this.getModuleDisplayName(moduleName)
+    );
+
+    return modulePrice?.price || 'Precio no disponible';
+  }
+
 
 
   generateFinalImagePath(): { countertop: string; modules: string[] } {
@@ -396,8 +469,8 @@ selectModuleColor(color: string) {
   getIslandClass(): string {
     const size = this.selectedOptions.size; // Tamaño seleccionado (e.g., '175', '105', '57', '107')
     const orientation = this.selectedOptions.orientation; // Orientación seleccionada ('left' o 'right')
-    const islandType = this.selectedIslandType; // Tipo de isla seleccionada (e.g., 'Gran Malvina')
-    console.log(islandType)
+    const islandType = this.selectedOptions.isla; // Tipo de isla seleccionada (e.g., 'Gran Malvina')
+    // console.log(islandType)
     if (!size || !orientation) {
       console.error('Faltan opciones para determinar la clase de la mesada.');
       return 'module-wrapper-default'; // Clase por defecto si faltan opciones
@@ -415,7 +488,7 @@ selectModuleColor(color: string) {
     }
 
 
-    console.log(className)
+    // console.log(className)
     return className;
   }
 
@@ -427,6 +500,7 @@ selectModuleColor(color: string) {
     this.selectedIslandType = '';
     this.moduleSteps = 0;
     this.completedSteps = [];
+    this.totalPrice = 0; // Reinicia el precio a 0
 
     // Reinicia al paso inicial
     this.steps = [
@@ -437,6 +511,7 @@ selectModuleColor(color: string) {
     ];
     this.currentStep = 1;
   }
+
 
   goToStep(step: number): void {
     if (this.isSearchActive) {
@@ -454,7 +529,7 @@ selectModuleColor(color: string) {
 
     this.currentStep = step;
 
-    console.log('Paso actual:', this.currentStep);
+    // console.log('Paso actual:', this.currentStep);
   }
 
 
@@ -546,5 +621,53 @@ selectModuleColor(color: string) {
       });
     }
 
+    sendPaymentData(): void {
+
+      console.log(this.totalPrice)
+      console.log(this.codigoFinal)
+
+      if (
+        this.guestData.nombre &&
+        this.guestData.telefono &&
+        this.guestData.email
+      ) {
+        // Usuario invitado
+        const paymentData = {
+          description: "Compra tu isla",
+          totalAmount: this.totalPrice,
+          currency_id: "ARS",
+          codigoFinal: this.codigoFinal,
+          guestData: {
+            nombre: this.guestData.nombre,
+            telefono: this.guestData.telefono,
+            email: this.guestData.email
+          },
+          userId: this.guestData.email, // Asignamos el email como userId
+          telefono: this.guestData.telefono // Teléfono del invitado
+        };
+
+        console.log('Guest Purchase Data:', paymentData);
+        this.procesarPago(paymentData);
+      } else {
+        console.error('Faltan datos del invitado para procesar el pago');
+      }
+    }
+
+    private procesarPago(paymentData: any): void {
+      // Llamada directa al backend
+      this.http.post<any>(this.apiUrl, paymentData).subscribe(
+        (response: any) => {
+          if (response.init_point) {
+            // Redireccionar al punto de inicio de pago de MercadoPago
+            window.location.href = response.init_point;
+          } else {
+            console.error('Error en la respuesta del servidor:', response);
+          }
+        },
+        (error: any) => {
+          console.error('Error al enviar el pago', error);
+        }
+      );
+    }
 
 }

@@ -733,4 +733,19 @@ p {
   }
 }
 
+.total-price-container {
+  text-align: center;
+  margin: 1rem 0;
+  h3 {
+    font-size: 16px;
+    color: #60603C;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+  }
+}
 
