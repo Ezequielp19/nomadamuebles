@@ -227,7 +227,6 @@
 <!-- Paso final: Resultado -->
 <ng-container *ngIf="currentStep === (4 + moduleSteps + 1)">
   <h2>Resultado Final</h2>
-  <!-- Contenedor explicativo -->
   <div class="explanatory-container">
     Este es el diseño final de tu isla. Puedes verificar el resultado, guardar el código generado y realizar ajustes si es necesario.
   </div>
@@ -240,7 +239,6 @@
           'background-image': 'url(' + generateFinalImagePath().countertop + ')'
         }"
       >
-        <!-- Contenedor para agrupar módulos como un solo mueble -->
         <div [ngClass]="getIslandClass()">
           <div
             class="module-container"
@@ -253,28 +251,72 @@
     </div>
     <p>Código Generado: {{ generateFinalCode() }}</p>
 
-        <!-- Inputs para nombre, email y teléfono -->
-        <div class="user-inputs">
-          <label>
-            Nombre:
-            <input type="text" [(ngModel)]="guestData.nombre" placeholder="Ingresa tu nombre" />
-          </label>
-          <label>
-            Email:
-            <input type="email" [(ngModel)]="guestData.email" placeholder="Ingresa tu email" />
-          </label>
-          <label>
-            Teléfono:
-            <input type="text" [(ngModel)]="guestData.telefono" placeholder="Ingresa tu teléfono" />
-          </label>
-        </div>
+    <!-- Botón para mostrar/ocultar la sección de pago -->
+    <button
+      class="payment-toggle-button"
+      (click)="showPaymentInputs = !showPaymentInputs"
+    >
+      {{ showPaymentInputs ? 'Ocultar sección de pago' : 'Realizar pago con MercadoPago' }}
+    </button>
 
-        <!-- Botón de pago -->
-        <div class="payment-button-container">
-          <button (click)="sendPaymentData()" class="payment-button">
-            Pagar ahora
-          </button>
-        </div>
+    <!-- Sección de pago -->
+    <div class="payment-section" *ngIf="showPaymentInputs">
+      <!-- Inputs para nombre, email y teléfono -->
+      <div class="user-inputs">
+        <label>
+          Nombre:
+          <input
+            type="text"
+            [(ngModel)]="guestData.nombre"
+            placeholder="Ingresa tu nombre"
+            (input)="validatePaymentData()"
+          />
+        </label>
+        <label>
+          Email:
+          <input
+            type="email"
+            [(ngModel)]="guestData.email"
+            placeholder="Ingresa tu email"
+            (input)="validatePaymentData()"
+          />
+        </label>
+        <label>
+          Teléfono:
+          <input
+            type="text"
+            [(ngModel)]="guestData.telefono"
+            placeholder="Ingresa tu teléfono"
+            (input)="validatePaymentData()"
+          />
+        </label>
+      </div>
+
+      <!-- Botón de pago -->
+      <button
+        [disabled]="!canPay"
+        (click)="sendPaymentData()"
+        class="payment-button"
+      >
+        <img src="assets/mpLogo.png" alt="MercadoPago" />
+        Pagar ahora
+      </button>
+
+    </div>
+    <!-- Botón de Gift Card -->
+    <button
+    class="payment-button"
+    (click)="openWhatsAppGiftCard()"
+  >
+    <img src="assets/giftCard.png" alt="Gift Card" />
+    Consultar Gift Card
+  </button>
+
+    <!-- Botón de compartir mueble -->
+  <button class="payment-button" (click)="shareFurnitureLink()">
+    <img src="assets/wspLogo.png" alt="WhatsApp" />
+    Compartir mueble
+  </button>
 
     <div class="color-options">
       <!-- Contenedor del título -->
@@ -306,9 +348,9 @@
       </div>
     </div>
 
-
   </div>
 </ng-container>
+
 
     </ng-container>
   </div>

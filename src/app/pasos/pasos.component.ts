@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalService } from '../../service/modal.service';
 import { FirestoreService } from '../../service/firestore.service';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-pasos',
   standalone: true,
@@ -47,6 +48,10 @@ export class PasosComponent implements OnInit {
   isMobileView = window.innerWidth <= 768; // Detectar vista móvil
   menuOpen = false;
   totalPrice: number = 0; // Variable para almacenar el precio total
+
+  showPaymentInputs: boolean = false; // Agregar esta propiedad
+  canPay: boolean = false; // Para controlar la habilitación del botón de pago
+
   // List of available island types
   tipoIslaOptions = [
     { id: 'isla1', name: 'Isla Soledad', price: 130000 , size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
@@ -86,17 +91,58 @@ export class PasosComponent implements OnInit {
 
   constructor(private modalService: ModalService,
     private firestoreService: FirestoreService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.initializeSteps();
     this.initializeInfoItems();
   }
 
   ngOnInit(): void {
-    this.firestoreService
-      .createDocument({ prueba: 'Hola, Firestore!' }, 'hola/miDocumento')
-      .then(() => console.log('Documento creado con éxito'))
-      .catch((err) => console.error('Error al crear el documento:', err));
+    // Detectar el código en la URL al inicializar el componente
+    this.route.queryParams.subscribe(params => {
+      const code = params['code'];
+      if (code) {
+        this.searchCode = code;
+        this.searchByCode(); // Realizar búsqueda automáticamente
+      }
+    });
+  }
+
+
+  validatePaymentData(): void {
+    this.canPay = this.guestData.nombre.trim() !== '' &&
+                  this.guestData.email.trim() !== '' &&
+                  this.guestData.telefono.trim() !== '';
+  }
+
+  shareFurnitureLink(): void {
+    if (!this.codigoFinal) {
+      alert('Primero genera un código final.');
+      return;
+    }
+
+    const link = `${window.location.origin}/pasos?code=${this.codigoFinal}`;
+    const numeroWhatsApp = "5493412775793"; // Reemplaza con el número de WhatsApp
+    const mensaje = `Hola, mira esta isla que he creado: ${link}`;
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
+  }
+
+  openWhatsAppGiftCard(): void {
+    if (!this.codigoFinal) {
+      alert('Primero genera un código final.');
+      return;
+    }
+
+    const link = `${window.location.origin}/pasos?code=${this.codigoFinal}`;
+    const numeroWhatsApp = "5493412775793"; // Reemplaza con el número de WhatsApp
+    const mensaje = `Hola, quiero adquirir una Gift Card para la isla con este enlace: ${link}`;
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
   }
 
     // Inicializar el arreglo de infoItems
@@ -553,10 +599,11 @@ selectModule(module: string, step: number) {
       return `${position}${moduleNumber}`;
     }).join(''); // Unir módulos con sus posiciones
 
-    this.codigoFinal =  `${size}${colorMesada}${orientation}-${colorModulo}${modules}`;
+    this.codigoFinal = `${size}${colorMesada}${orientation}-${colorModulo}${modules}`;
+
+    console.log('Código generado:', this.codigoFinal);
     return this.codigoFinal;
   }
-
 
   searchByCode(): void {
     if (!this.searchCode) {

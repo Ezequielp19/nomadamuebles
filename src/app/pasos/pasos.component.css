@@ -749,3 +749,149 @@ p {
   }
 }
 
+.payment-toggle-button {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    border-color: #60603C; /* Borde marrón anaranjado */
+    box-shadow: 0 0 5px #60603C;
+  }
+}
+
+.user-inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  label {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+
+    input {
+      margin-top: 5px;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05); /* Efecto de zoom */
+        border: 1px solid #60603C; /* Borde marrón anaranjado */
+        box-shadow: 0 0 5px #60603C; /* Sombra con el mismo color */
+      }
+
+      &:focus {
+        border-color: #60603C; /* Borde marrón anaranjado al enfocarse */
+        box-shadow: 0 0 5px rgba(96, 96, 60, 0.5); /* Sombra más suave */
+        outline: none; /* Remover borde predeterminado */
+      }
+    }
+  }
+}
+
+.payment-section {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f4f4f4; /* Fondo gris claro */
+  color: #60603C; /* Texto marrón anaranjado */
+  border: 1px solid #60603C; /* Borde marrón anaranjado */
+  box-shadow: 0 0 5px #60603C; /* Sombra */
+  text-align: center; /* Asegura que los elementos se centren */
+  border-radius: 5px;
+
+  .payment-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #3baf4a; /* Verde MercadoPago */
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #34a043; /* Verde oscuro */
+    }
+
+    &:disabled {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+
+    img {
+      height: 20px;
+    }
+  }
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .user-inputs {
+    flex-direction: column; /* Cambiar a columna */
+    align-items: stretch;
+
+    label {
+      margin: 10px 0; /* Espaciado entre los inputs */
+    }
+
+    input {
+      font-size: 16px; /* Inputs más grandes para móviles */
+    }
+  }
+
+  .payment-section {
+    padding: 10px; /* Reducir padding para pantallas más pequeñas */
+    font-size: 14px;
+  }
+
+  .payment-button {
+    font-size: 14px; /* Texto más pequeño para botones */
+    padding: 8px 16px; /* Reducir padding en botones */
+  }
+
+  .payment-toggle-button {
+    padding: 8px 16px; /* Ajustar padding del botón */
+    font-size: 14px;
+  }
+}
+
+.payment-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: #3baf4a; /* Verde MercadoPago */
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #34a043; /* Verde oscuro */
+  }
+
+  &:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+
+  img {
+    height: 20px;
+  }
+}
