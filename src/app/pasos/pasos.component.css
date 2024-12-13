@@ -736,7 +736,7 @@ p {
 
 .total-price-container {
   text-align: center;
-  margin: 1rem 0;
+  /* margin: 1rem 0; */
   h3 {
     font-size: 16px;
     color: #60603C;
