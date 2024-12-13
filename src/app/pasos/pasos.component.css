@@ -147,9 +147,12 @@
 /* Estilos para dispositivos móviles */
 @media (max-width: 768px) {
   .pasos-container {
-    justify-content: center;
+    display: flex;
+    flex-direction: column-reverse; /* Ordenar los elementos (sidebar abajo en código, pero arriba visualmente) */
+    justify-content: center; /* Centrar en el eje principal */
+    align-items: center; /* Centrar en el eje secundario */
+    gap: 1rem; /* Espaciado uniforme entre los elementos */
   }
-
   .steps-sidebar {
 
     order: -1; /* Colocar sidebar encima */
@@ -245,7 +248,6 @@
 
 
   .steps-sidebar {
-    width: 20%;
     min-width: 200px;
     max-width: 250px;
     background-color: #f4f4f4; /* Gris de fondo */

@@ -2,63 +2,63 @@
 
 <div class="pasos-container">
 
-  <div class="steps-sidebar">
-    <!-- Campo de búsqueda de código -->
-    <div class="code-search-container">
-      <input
-        type="text"
-        placeholder="Buscar por código"
-        [(ngModel)]="searchCode"
-        (keyup.enter)="searchByCode()"
-        class="code-input"
-      />
-      <button (click)="searchByCode()" class="search-button">Buscar Isla</button>
-    </div>
 
-        <!-- Mostrar precio actual -->
-    <div class="total-price-container">
-      <h3>Precio Total:</h3>
-      <p>$ {{ totalPrice | currency:'ARS' }}</p>
-    </div>
-
-    <!-- Botón para limpiar selección -->
-    <div class="reset-button-container">
-      <button (click)="resetSelections()" class="reset-button">Limpiar Selección</button>
-    </div>
-
-    <!-- Menú hamburguesa para pasos en dispositivos móviles -->
-    <div class="hamburger-menu" *ngIf="isMobileView">
-      <button class="hamburger-button" (click)="toggleMenu()">☰ Pasos</button>
-      <div class="steps-menu" *ngIf="menuOpen">
-        <ng-container *ngIf="!isSearchActive">
-          <button
-            *ngFor="let step of steps"
-            (click)="goToStep(step.id)"
-            [class.active]="currentStep === step.id"
-            [class.completed]="completedSteps.includes(step.id)"
-            [disabled]="step.id === 1 && selectedOptions.isla"
-          >
-            {{ step.title }}
-          </button>
-        </ng-container>
+    <!-- Sidebar completo (contenido se mantiene igual) -->
+    <div class="steps-sidebar">
+      <!-- Campo de búsqueda de código -->
+      <div class="code-search-container">
+        <input
+          type="text"
+          placeholder="Buscar por código"
+          [(ngModel)]="searchCode"
+          (keyup.enter)="searchByCode()"
+          class="code-input"
+        />
+        <button (click)="searchByCode()" class="search-button">Buscar Isla</button>
       </div>
+
+      <!-- Mostrar precio actual -->
+      <div class="total-price-container">
+        <h3>Precio Total:</h3>
+        <p>$ {{ totalPrice | currency: 'ARS' }}</p>
+      </div>
+
+      <!-- Botón para limpiar selección -->
+      <div class="reset-button-container">
+        <button (click)="resetSelections()" class="reset-button">Limpiar Selección</button>
+      </div>
+
+      <!-- Menú hamburguesa para pasos en dispositivos móviles -->
+      <div class="hamburger-menu" *ngIf="isMobileView">
+        <button class="hamburger-button" (click)="toggleMenu()">☰ Pasos</button>
+        <div class="steps-menu" *ngIf="menuOpen">
+          <ng-container *ngIf="!isSearchActive">
+            <button
+              *ngFor="let step of steps"
+              (click)="goToStep(step.id)"
+              [class.active]="currentStep === step.id"
+              [class.completed]="completedSteps.includes(step.id)"
+              [disabled]="step.id === 1 && selectedOptions.isla"
+            >
+              {{ step.title }}
+            </button>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Botones de los pasos para pantallas grandes -->
+      <ng-container *ngIf="!isMobileView && !isSearchActive">
+        <button
+          *ngFor="let step of steps"
+          (click)="goToStep(step.id)"
+          [class.active]="currentStep === step.id"
+          [class.completed]="completedSteps.includes(step.id)"
+          [disabled]="step.id === 1 && selectedOptions.isla"
+        >
+          {{ step.title }}
+        </button>
+      </ng-container>
     </div>
-
-    <!-- Botones de los pasos para pantallas grandes -->
-<!-- Botones de los pasos para pantallas grandes -->
-<ng-container *ngIf="!isMobileView && !isSearchActive">
-  <button
-    *ngFor="let step of steps"
-    (click)="goToStep(step.id)"
-    [class.active]="currentStep === step.id"
-    [class.completed]="completedSteps.includes(step.id)"
-    [disabled]="step.id === 1 && selectedOptions.isla"
-  >
-    {{ step.title }}
-  </button>
-</ng-container>
-
-  </div>
 
 <div *ngIf="isSearchActive" class="step-content">
  <!-- Resultado de la búsqueda (visible solo si hay búsqueda activa) -->

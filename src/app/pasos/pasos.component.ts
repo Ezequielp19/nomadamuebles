@@ -51,6 +51,8 @@ export class PasosComponent implements OnInit {
 
   showPaymentInputs: boolean = false; // Agregar esta propiedad
   canPay: boolean = false; // Para controlar la habilitación del botón de pago
+  isMobileView1 = window.innerWidth <= 768; // Detectar vista móvil
+  menuOpen1 = false;
 
   // List of available island types
   tipoIslaOptions = [
@@ -110,6 +112,17 @@ export class PasosComponent implements OnInit {
     });
   }
 
+  toggleSidebar(): void {
+    this.menuOpen1 = !this.menuOpen1;
+  }
+
+  @HostListener('window:resize',  ['$event'])
+  onResize1(): void {
+    this.isMobileView1 = window.innerWidth <= 768;
+    if (!this.isMobileView1) {
+      this.menuOpen1 = true; // Mostrar el sidebar siempre en pantallas grandes
+    }
+  }
 
   validatePaymentData(): void {
     this.canPay = this.guestData.nombre.trim() !== '' &&
