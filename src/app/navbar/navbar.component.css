@@ -61,11 +61,6 @@
   font-family: Arial, sans-serif; /* Mantener la fuente estándar para los íconos */
 }
 
-/* Ocultar menú por defecto */
-.navbar-links {
-  display: none;
-}
-
 /* Menú desplegado (clase responsive) */
 .navbar-links.responsive {
   display: flex;
