@@ -1,35 +1,13 @@
-@font-face {
-  font-family: 'Walkway';
-  src: url('../../assets/fonts/Walkway Bold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
-  font-weight: bold;
-  font-style: normal;
-}
-
-/* Estilos generales */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: 'Walkway', sans-serif; /* Fuente aplicada globalmente */
-}
-
 .container {
   display: flex;
+  flex-wrap: nowrap; /* Asegura que el texto y la imagen permanezcan en la misma fila */
   align-items: center;
+  justify-content: flex-start; /* Mantiene los elementos juntos en la parte izquierda */
   position: relative;
   padding: 20px;
   opacity: 0;
   animation: fadeIn 1s ease forwards;
-  justify-content: flex-end; /* Alinea todo el contenido al borde derecho */
 }
-
 /* Animaciones */
 @keyframes fadeIn {
   to {
@@ -63,7 +41,7 @@ body {
   width: 360px;
   height: 360px;
   top: 4px;
-  right: 0; /* Alinea el fondo al borde derecho */
+  right: 0;
   z-index: 1;
   transform: scale(0.8);
   animation: frameAppear 0.8s ease forwards 0.2s;
@@ -74,50 +52,49 @@ body {
   height: auto;
   position: relative;
   z-index: 2;
-  margin-left: 30px; /* Espacio entre el fondo y el texto */
-  transform: translateX(50px); /* Empuja la imagen hacia el borde derecho */
+  margin-left: 30px; /* Se asegura de que ocupe el espacio necesario */
+  transform: translateX(50px); /* Mantiene el desplazamiento */
   opacity: 0;
   animation: slideIn 0.8s ease forwards 0.4s;
+  order: 2;
 }
 
 .text-content {
   max-width: 500px;
   z-index: 3;
   color: #333;
-  margin-right: 80px; /* Ajustar espacio del texto respecto al fondo */
   transform: translateY(20px);
   opacity: 0;
   animation: textAppear 1s ease forwards 0.6s;
-  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
+  font-family: 'Walkway', sans-serif;
+  order: 1;
+  flex-grow: 1; /* Permite que el texto ocupe el espacio restante */
+  margin-left: 700px;
 }
 
 .text-content h2 {
   font-weight: bold;
   color: #333;
   font-size: 30px;
-  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 .text-content span {
   font-weight: normal;
   font-size: 20px;
-  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 .text-content p {
   color: #333;
   font-size: 24px;
   line-height: 1.6;
-  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    align-items: center;
-    margin-left: 0;
     text-align: center;
+    gap: 20px; /* Reduce el espacio entre texto e imagen */
   }
 
   .background-frame {
@@ -131,29 +108,27 @@ body {
 
   .kitchen-image {
     width: 80%;
-    margin: 0 auto 20px auto;
+    margin: 0 auto;
     transform: translateX(0);
+    order: 1;
   }
 
   .text-content {
     max-width: 100%;
     margin-left: 0;
-    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
+    order: 2;
   }
 
   .text-content h2 {
     font-size: 26px;
-    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 
   .text-content span {
     font-size: 20px;
-    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 
   .text-content p {
     font-size: 18px;
-    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 }
 
@@ -162,23 +137,22 @@ body {
     width: 260px;
     height: 260px;
   }
-
+  .container {
+    gap: 10px; /* Reduce aún más el espaciado */
+  }
   .kitchen-image {
     width: 90%;
   }
 
   .text-content h2 {
     font-size: 22px;
-    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 
   .text-content span {
     font-size: 18px;
-    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 
   .text-content p {
     font-size: 16px;
-    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 }
