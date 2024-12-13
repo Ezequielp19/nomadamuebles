@@ -1,6 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-section',
@@ -20,6 +21,9 @@ export class HeroSectionComponent {
   ];
 
    currentIndex = 0;
+  constructor(
+    private router: Router
+  ) {}
 
   moveSlide(direction: number) {
     const totalImages = this.images.length;
@@ -29,4 +33,9 @@ export class HeroSectionComponent {
     const offset = -this.currentIndex * 100;
     carouselTrack.style.transform = `translateX(${offset}%)`;
   }
+
+    // Navegar entre vistas
+    navigateTo(route: string) {
+      this.router.navigate([`/${route}`]);
+    }
 }

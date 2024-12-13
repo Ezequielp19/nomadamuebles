@@ -1,0 +1,127 @@
+<app-navbar></app-navbar>
+
+<div class="main-container" [ngStyle]="{ 'background-image': backgroundImage }">
+  <div class="faq-container">
+    <h1 class="faq-title">Preguntas frecuentes</h1>
+
+    <!-- Sección: Sobre los muebles -->
+    <div class="faq-section">
+      <button class="faq-header" (click)="toggleSection('muebles')">
+        Sobre los muebles
+      </button>
+      <div class="faq-content" *ngIf="isSectionOpen('muebles')">
+        <div class="faq-question">
+          <strong>¿De qué materiales están hechas las islas de cocina?</strong>
+          <p>Tablero de aglomerado de primera calidad enchapado en melamina marca Faplac o Egger.</p>
+        </div>
+        <div class="faq-question">
+          <strong>¿Las ruedas tienen freno para evitar que la isla se mueva?</strong>
+          <p>Si, todas las ruedas de las islas tienen freno.</p>
+        </div>
+        <div class="faq-question">
+          <strong>¿Las islas son aptas para exteriores o solo para interiores?</strong>
+          <p>Las islas son aptas para interior, podrían usarse un día soleado en un patio o balcón cubierto.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Personalización -->
+    <div class="faq-section">
+      <button class="faq-header" (click)="toggleSection('personalizacion')">
+        Personalización
+      </button>
+      <div class="faq-content" *ngIf="isSectionOpen('personalizacion')">
+        <div class="faq-question">
+          <strong>¿Puedo elegir la configuración de los módulos de la isla?</strong>
+          <p>La medida, el color de la mesada, y la configuración de los módulos son personalizables.</p>
+        </div>
+        <div class="faq-question">
+          <strong>¿Puedo personalizar las dimensiones de la isla?</strong>
+          <p>Puedes elegir entre 57 cm, 107 cm y 157 cm.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Entrega y armado -->
+    <div class="faq-section">
+      <button class="faq-header" (click)="toggleSection('entrega')">
+        Entrega y armado
+      </button>
+      <div class="faq-content" *ngIf="isSectionOpen('entrega')">
+        <div class="faq-question">
+          <strong>¿Los muebles se entregan armados o los tengo que armar?</strong>
+          <p>Se entregan armados, listos para su uso.</p>
+        </div>
+        <div class="faq-question">
+          <strong>¿Realizan envíos a todo el país?</strong>
+          <p>Sí, ofrecemos envíos a todo el país.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <button class="faq-header" (click)="toggleSection('uso')">
+        Uso y mantenimiento
+      </button>
+      <div class="faq-content" *ngIf="isSectionOpen('uso')">
+        <div class="faq-question">
+          <strong>¿Cómo limpio y mantengo mi isla de cocina?</strong>
+          <p>Utiliza un paño húmedo y productos suaves para limpieza. Evita productos abrasivos que puedan dañar el acabado.</p>
+        </div>
+        <div class="faq-question">
+          <strong>¿Las mesadas resisten altas temperaturas o cortes directos?</strong>
+          <p>Las mesadas no están diseñadas para soportar altas temperaturas ni cortes directos. Usa protectores térmicos y tablas de corte.</p>
+        </div>
+        <div class="faq-question">
+          <strong>¿Las ruedas funcionan bien en todo tipo de pisos?</strong>
+          <p>Las ruedas están diseñadas para funcionar en superficies lisas. En alfombras o pisos desiguales, el movimiento puede ser limitado.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <button class="faq-header" (click)="toggleSection('pedido')">
+        Sobre el pedido
+      </button>
+      <div class="faq-content" *ngIf="isSectionOpen('pedido')">
+        <div class="faq-question">
+          <strong>¿Puedo devolver o cambiar mi isla de cocina si no estoy conforme?</strong>
+          <p>Sí, contamos con una política de cambios y devoluciones. Consulta nuestras condiciones para más detalles.</p>
+        </div>
+        <div class="faq-question">
+          <strong>¿Ofrecen garantía? ¿Qué cubre?</strong>
+          <p>Ofrecemos garantía por defectos de fabricación. No cubre daños ocasionados por el uso indebido del producto.</p>
+        </div>
+        <div class="faq-question">
+          <strong>¿Cómo puedo saber cuál es la isla ideal para mi espacio?</strong>
+          <p>Consulta nuestras guías de diseño o contacta a nuestro equipo de asesoramiento para obtener recomendaciones personalizadas.</p>
+        </div>
+        <div class="faq-question">
+          <strong>¿Puedo ver los muebles en persona antes de comprar?</strong>
+          <p>Contamos con un showroom en determinadas localidades. Consulta nuestra página de contacto para más información.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <button class="faq-header" (click)="toggleSection('otros')">
+        Otros servicios
+      </button>
+      <div class="faq-content" *ngIf="isSectionOpen('otros')">
+        <div class="faq-question">
+          <strong>¿Ofrecen asesoramiento para elegir la mejor opción para mi hogar?</strong>
+          <p>Sí, nuestro equipo de expertos está disponible para ayudarte a elegir la mejor opción según tus necesidades.</p>
+        </div>
+        <div class="faq-question">
+          <strong>¿Puedo solicitar piezas adicionales o reemplazos?</strong>
+          <p>Ofrecemos la posibilidad de solicitar piezas adicionales o reemplazos. Contáctanos para más información.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Repite la estructura para las demás secciones -->
+  </div>
+</div>
+
+<app-footer></app-footer>

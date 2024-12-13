@@ -1,75 +1,9 @@
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.container {
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding: 20px;
-  margin-left: 200px;
-}
-
-.background-frame {
-  background-color: #BA5825;
-  position: absolute;
-  width: 360px;
-  height: 360px;
-  top: 4px;
-  bottom: 10px;
-  left: 5px;
-  right: 10px;
-  z-index: 1;
-}
-
-.kitchen-image {
-  width: 400px;
-  height: auto;
-  position: relative;
-  z-index: 2;
-  margin-right: 30px;
-}
-
-.text-content {
-  max-width: 500px;
-  z-index: 3;
-  color: #333;
-  margin-left: 80px;
-}
-
-.text-content h2 {
+@font-face {
+  font-family: 'Walkway';
+  src: url('../../assets/fonts/Walkway Bold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
   font-weight: bold;
-  color: #333;
-  font-size: 30px;
+  font-style: normal;
 }
-
-.text-content span {
-  font-weight: normal;
-  font-size: 24px;
-}
-
-.text-content p {
-  color: #333;
-  font-size: 24px;
-  line-height: 1.6;
-} */
-
-
-
-
-
-
-
 
 /* Estilos generales */
 * {
@@ -83,7 +17,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Walkway', sans-serif; /* Fuente aplicada globalmente */
 }
 
 .container {
@@ -93,6 +27,7 @@ body {
   padding: 20px;
   opacity: 0;
   animation: fadeIn 1s ease forwards;
+  justify-content: flex-end; /* Alinea todo el contenido al borde derecho */
 }
 
 /* Animaciones */
@@ -122,16 +57,13 @@ body {
   }
 }
 
-/* Fondo y contenedor de la imagen */
 .background-frame {
-  background-color: #BA5825;
+  background-color: #9F9F7B;
   position: absolute;
   width: 360px;
   height: 360px;
   top: 4px;
-  bottom: 10px;
-  left: 5px;
-  right: 10px;
+  right: 0; /* Alinea el fondo al borde derecho */
   z-index: 1;
   transform: scale(0.8);
   animation: frameAppear 0.8s ease forwards 0.2s;
@@ -142,38 +74,41 @@ body {
   height: auto;
   position: relative;
   z-index: 2;
-  margin-right: 30px;
-  transform: translateX(-50px);
+  margin-left: 30px; /* Espacio entre el fondo y el texto */
+  transform: translateX(50px); /* Empuja la imagen hacia el borde derecho */
   opacity: 0;
   animation: slideIn 0.8s ease forwards 0.4s;
 }
 
-/* Contenido de texto */
 .text-content {
   max-width: 500px;
   z-index: 3;
   color: #333;
-  margin-left: 80px;
+  margin-right: 80px; /* Ajustar espacio del texto respecto al fondo */
   transform: translateY(20px);
   opacity: 0;
   animation: textAppear 1s ease forwards 0.6s;
+  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 .text-content h2 {
   font-weight: bold;
   color: #333;
   font-size: 30px;
+  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 .text-content span {
   font-weight: normal;
-  font-size: 24px;
+  font-size: 20px;
+  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 .text-content p {
   color: #333;
   font-size: 24px;
   line-height: 1.6;
+  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 /* Estilos responsivos */
@@ -203,18 +138,22 @@ body {
   .text-content {
     max-width: 100%;
     margin-left: 0;
+    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 
   .text-content h2 {
     font-size: 26px;
+    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 
   .text-content span {
     font-size: 20px;
+    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 
   .text-content p {
     font-size: 18px;
+    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 }
 
@@ -230,13 +169,16 @@ body {
 
   .text-content h2 {
     font-size: 22px;
+    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 
   .text-content span {
     font-size: 18px;
+    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 
   .text-content p {
     font-size: 16px;
+    font-family: 'Walkway', sans-serif; /* Fuente aplicada */
   }
 }

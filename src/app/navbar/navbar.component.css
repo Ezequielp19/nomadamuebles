@@ -1,46 +1,9 @@
-/* .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-}
-
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  font-size: 40px;
+@font-face {
+  font-family: 'Walkway';
+  src: url('../../assets/fonts/Walkway Bold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
   font-weight: bold;
-  color: #333;
+  font-style: normal;
 }
-
-.navbar-logo img {
-  width: 200px;
-  margin-right: 10px;
-}
-
-
-.navbar-links {
-  display: flex;
-  gap: 20px;
-}
-
-.navbar-links a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-}
-
-
-.navbar-icons a {
-  color: #c05300;
-  font-size: 40px;
-  margin-left: 20px;
-} */
-
-
 
 /* Estilos base */
 .navbar {
@@ -50,6 +13,7 @@
   padding: 10px 20px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
+  font-family: 'Walkway', sans-serif; /* Aplicar fuente a todos los textos */
 }
 
 /* Logo styling */
@@ -73,15 +37,28 @@
 
 .navbar-links a {
   text-decoration: none;
-  color: #333;
-  font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
+  color: #000; /* Cambiar a negro puro para mayor contraste */
+  font-weight: bold; /* Aumentar el grosor del texto */
+  font-size: 18px; /* Aumentar el tamaño de fuente */
+  font-family: 'Walkway', sans-serif; /* Fuente personalizada */
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease; /* Suavizar las transiciones */
 }
+
+/* Efecto hover para destacar */
+.navbar-links a:hover {
+  color: #60603C; /* Cambiar a un color resaltado */
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Añadir un efecto de sombra */
+  transform: scale(1.1); /* Aumentar ligeramente el tamaño al pasar el cursor */
+  text-decoration: underline; /* Subrayar el texto al pasar el cursor */
+  cursor: pointer;
+}
+
 
 .navbar-icons a {
   color: #60603C;
   font-size: 24px;
   margin-left: 20px;
+  font-family: Arial, sans-serif; /* Mantener la fuente estándar para los íconos */
 }
 
 /* Estilo del menú hamburguesa */

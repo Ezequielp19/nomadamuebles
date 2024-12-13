@@ -1,21 +1,52 @@
 <div class="modules-container">
   <h1>Módulos para tu estilo y necesidades</h1>
 
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab active">Estantes</button>
-    <button class="tab">Cajones</button>
-    <button class="tab">Puertas</button>
-    <button class="tab">Box</button>
-    <button class="tab">Cava</button>
+  <!-- Contenedor con fondo para Tabs y Descripción -->
+  <div class="tabs-description-container">
+    <!-- Tabs -->
+    <div class="tabs">
+      <button
+        class="tab"
+        [class.active]="activeTab === 'estantes'"
+        (click)="setActiveTab('estantes')"
+      >
+        Estantes
+      </button>
+      <button
+        class="tab"
+        [class.active]="activeTab === 'cajones'"
+        (click)="setActiveTab('cajones')"
+      >
+        Cajones
+      </button>
+      <button
+        class="tab"
+        [class.active]="activeTab === 'puertas'"
+        (click)="setActiveTab('puertas')"
+      >
+        Puertas
+      </button>
+      <button
+        class="tab"
+        [class.active]="activeTab === 'box'"
+        (click)="setActiveTab('box')"
+      >
+        Box
+      </button>
+      <button
+        class="tab"
+        [class.active]="activeTab === 'cava'"
+        (click)="setActiveTab('cava')"
+      >
+        Cava
+      </button>
+    </div>
+
+    <!-- Descripción dinámica -->
+    <p class="description">{{ getActiveDescription() }}</p>
   </div>
 
-  <!-- Descripción -->
-  <p class="description">
-    Mostrá tus utensilios favoritos o agregá cestas organizadoras para crear una despensa accesible.
-  </p>
-
-  <!-- Texto informativo -->
+  <!-- Texto informativo general -->
   <div class="info">
     <p>
       Nómada te ofrece soluciones de diseño que se adaptan a vos. Ya sea para cocinar con tu familia,
@@ -25,5 +56,5 @@
   </div>
 
   <!-- Botón -->
-  <button class="cta-button">Creá tu isla</button>
+  <button (click)="navigateTo('pasos')" class="cta-button">Creá tu isla</button>
 </div>

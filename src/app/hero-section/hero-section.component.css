@@ -1,141 +1,17 @@
-/* .featured-section {
-  display: flex;
-  align-items: center;
-  background-color: #D5BC9D;
-  padding: 40px;
-  font-family: 'Montserrat', sans-serif;
-  color: #333;
-  position: relative;
-}
-
-
-.content {
-  max-width: 50%;
-  padding-right: 20px;
-}
-
-h1 {
-  font-size: 48px;
+@font-face {
+  font-family: 'Walkway';
+  src: url('../../assets/fonts/Walkway Bold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
   font-weight: bold;
-  margin: 0;
-  line-height: 1.2;
-      font-family: 'Montserrat', sans-serif;
-
+  font-style: normal;
 }
-
-h2 {
-  font-size: 24px;
-  margin: 10px 0;
-  font-weight: normal;
-  color: #333;
-      font-family: 'Montserrat', sans-serif;
-
-}
-
-.description {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 20px;
-      font-family: 'Montserrat', sans-serif;
-}
-
-.buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.primary-button, .secondary-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.primary-button {
-  background-color: #333;
-  color: #fff;
-}
-
-.secondary-button {
-  background-color: #fff;
-  color: #333;
-  border: 1px solid #333;
-}
-
-
-
-
-
-.carousel {
-  position: relative;
-  width: 45%;
-  overflow: hidden;
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-}
-
-.carousel-item img {
-  width: 100%;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-
-.carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 50%;
-  z-index: 10;
-}
-
-.carousel-button.prev {
-  left: 10px;
-}
-
-.carousel-button.next {
-  right: 10px;
-}
-
-
-.carousel-indicator {
-  text-align: center;
-  font-size: 14px;
-  color: #333;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 5px 10px;
-  border-radius: 15px;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-} */
-
-
 
 /* Estilos base */
 .featured-section {
   display: flex;
   align-items: center;
-  background-color: #D5BC9D;
+  background-color: #9F9F7B;;
   padding: 40px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Walkway', sans-serif; /* Aplicar fuente a toda la sección */
   color: #333;
   position: relative;
 }
@@ -146,26 +22,26 @@ h2 {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 60px;
   font-weight: bold;
   margin: 0;
   line-height: 1.2;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Walkway', sans-serif;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 35px;
   margin: 10px 0;
   font-weight: normal;
   color: #333;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Walkway', sans-serif;
 }
 
 .description {
-  font-size: 16px;
+  font-size: 22px;
   color: #333;
   margin-bottom: 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Walkway', sans-serif;
 }
 
 .buttons {
@@ -176,10 +52,11 @@ h2 {
 
 .primary-button, .secondary-button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 20px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  font-family: 'Walkway', sans-serif; /* Fuente personalizada */
 }
 
 .primary-button {
@@ -227,6 +104,7 @@ h2 {
   padding: 10px;
   border-radius: 50%;
   z-index: 10;
+  font-family: 'Walkway', sans-serif; /* Fuente personalizada */
 }
 
 .carousel-button.prev {
@@ -248,9 +126,10 @@ h2 {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
+  font-family: 'Walkway', sans-serif; /* Fuente personalizada */
 }
 
-/* Media Query para tablets */
+/* Media Queries (igual estructura que la original) */
 @media (max-width: 768px) {
   .featured-section {
     flex-direction: column;
@@ -282,7 +161,7 @@ h2 {
     margin-top: 20px;
   }
 }
-/* Media Query específica para dispositivos móviles pequeños (iPhone SE y similares) */
+
 @media (max-width: 360px) {
   .featured-section {
     padding: 15px;
@@ -316,14 +195,13 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%; /* Asegura que los botones ocupen todo el ancho disponible */
+    width: 100%;
   }
 
   .primary-button, .secondary-button {
     font-size: 14px;
     padding: 10px;
-    width: 100%; /* Hace que los botones ocupen todo el ancho */
-    box-sizing: border-box;
+    width: 100%;
   }
 
   .carousel {
@@ -339,72 +217,4 @@ h2 {
   .carousel-item img {
     border-radius: 5px;
   }
-
-
-
-
-
-
-/* Ajustes específicos para dispositivos de 375px de ancho */
-@media (max-width: 375px) {
-  .featured-section {
-    padding: 10px;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .content {
-    max-width: 100%;
-    padding: 0;
-  }
-
-  h1 {
-    font-size: 22px;
-    margin-bottom: 8px;
-  }
-
-  h2 {
-    font-size: 16px;
-    margin: 5px 0;
-  }
-
-  .description {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-
-  .primary-button, .secondary-button {
-    font-size: 14px;
-    padding: 8px 12px;
-    width: 100%;
-  }
-
-  .carousel {
-    width: 100%;
-    margin-top: 15px;
-  }
-
-  .carousel-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
-
-  .carousel-button {
-    font-size: 16px;
-    padding: 6px;
-  }
-}
-
-
-
-
 }

@@ -1,0 +1,124 @@
+/* Estilos principales */
+
+@font-face {
+  font-family: 'Walkway';
+  src: url('../../assets/fonts/Walkway Bold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-weight: bold;
+  font-style: normal;
+}
+
+.main-container {
+  position: relative;
+  background-image: url("../../assets/TRAMAS_1.png");
+  background-size: 700px;
+  background-position: center;
+  background-repeat: repeat;
+  width: 100%;
+  min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.main-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  text-align: justify;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Walkway', sans-serif;
+  font-weight: bold;
+}
+
+h1 {
+  color: #60603C;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-bottom: 3px solid #A8A878;
+  padding-bottom: 10px;
+}
+
+p {
+  line-height: 1.6;
+  font-size: 1.2rem;
+}
+
+/* Estilos responsivos */
+
+@media (max-width: 1024px) {
+  .main-container {
+    background-size: 500px;
+    padding: 15px;
+  }
+
+  .content {
+    padding: 15px;
+    max-width: 700px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    padding: 10px;
+  }
+
+  .content {
+    max-width: 90%;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    padding: 5px;
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}

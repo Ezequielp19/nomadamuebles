@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Walkway';
+  src: url('../../assets/fonts/Walkway Bold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-weight: bold;
+  font-style: normal;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -22,17 +29,21 @@
   min-width: 300px;
   max-width: 500px;
   color: #20200F; /* Texto oscuro */
+  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 h2 {
   margin-bottom: 10px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #20200F; /* Título en color oscuro */
+  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 p {
+  font-size: 25px;
   margin-bottom: 20px;
   color: #333; /* Texto secundario en un tono gris */
+  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 .close-button {
@@ -44,6 +55,7 @@ p {
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
 }
 
 .close-button:hover {
