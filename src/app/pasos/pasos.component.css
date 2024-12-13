@@ -148,13 +148,12 @@
 @media (max-width: 768px) {
   .pasos-container {
     display: flex;
-    flex-direction: column-reverse; /* Ordenar los elementos (sidebar abajo en código, pero arriba visualmente) */
-    justify-content: center; /* Centrar en el eje principal */
-    align-items: center; /* Centrar en el eje secundario */
-    gap: 1rem; /* Espaciado uniforme entre los elementos */
+    flex-direction: column-reverse;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 1rem;
   }
   .steps-sidebar {
-
     order: -1; /* Colocar sidebar encima */
   }
 
