@@ -61,14 +61,29 @@
   font-family: Arial, sans-serif; /* Mantener la fuente estándar para los íconos */
 }
 
-/* Estilo del menú hamburguesa */
+/* Ocultar menú por defecto */
+.navbar-links {
+  display: none;
+}
+
+/* Menú desplegado (clase responsive) */
+.navbar-links.responsive {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #fff;
+}
+
+/* Icono del menú hamburguesa */
 .menu-icon {
   display: none;
   font-size: 24px;
   color: #333;
   cursor: pointer;
 }
-
 /* Media Query para pantallas medianas (tablets) */
 @media (max-width: 768px) {
   .navbar-links {

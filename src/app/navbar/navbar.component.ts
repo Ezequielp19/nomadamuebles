@@ -18,14 +18,15 @@ export class NavbarComponent {
   ) {}
 
   toggleMenu() {
-    const displayStyle = this.navbarLinks.nativeElement.style.display;
-    if (displayStyle === 'flex') {
-      this.renderer.setStyle(this.navbarLinks.nativeElement, 'display', 'none');
+    const navbarLinks = this.navbarLinks.nativeElement;
+    if (navbarLinks.classList.contains('responsive')) {
+      this.renderer.removeClass(navbarLinks, 'responsive');
     } else {
-      this.renderer.setStyle(this.navbarLinks.nativeElement, 'display', 'flex');
-      this.renderer.addClass(this.navbarLinks.nativeElement, 'responsive');
+      this.renderer.addClass(navbarLinks, 'responsive');
     }
   }
+
+
 
     // Navegar entre vistas
     navigateTo(route: string) {

@@ -1,29 +1,29 @@
-
- <!-- Barra de navegación -->
-  <nav class="navbar">
-    <div class="navbar-logo">
-      <img
+<!-- Barra de navegación -->
+<nav class="navbar">
+  <div class="navbar-logo">
+    <img
       (click)="navigateTo('home')"
-      src="../../assets/LOGO33.png" alt="Logo" />
-      <!-- <span>más Nómada</span> -->
-    </div>
+      src="../../assets/LOGO33.png"
+      alt="Logo"
+    />
+  </div>
 
-    <!-- Links de navegación -->
-    <div class="navbar-links" id="navbar-links">
-      <a (click)="navigateTo('home')">Inicio</a>
-      <a (click)="navigateTo('pasos')">Productos</a>
-      <a (click)="navigateTo('sobreNosotros')">Sobre Nosotros</a>
-      <a (click)="navigateTo('preguntas')">Preguntas Frecuentes</a>
-    </div>
+  <!-- Links de navegación -->
+  <div class="navbar-links" #navbarLinks>
+    <a (click)="navigateTo('home')">Inicio</a>
+    <a (click)="navigateTo('pasos')">Productos</a>
+    <a (click)="navigateTo('sobreNosotros')">Sobre Nosotros</a>
+    <a (click)="navigateTo('preguntas')">Preguntas Frecuentes</a>
+  </div>
 
-    <!-- Iconos del usuario y carrito -->
-    <div class="navbar-icons">
-      <a href="#"><i class="fa fa-user"></i></a>
-      <a href="#"><i class="fa fa-shopping-bag"></i></a>
-    </div>
+  <!-- Iconos del usuario y carrito -->
+  <div class="navbar-icons">
+    <a href="#"><i class="fa fa-user"></i></a>
+    <a href="#"><i class="fa fa-shopping-bag"></i></a>
+  </div>
 
-    <!-- Icono del menú hamburguesa -->
-    <div class="menu-icon" onclick="toggleMenu()">
-      <i class="fa fa-bars"></i>
-    </div>
-  </nav>
+  <!-- Icono del menú hamburguesa -->
+  <div class="menu-icon" (click)="toggleMenu()">
+    <i class="fa fa-bars"></i>
+  </div>
+</nav>
