@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'Walkway';
+  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Walkway Cursiva';
+  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-weight: bold;
+  font-style: normal;
+}
+
 .color-options {
   display: flex;
   align-items: flex-start; /* Alinea el contenido al inicio vertical */
@@ -947,45 +961,113 @@ p {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra para mayor enfoque */
 }
 
-.results-container {
-  display: flex; /* Usar flexbox para alinear los elementos */
-  justify-content: space-between; /* Espaciado uniforme entre los elementos */
-  align-items: center; /* Alinear elementos verticalmente al centro */
-  gap: 20px; /* Separación entre los elementos */
-  margin-top: 20px; /* Separación superior del contenedor */
+/* Estilo general */
+html, body {
+  margin: 0; /* Eliminar márgenes predeterminados */
+  padding: 0; /* Eliminar padding predeterminado */
+  width: 100%; /* Garantizar que no exceda el ancho de la pantalla */
+  overflow-x: hidden; /* Prevenir scroll horizontal */
+  box-sizing: border-box; /* Incluir padding y border en el tamaño total */
 }
 
-.highlighted-result {
-  font-size: 18px; /* Tamaño de fuente más grande */
-  font-weight: bold; /* Negrita para destacar */
-  color: #60603C; /* Verde destacado */
-  background-color: #f1f8e9; /* Fondo suave para resaltar */
-  padding: 15px 20px; /* Espaciado interno */
+.results-container {
+  display: flex; /* Activar flexbox */
+  flex-direction: column; /* Alinear elementos en columna */
+  align-items: center; /* Centrar horizontalmente */
+  gap: 20px; /* Espaciado vertical entre bloques */
+  margin-top: 20px; /* Separación superior */
+  width: 100%; /* Asegurarse de que ocupe todo el ancho del contenedor */
+  padding: 0 15px; /* Añadir padding lateral para prevenir bordes pegados */
+  box-sizing: border-box; /* Incluir padding en el tamaño del contenedor */
+}
+
+.highlighted-result,
+.price-container {
+  font-size: 18px; /* Tamaño uniforme para ambos bloques */
+  font-weight: bold; /* Negrita */
+  color: #60603C; /* Verde oscuro */
+  background-color: #f1f8e9; /* Fondo suave */
+  padding: 20px; /* Espaciado interno consistente */
   border-radius: 8px; /* Bordes redondeados */
-  border: 2px solid #60603C; /* Borde del mismo color que el texto */
-  text-align: center; /* Alineación central del texto */
+  border: 2px solid #60603C; /* Borde */
+  text-align: center; /* Centrar texto */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  flex: 1; /* Los elementos ocupan el mismo ancho */
-  max-width: 45%; /* Evitar que se estiren demasiado */
-  min-height: 50px; /* Altura mínima para evitar variaciones */
-  display: flex; /* Flexbox interno */
-  flex-direction: column; /* Apilar texto verticalmente */
-  justify-content: center; /* Centrar verticalmente el contenido */
-  white-space: nowrap; /* Evitar que las palabras se dividan en varias líneas */
-  overflow: hidden; /* Esconder texto si es demasiado */
-  text-overflow: ellipsis; /* Añadir puntos suspensivos si el texto es demasiado largo */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  max-width: 400px; /* Ancho máximo uniforme */
+  box-sizing: border-box; /* Evitar que padding exceda el tamaño */
+}
+
+.price-container {
+  line-height: 1.5; /* Espaciado entre líneas para mejor legibilidad */
+}
+
+.price-label {
+  font-size: 20px; /* Tamaño mayor para el título */
+  color: #60603C; /* Verde oscuro */
+}
+
+.price-value {
+  font-size: 24px; /* Tamaño extra grande */
+  font-weight: bold; /* Negrita */
+  color: #283618; /* Verde más oscuro */
+  margin: 10px 0; /* Separación entre el título y el precio */
+}
+
+.price-description {
+  font-size: 16px; /* Tamaño de fuente estándar */
+  color: #333; /* Texto gris oscuro */
+  margin-top: 10px; /* Separación superior */
 }
 
 /* Estilos para vistas móviles */
 @media screen and (max-width: 768px) {
   .results-container {
-    flex-direction: column; /* Cambiar a diseño vertical */
-    gap: 10px; /* Reducir el espacio entre los elementos */
-    align-items: stretch; /* Alinear al ancho completo del contenedor */
+    flex-direction: column; /* Alinear en columna en móviles */
+    gap: 10px; /* Reducir el espacio entre los bloques */
+    align-items: center; /* Asegurar que estén centrados */
+    padding: 10px; /* Ajustar el espaciado del contenedor */
   }
 
-  .highlighted-result {
-    max-width: 100%; /* Asegurarse de que ocupe todo el ancho del contenedor */
-    text-align: left; /* Opcional: Cambiar alineación del texto a la izquierda si prefieres */
+  .highlighted-result,
+  .price-container {
+    max-width: 100%; /* Asegurarse de que no exceda el contenedor */
+    text-align: center; /* Mantener el texto centrado */
+    padding: 15px; /* Reducir el espaciado interno */
+    box-shadow: none; /* Simplificar el diseño en pantallas pequeñas */
+    width: 100%; /* Garantizar que ocupe todo el ancho */
+  }
+
+  .price-label {
+    font-size: 18px; /* Reducir ligeramente el tamaño del título */
+  }
+
+  .price-value {
+    font-size: 22px; /* Reducir el tamaño del precio */
+  }
+
+  .price-description {
+    font-size: 14px; /* Reducir el tamaño de la descripción */
+  }
+}
+
+/* Estilos para pantallas aún más pequeñas (por ejemplo, móviles pequeños) */
+@media screen and (max-width: 480px) {
+  .results-container {
+    gap: 8px; /* Espaciado aún más reducido */
+    padding: 0 10px; /* Reducir los márgenes laterales */
+  }
+
+  .highlighted-result,
+  .price-container {
+    padding: 10px; /* Espaciado interno menor */
+    width: 100%; /* Asegurarse de ocupar todo el ancho del contenedor */
+  }
+
+  .price-value {
+    font-size: 20px; /* Ajustar el tamaño del precio */
+  }
+
+  .price-description {
+    font-size: 13px; /* Ajustar la fuente de la descripción */
   }
 }

@@ -1,15 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-info-modal',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './info-modal.component.html',
   styleUrl: './info-modal.component.css'
 })
 export class InfoModalComponent {
   @Input() title: string = ''; // Título del modal
-  @Input() content: string = ''; // Contenido del modal
+  @Input() content: string[] = []; // Contenido del modal dividido en líneas
 
   // Método para cerrar el modal
   closeModal() {

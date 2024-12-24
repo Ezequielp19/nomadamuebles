@@ -14,10 +14,9 @@ import { Router } from '@angular/router';
 export class HeroSectionComponent {
   @ViewChild('carouselTrack') carouselTrack!: ElementRef;
   images = [
-    '../../assets/carru5.jpeg',
-    '../../assets/carru6.jpeg',
-    '../../assets/carru7.jpeg',
-    '../../assets/carru4.jpeg',
+    '../../assets/carru1.png',
+    '../../assets/carru2.png',
+    '../../assets/carru3.png',
   ];
 
    currentIndex = 0;

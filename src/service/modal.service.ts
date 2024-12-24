@@ -11,7 +11,7 @@ export class ModalService {
     private appRef: ApplicationRef
   ) {}
 
-  openModal(title: string, content: string) {
+  openModal(title: string, content: string[]):void {
     // Crear un componente dinámicamente
     const factory = this.resolver.resolveComponentFactory(InfoModalComponent);
     const componentRef: ComponentRef<InfoModalComponent> = factory.create(this.injector);

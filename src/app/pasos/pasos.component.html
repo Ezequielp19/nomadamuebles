@@ -20,7 +20,7 @@
       <!-- Mostrar precio actual -->
       <div class="total-price-container">
         <h3>Precio Total:</h3>
-        <p>$ {{ totalPrice | currency: 'ARS' }}</p>
+        <p>$ {{totalPrice}}</p>
       </div>
 
       <!-- Botón para limpiar selección -->
@@ -102,9 +102,9 @@
      <!-- Paso 1: Selección de tipo de isla -->
 <!-- Paso 1: Selección de tipo de isla -->
 <ng-container *ngIf="currentStep === 1">
-  <h2>Selecciona la Mesada de tu isla</h2>
+  <h2>Elegí la mesada y cantidad de módulos.</h2>
   <div class="explanatory-container">
-    Comienza seleccionando el tamaño de la mesada para tu isla. Este es un paso clave, ya que determinará la cantidad de modulos que se agregaran a tu isla. Elige entre varias opciones que se adaptan a tus necesidades y estilo.
+    Este paso definirá la base de tu diseño y la cantidad de módulos que podrás añadir. Cada tamaño tiene un precio inicial que se ajustará según tus elecciones posteriores. ¡Elegí el que mejor se adapte a tu espacio y estilo!
   </div>
   <div class="color-options">
     <div
@@ -200,9 +200,13 @@
 
 
 <ng-container *ngIf="currentStep >= 5 && currentStep <= (4 + moduleSteps)">
-  <h2>Módulo {{ currentStep - 4 }}</h2>
-  <div class="explanatory-container">
+  <!-- <h2>Módulo {{ currentStep - 4 }}</h2> -->
+  <!-- <div class="explanatory-container">
     Estás seleccionando el módulo número {{ currentStep - 4 }}. Elige una opción como cajones, gabinetes o estantes para completar tu diseño.
+  </div> -->
+  <h2>Seleccioná los módulos: MÓDULO 1, MÓDULO 2, MÓDULO 3</h2>
+  <div class="explanatory-container">
+    Seleccioná los módulos que complementarán tu isla. Podés elegir entre diferentes opciones diseñadas para ofrecerte funcionalidad y estilo. Cada módulo que sumes ajustará automáticamente el precio total.
   </div>
   <div class="color-options">
     <div
@@ -225,9 +229,10 @@
 
 <!-- Paso final: Resultado -->
 <ng-container *ngIf="currentStep === (4 + moduleSteps + 1)">
-  <h2>Resultado Final</h2>
+  <h2>¡Tu isla está lista!</h2>
   <div class="explanatory-container">
-    Este es el diseño final de tu isla. Puedes verificar el resultado, guardar el código generado y realizar ajustes si es necesario.
+    ¡Así de increíble se ve tu nueva isla personalizada! Este es el diseño que creaste para transformar tu espacio.
+    Podés pagar directamente en nuestra web o, si preferís, contactar a uno de nuestros asesores para resolver cualquier duda, coordinar el pago en efectivo o explorar otros medios de pago.
   </div>
   <div class="final-container">
     <!-- Contenedor de la isla -->
@@ -253,10 +258,15 @@
         Código de isla: <br>
         {{ generateFinalCode() }}
       </p>
-      <p class="highlighted-result">
-        Precio total de la isla: <br>
-        $ {{ totalPrice | currency: 'ARS' }}
-      </p>
+      <div class="price-container">
+        <p class="price-label">Precio final:</p>
+        <p class="price-value">$ {{ totalPrice }}</p>
+        <p class="price-description">
+          Incluye todos los módulos y la mesada que seleccionaste. <br>
+          ¡Solo queda un paso más para que sea tuya! <br>
+          Pronto estarás disfrutando de tu isla Más Nómada.
+        </p>
+      </div>
     </div>
 
     <!-- Botón para mostrar/ocultar la sección de pago -->

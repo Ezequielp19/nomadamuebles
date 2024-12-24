@@ -162,10 +162,12 @@ export class PasosComponent implements OnInit {
     initializeInfoItems(): void {
       // Datos estáticos
       const staticInfoItems = [
-        { id: 'isla1', title: 'Soledad', price: 130000 ,description: 'La Isla Soledad es esencial para quienes valoran lo fundamental y buscan eficiencia en lo compacto. Con un único módulo a elección, es ideal para cocinas que requieren un mueble práctico y optimizado. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante. Las ruedas permiten moverla con facilidad, haciendo que tus espacios se adapten dinámicamente a tus necesidades.' },
-        { id: 'isla2', title: 'Victoria', price: 180000 ,description: 'La Isla Victoria es ideal para quienes desean expandir su cocina con mayor superficie de trabajo y almacenamiento. Con dos módulos personalizables, este mueble ofrece una combinación perfecta de funcionalidad y eficiencia. Su diseño con mesada en caída tipo cascada añade un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptándose dinámicamente a tus espacios y necesidades.' },
-        { id: 'isla3', title: 'Gran Malvina',price: 210000 , description: 'La Isla Gran Malvina es ideal para quienes desean maximizar la superficie de trabajo en su cocina. Su amplia mesada con vuelo es perfecta para usar como mesa diaria o zona de preparación, brindando comodidad y funcionalidad en un solo mueble. Con dos módulos a elección para almacenamiento adicional, esta isla combina perfectamente estilo y practicidad. Su diseño con mesada de caída en cascada aporta un toque moderno y elegante, mientras que las ruedas permiten moverla fácilmente, adaptándose a las necesidades de tu espacio.' },
-        { id: 'isla4', title: 'Trinidad', price: 210000 ,description: 'La Isla Trinidad es ideal para quienes desean expandir su cocina y organizarla meticulosamente. Con tres módulos personalizables, este mueble se convierte en la verdadera estrella del hogar, ofreciendo un amplio espacio para almacenamiento y superficie de trabajo. Su diseño con mesada en caída tipo cascada agrega un toque moderno y elegante, mientras que las ruedas permiten moverla con facilidad, adaptando dinámicamente el espacio a tus necesidades.' },
+        {
+          id: 'isla1', title: 'Soledad', price: 130000 , description: 'Tamaño: Mesada de 57x50 cm | Módulo: 1 a elección. Perfecta para espacios pequeños La Isla Soledad es el diseño compacto de Más Nómada, ideal para esos rincones donde parece que no hay lugar para nada más, pero vos sabés que un poco de funcionalidad extra hace toda la diferencia. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. Compacta y funcional, pensada para vos'
+        },
+        { id: 'isla2', title: 'Victoria', price: 180000 ,description: 'Tamaño: Mesada de 107x50 cm | Módulos: 2 a elección. La Isla Victoria es ese toque de espacio que siempre quisiste en tu cocina. Con dos módulos a medida y con ese extra de mesada es práctica, funcional y diseñada para facilitarte el día a día. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. Más almacenamiento, más estilo, más espacio para vos.'},
+        { id: 'isla3', title: 'Gran Malvina',price: 210000 , description: 'Tamaño: Mesada de 157x50 cm | Módulos: 2 a elección. Si buscás un espacio que lo tenga todo, la Isla Gran Malvina es para vos. Su gran mesada con vuelo y sus módulos personalizables la convierten en un centro de actividades para toda la casa. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. La Isla Gran Malvina es más que una isla: es tu nuevo espacio favorito.' },
+        { id: 'isla4', title: 'Trinidad', price: 210000 ,description: 'Tamaño: Mesada de 157x50cm| Módulos: 3 a elección. Con la Isla Trinidad, tu cocina no solo será más funcional, será el lugar donde todos querrán estar. Amplia, organizada y completamente personalizable, está diseñada para quienes buscan el máximo. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. Para quienes quieren todo: funcionalidad, estilo y el mejor lugar para compartir.' },
         { id: 'mesada_BN', title: 'Blanco Nature', description: 'Tono de blanco con un sutil veteado que imita la textura de la madera natural.' },
         { id: 'mesada_SA', title: 'Negro Sauco', description: 'De color intenso, este diseño de madera negra quemada resalta a la perfección la textura BARK.' },
         { id: 'mesada_K', title: 'Roble Kendall Natural', description: 'Tono suave y luminoso, similar a la madera veteada, pero con un toque tenue y delicado.' },
@@ -231,14 +233,20 @@ openInfoModal(itemId: string): void {
   console.log('Buscando información para:', itemId);
   const item = this.infoMap.get(itemId);
   if (item) {
-    this.modalService.openModal(item.title, item.description);
+    const formattedDescription = this.formatDescription(item.description);
+    this.modalService.openModal(item.title, formattedDescription);
   } else {
     console.warn('No se encontró información para:', itemId);
     this.modalService.openModal(
       'Información no encontrada',
-      'No hay información disponible para el artículo seleccionado.'
+      ['No hay información disponible para el artículo seleccionado.']
     );
   }
+}
+
+private formatDescription(description: string): string[] {
+  // Dividir el texto en partes claras: ". algo :" separa subtítulos del texto
+  return description.split(/(?<=\.)\s+(?=\w+.*?:)/g).map((part) => part.trim());
 }
 
 

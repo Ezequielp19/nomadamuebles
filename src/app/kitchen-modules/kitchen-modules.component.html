@@ -1,60 +1,148 @@
 <div class="modules-container">
-  <h1>Módulos para tu estilo y necesidades</h1>
+  <h1>Módulos de cocina</h1>
 
-  <!-- Contenedor con fondo para Tabs y Descripción -->
-  <div class="tabs-description-container">
-    <!-- Tabs -->
-    <div class="tabs">
-      <button
-        class="tab"
-        [class.active]="activeTab === 'estantes'"
-        (click)="setActiveTab('estantes')"
-      >
-        Estantes
-      </button>
-      <button
-        class="tab"
-        [class.active]="activeTab === 'cajones'"
-        (click)="setActiveTab('cajones')"
-      >
-        Cajones
-      </button>
-      <button
-        class="tab"
-        [class.active]="activeTab === 'puertas'"
-        (click)="setActiveTab('puertas')"
-      >
-        Puertas
-      </button>
-      <button
-        class="tab"
-        [class.active]="activeTab === 'box'"
-        (click)="setActiveTab('box')"
-      >
-        Box
-      </button>
-      <button
-        class="tab"
-        [class.active]="activeTab === 'cava'"
-        (click)="setActiveTab('cava')"
-      >
-        Cava
-      </button>
+  <!-- Tabs -->
+  <div class="tabs">
+    <button
+      class="tab"
+      [class.active]="activeTab === 'modulo_01'"
+      (click)="setActiveTab('modulo_01')"
+    >
+      Módulo 01
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab === 'modulo_02'"
+      (click)="setActiveTab('modulo_02')"
+    >
+      Módulo 02
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab === 'modulo_03'"
+      (click)="setActiveTab('modulo_03')"
+    >
+      Módulo 03
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab === 'modulo_04'"
+      (click)="setActiveTab('modulo_04')"
+    >
+      Módulo 04
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab === 'modulo_05'"
+      (click)="setActiveTab('modulo_05')"
+    >
+      Módulo 05
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab === 'modulo_06'"
+      (click)="setActiveTab('modulo_06')"
+    >
+      Módulo 06
+    </button>
+    <button
+      class="tab"
+      [class.active]="activeTab === 'modulo_07'"
+      (click)="setActiveTab('modulo_07')"
+    >
+      Módulo 07
+    </button>
+  </div>
+
+  <!-- Contenido dinámico -->
+  <div *ngIf="activeTab === 'modulo_01'" class="module-card">
+    <img src="assets/modulos/S01.png" alt="Módulo 01" class="module-image" />
+    <div class="module-info">
+      <h2>Módulo 01</h2>
+      <p><strong>Precio:</strong> $120,000</p>
+      <p><strong>Descripción:</strong></p>
+      <p>Con 3 espacios de guardado exhibidores. Perfecta para canastos, ollas grandes y esos objetos únicos que son parte de tu vida que te encantaría tener a la vista y al alcance de tu mano.</p>
+      <p>¡Sentite orgulloso de tus tesoros y exhibilos!</p>
+    </div>
+  </div>
+
+  <!-- Repetir estructura para cada módulo -->
+  <div *ngIf="activeTab === 'modulo_02'" class="module-card">
+    <img src="assets/modulos/S02.png" alt="Módulo 02" class="module-image" />
+    <div class="module-info">
+      <h2>Módulo 02</h2>
+      <p><strong>Precio:</strong> $120,000</p>
+      <p><strong>Descripción:</strong></p>
+      <p>Con 3 espacios de guardado y puerta. Para una experiencia más íntima con una visión minimalista y limpia del desorden cotidiano en tu cocina.</p>
+      <p>¿Qué esperás para cerrarle la puerta al caos y disfrutar de una cocina más ordenada?</p>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'modulo_03'" class="module-card">
+    <img src="assets/modulos/S03.png" alt="Módulo 03" class="module-image" />
+    <div class="module-info">
+      <h2>Módulo 03</h2>
+      <p><strong>Precio:</strong> $195,000</p>
+      <p><strong>Descripción:</strong></p>
+      <p>Con 2 espacios de guardado y 2 cajones. Ideal para almacenar accesorios, utensilios voluminosos y electrodomésticos de mano.</p>
+      <p>Todo al alcance sin necesidad de buscar entre cosas apiladas. Abrí un cajón y encontrá fácilmente lo que buscás.</p>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'modulo_04'" class="module-card">
+    <img src="assets/modulos/S04.png" alt="Módulo 04" class="module-image" />
+    <div class="module-info">
+      <h2>Módulo 04</h2>
+      <p><strong>Precio:</strong> $195,000</p>
+      <p><strong>Descripción:</strong></p>
+      <p>Con un espacio de guardado y un box lateral. Combiná funcionalidad y orden. Tus utensilios y accesorios estarán a la vista o guardados según prefieras.</p>
+      <p>Disfrutá de manera eficiente tu cocina, organizála y dejála lista para usar.</p>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'modulo_05'" class="module-card">
+    <img src="assets/modulos/S05.png" alt="Módulo 05" class="module-image" />
+    <div class="module-info">
+      <h2>Módulo 05</h2>
+      <p><strong>Precio:</strong> $120,000</p>
+      <p><strong>Descripción:</strong></p>
+      <p>Con 2 espacios de guardado y una cava lateral. Te permite almacenar hasta 6 botellas, listas para disfrutar.</p>
+      <p>Perfecto para compartir momentos únicos y mantener todo organizado al alcance de tu mano.</p>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'modulo_06'" class="module-card">
+    <img src="assets/modulos/S06.png" alt="Módulo 06" class="module-image" />
+    <div class="module-info">
+      <h2>Módulo 06</h2>
+      <p><strong>Precio:</strong> $195,000</p>
+      <p><strong>Descripción:</strong></p>
+      <p>Con 4 espacios de guardado y una puerta lateral. Diseñado para maximizar el almacenamiento con un enfoque en la practicidad y el estilo.</p>
+      <p>Es perfecto para quienes necesitan organización y un diseño limpio y moderno en su cocina.</p>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'modulo_07'" class="module-card">
+    <img src="assets/modulos/S07.png" alt="Módulo 07" class="module-image" />
+    <div class="module-info">
+      <h2>Módulo 07</h2>
+      <p><strong>Precio:</strong> $120,000</p>
+      <p><strong>Descripción:</strong></p>
+      <p>Con 3 cajones y 2 puertas laterales. Una solución integral que combina almacenamiento cerrado y accesible para todas tus necesidades.</p>
+      <p>Ideal para grandes utensilios y accesorios, manteniendo tu cocina ordenada y elegante.</p>
+    </div>
+  </div>
+
+
+    <!-- Texto informativo general -->
+    <div class="info">
+      <p>
+        Nómada te ofrece soluciones de diseño que se adaptan a vos. Ya sea para cocinar con tu familia,
+        organizar una fiesta o simplemente aprovechar mejor tu cocina, nuestras islas están pensadas para
+        acompañarte en cada ocasión. ¡Personalizá la tuya y redescubrí tu cocina!
+      </p>
     </div>
 
-    <!-- Descripción dinámica -->
-    <p class="description">{{ getActiveDescription() }}</p>
-  </div>
-
-  <!-- Texto informativo general -->
-  <div class="info">
-    <p>
-      Nómada te ofrece soluciones de diseño que se adaptan a vos. Ya sea para cocinar con tu familia,
-      organizar una fiesta o simplemente aprovechar mejor tu cocina, nuestras islas están pensadas para
-      acompañarte en cada ocasión. ¡Personalizá la tuya y redescubrí tu cocina!
-    </p>
-  </div>
-
-  <!-- Botón -->
-  <button (click)="navigateTo('pasos')" class="cta-button">Creá tu isla</button>
+    <!-- Botón -->
+    <button (click)="navigateTo('pasos')" class="cta-button">Creá tu isla</button>
 </div>

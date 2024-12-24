@@ -1,6 +1,13 @@
 @font-face {
   font-family: 'Walkway';
-  src: url('../../assets/fonts/Walkway Bold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Walkway Cursiva';
+  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
   font-weight: bold;
   font-style: normal;
 }
@@ -111,7 +118,7 @@ body {
   color: #333;
   font-size: 24px;
   line-height: 1.6;
-  font-family: 'Walkway', sans-serif; /* Aplicado */
+  font-family: 'Walkway Cursiva', sans-serif; /* Aplicado */
 }
 
 /* Estilos responsivos */

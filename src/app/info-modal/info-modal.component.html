@@ -1,7 +1,8 @@
 <div class="modal-overlay" (click)="closeModal()"></div>
 <div class="modal-container">
   <h2>{{ title }}</h2>
-  <p>{{ content }}</p>
+  <div *ngFor="let part of content">
+    <p>{{ part }}</p>
+  </div>
   <button class="close-button" (click)="closeModal()">Cerrar</button>
 </div>
-

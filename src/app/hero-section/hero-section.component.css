@@ -1,22 +1,45 @@
 @font-face {
   font-family: 'Walkway';
-  src: url('../../assets/fonts/Walkway Bold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
   font-weight: bold;
   font-style: normal;
 }
 
-/* Estilos base */
+@font-face {
+  font-family: 'Walkway Cursiva';
+  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-weight: bold;
+  font-style: normal;
+}
+
 .featured-section {
   display: flex;
   align-items: center;
-  background-color: #9F9F7B;;
-  padding: 40px;
-  font-family: 'Walkway', sans-serif; /* Aplicar fuente a toda la sección */
-  color: #333;
+  justify-content: space-between;
   position: relative;
+  background-image: url('../../assets/fondoCarru.jpg'); /* Ruta de la imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  padding: 40px;
+  font-family: 'Walkway', sans-serif;
+  color: #333;
+  overflow: hidden;
+}
+
+.featured-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(159, 159, 123, 0.7); /* Color verde traslúcido */
+  z-index: 1;
 }
 
 .content {
+  position: relative;
+  z-index: 2;
   max-width: 50%;
   padding-right: 20px;
 }
@@ -27,6 +50,7 @@ h1 {
   margin: 0;
   line-height: 1.2;
   font-family: 'Walkway', sans-serif;
+  z-index: 2;
 }
 
 h2 {
@@ -34,22 +58,24 @@ h2 {
   margin: 10px 0;
   font-weight: normal;
   color: #333;
-  font-family: 'Walkway', sans-serif;
+  font-family: 'Walkway Cursiva', sans-serif;
+  z-index: 2;
 }
 
 .description {
   font-size: 22px;
   color: #333;
   margin-bottom: 20px;
-  font-family: 'Walkway', sans-serif;
+  font-family: 'Walkway Cursiva', sans-serif;
+  z-index: 2;
 }
 
 .buttons {
   display: flex;
   gap: 15px;
   margin-top: 20px;
+  z-index: 2;
 }
-
 .primary-button, .secondary-button {
   padding: 10px 20px;
   font-size: 20px;
@@ -60,11 +86,14 @@ h2 {
 }
 
 .primary-button {
-  background-color: #333;
+  border-color:#fff ;
+  background-color: transparent;
   color: #fff;
+  border: 3px solid #fff;
 }
 
 .secondary-button {
+
   background-color: #fff;
   color: #333;
   border: 1px solid #333;
@@ -74,6 +103,7 @@ h2 {
   position: relative;
   width: 45%;
   overflow: hidden;
+  z-index: 2;
 }
 
 .carousel-track {
@@ -88,7 +118,7 @@ h2 {
 
 .carousel-item img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 35px;
   object-fit: cover;
 }
 
