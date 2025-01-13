@@ -45,12 +45,14 @@
   display: flex;
   gap: 10px;
   font-size: 24px; /* Tamaño de los íconos */
+  color: white;
   font-family: Arial, sans-serif; /* Asegura que los íconos no usen la fuente personalizada */
 }
 
 .social-icons i {
   cursor: pointer;
   transition: transform 0.3s;
+  color: white;
 }
 
 .social-icons i:hover {

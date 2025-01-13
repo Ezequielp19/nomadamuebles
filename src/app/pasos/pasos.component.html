@@ -20,7 +20,7 @@
       <!-- Mostrar precio actual -->
       <div class="total-price-container">
         <h3>Precio Total:</h3>
-        <p>$ {{totalPrice}}</p>
+        <p>$ {{totalPrice | number:'1.0-0'}}</p>
       </div>
 
       <!-- Botón para limpiar selección -->
@@ -116,7 +116,7 @@
       <div class="details">
         <span class="name">{{ isla.name }}</span>
         <br>
-        <span class="price">Precio: ${{ isla.price }}</span>
+        <span class="price">Precio Isla: ${{ isla.price | number:'1.0-0' }}</span>
       </div>
       <button class="info-button" (click)="openInfoModal(isla.id); $event.stopPropagation()">
         <span class="info-icon">i</span>
@@ -200,14 +200,11 @@
 
 
 <ng-container *ngIf="currentStep >= 5 && currentStep <= (4 + moduleSteps)">
-  <!-- <h2>Módulo {{ currentStep - 4 }}</h2> -->
-  <!-- <div class="explanatory-container">
-    Estás seleccionando el módulo número {{ currentStep - 4 }}. Elige una opción como cajones, gabinetes o estantes para completar tu diseño.
-  </div> -->
-  <h2>Seleccioná los módulos: MÓDULO 1, MÓDULO 2, MÓDULO 3</h2>
+  <h2>Seleccioná el Módulo {{ currentStep - 4 }}</h2>
   <div class="explanatory-container">
     Seleccioná los módulos que complementarán tu isla. Podés elegir entre diferentes opciones diseñadas para ofrecerte funcionalidad y estilo. Cada módulo que sumes ajustará automáticamente el precio total.
   </div>
+
   <div class="color-options">
     <div
       class="color-option"
@@ -260,7 +257,7 @@
       </p>
       <div class="price-container">
         <p class="price-label">Precio final:</p>
-        <p class="price-value">$ {{ totalPrice }}</p>
+        <p class="price-value">$ {{ totalPrice | number:'1.0-0' }}</p>
         <p class="price-description">
           Incluye todos los módulos y la mesada que seleccionaste. <br>
           ¡Solo queda un paso más para que sea tuya! <br>

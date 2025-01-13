@@ -12,6 +12,36 @@
   font-style: normal;
 }
 
+
+/* Aplicación Global */
+* {
+  font-family: 'Walkway', sans-serif; /* Aplica la fuente por defecto */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Walkway', sans-serif;
+  line-height: 1.5;
+}
+
+/* Estilos Específicos */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Walkway', sans-serif;
+  font-weight: bold;
+}
+
+p, span, a, button {
+  font-family: 'Walkway', sans-serif;
+}
+
+i, em {
+  font-family: 'Walkway Cursiva', sans-serif;
+  font-style: italic;
+}
+
+
 .color-options {
   display: flex;
   align-items: flex-start; /* Alinea el contenido al inicio vertical */

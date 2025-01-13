@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { ModalService } from '../../service/modal.service';
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-pasos',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FormsModule],
+  imports: [CommonModule, NavbarComponent, FormsModule, DecimalPipe],
   templateUrl: './pasos.component.html',
   styleUrls: ['./pasos.component.css'],
 })

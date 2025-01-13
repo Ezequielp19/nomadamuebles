@@ -70,12 +70,6 @@ h2 {
   z-index: 2;
 }
 
-.buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-  z-index: 2;
-}
 .primary-button, .secondary-button {
   padding: 10px 20px;
   font-size: 20px;
@@ -86,11 +80,25 @@ h2 {
 }
 
 .primary-button {
-  border-color:#fff ;
   background-color: transparent;
   color: #fff;
   border: 3px solid #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.primary-button:hover {
+  background-color: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  z-index: 2;
+}
+
 
 .secondary-button {
 
