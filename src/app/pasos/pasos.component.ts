@@ -3,9 +3,8 @@ import { CommonModule, DecimalPipe } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { ModalService } from '../../service/modal.service';
-import { FirestoreService } from '../../service/firestore.service';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { MercadoPagoService } from '../../service/mercadopago.service';
 @Component({
   selector: 'app-pasos',
   standalone: true,
@@ -14,7 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./pasos.component.css'],
 })
 export class PasosComponent implements OnInit {
-  private apiUrl = 'http://localhost:3333/create_preference';
   currentStep: number = 1;
   orientations: ('left' | 'right')[] = ['left', 'right'];
   steps: { id: number; title: string }[] = [];
@@ -92,9 +90,7 @@ export class PasosComponent implements OnInit {
   };
 
   constructor(private modalService: ModalService,
-    private firestoreService: FirestoreService,
-    private http: HttpClient,
-    private router: Router,
+    private mercadoPagoService: MercadoPagoService,
     private route: ActivatedRoute
   ) {
     this.initializeSteps();
@@ -137,7 +133,7 @@ export class PasosComponent implements OnInit {
     }
 
     const link = `${window.location.origin}/pasos?code=${this.codigoFinal}`;
-    const numeroWhatsApp = "5493412775793"; // Reemplaza con el número de WhatsApp
+    const numeroWhatsApp = "5491134802328"; // Reemplaza con el número de WhatsApp
     const mensaje = `Hola, mira esta isla que he creado: ${link}`;
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
@@ -151,7 +147,7 @@ export class PasosComponent implements OnInit {
     }
 
     const link = `${window.location.origin}/pasos?code=${this.codigoFinal}`;
-    const numeroWhatsApp = "5493412775793"; // Reemplaza con el número de WhatsApp
+    const numeroWhatsApp = "5491134802328"; // Reemplaza con el número de WhatsApp
     const mensaje = `Hola, quiero adquirir una Gift Card para la isla con este enlace: ${link}`;
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
@@ -745,8 +741,8 @@ selectModule(module: string, step: number) {
     }
 
     private procesarPago(paymentData: any): void {
-      // Llamada directa al backend
-      this.http.post<any>(this.apiUrl, paymentData).subscribe(
+      // Usar el servicio para enviar la orden de pago
+      this.mercadoPagoService.sendPaymentData(paymentData).subscribe(
         (response: any) => {
           if (response.init_point) {
             // Redireccionar al punto de inicio de pago de MercadoPago

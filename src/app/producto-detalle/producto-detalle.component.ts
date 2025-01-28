@@ -293,7 +293,8 @@ export class ProductoDetalleComponent {
   shareFurnitureLink(producto: any): void {
     const message = `Hola, estoy interesado en el producto "${producto.nombre}" que cuesta $${producto.precio}. ¿Me podrían dar más información?`;
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+    const numeroWhatsApp = "5491134802328";
+    const whatsappUrl = `https://wa.me/${numeroWhatsApp}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
   }
 }

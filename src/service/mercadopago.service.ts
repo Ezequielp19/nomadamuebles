@@ -7,9 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   providedIn: 'root'
 })
 export class MercadoPagoService {
-  // private apiUrl = 'https://backbarmp.onrender.com/create_preference';
-  private apiUrl = 'http://localhost:3333/create_preference';
-
+  private apiUrl = 'https://backnomada.onrender.com/create_preference';
 
   constructor(private http: HttpClient, private injector: Injector,
      private firestore: AngularFirestore) {

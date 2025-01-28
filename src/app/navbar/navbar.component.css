@@ -62,7 +62,7 @@
 
 
 .navbar-icons a {
-  color: #60603C;
+  color: transparent;
   font-size: 24px;
   margin-left: 20px;
   font-family: Arial, sans-serif; /* Mantener la fuente estándar para los íconos */

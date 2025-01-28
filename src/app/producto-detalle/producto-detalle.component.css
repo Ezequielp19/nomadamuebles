@@ -174,3 +174,96 @@
   vertical-align: middle;
   margin-right: 10px;
 }
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .producto-detalle-container {
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .producto-header-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .producto-imagen {
+    width: 100%;
+    max-width: 250px;
+    max-height: 200px;
+  }
+
+  .producto-acciones {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .producto-botones {
+    gap: 15px;
+  }
+
+  .payment-toggle-button,
+  .payment-button,
+  .payment-button1 {
+    font-size: 14px;
+    padding: 8px 15px;
+    max-width: 100%;
+  }
+
+  .producto-titulo {
+    font-size: 1.5rem;
+  }
+
+  .precio-destacado {
+    font-size: 1.5rem;
+  }
+
+  .user-inputs {
+    gap: 8px;
+  }
+
+  .user-inputs input {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .producto-info {
+    padding: 15px;
+  }
+
+  .producto-header-content {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .producto-detalle-container {
+    gap: 10px;
+  }
+
+  .producto-titulo {
+    font-size: 1.2rem;
+  }
+
+  .precio-destacado {
+    font-size: 1.2rem;
+  }
+
+  .producto-imagen {
+    max-width: 200px;
+    max-height: 150px;
+  }
+
+  .payment-toggle-button,
+  .payment-button,
+  .payment-button1 {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .user-inputs input {
+    font-size: 10px;
+    padding: 6px;
+  }
+}
