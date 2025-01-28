@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { MercadoPagoService } from '../../service/mercadopago.service';
 
 @Component({
   selector: 'app-producto-detalle',
@@ -20,7 +21,9 @@ export class ProductoDetalleComponent {
   canPay = false;
   apiUrl = 'https://api.mercadopago.com/create-payment'; // Ajusta tu URL de backend
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient,
+      private mercadoPagoService: MercadoPagoService,
+  ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -272,21 +275,24 @@ export class ProductoDetalleComponent {
   sendPaymentData(producto: any): void {
     const paymentData = {
       totalAmount: producto.precio,
-      nombreProducto: producto.nombre,
+      codigoFinal: producto.codigo,
       nombre: this.guestData.nombre,
       telefono: this.guestData.telefono,
       email: this.guestData.email,
     };
 
-    this.http.post<any>(this.apiUrl, paymentData).subscribe(
-      (response) => {
+    this.mercadoPagoService.sendPaymentData(paymentData).subscribe(
+      (response: any) => {
         if (response.init_point) {
+          // Redireccionar al punto de inicio de pago de MercadoPago
           window.location.href = response.init_point;
         } else {
           console.error('Error en la respuesta del servidor:', response);
         }
       },
-      (error) => console.error('Error al enviar el pago', error)
+      (error: any) => {
+        console.error('Error al enviar el pago', error);
+      }
     );
   }
 
