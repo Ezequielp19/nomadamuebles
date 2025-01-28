@@ -18,6 +18,14 @@ export const routes: Routes = [
     loadComponent: () => import('./preguntas/preguntas.component').then((m) => m.PreguntasComponent),
   },
   {
+    path: 'catalogo',
+    loadComponent: () => import('./catalogo/catalogo.component').then((m) => m.CatalogoComponent),
+  },
+  {
+    path: 'detalle-producto/:id',
+    loadComponent: () => import('./producto-detalle/producto-detalle.component').then((m) => m.ProductoDetalleComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

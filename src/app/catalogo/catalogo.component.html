@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+<div class="catalogo-container">
+  <h1>Catálogo de Productos</h1>
+  <div class="productos-grid">
+    <div class="producto-card" *ngFor="let producto of productos">
+      <img
+        [src]="producto.imagen"
+        [alt]="producto.nombre"
+        class="producto-imagen"
+      />
+      <div class="producto-info">
+        <h2>{{ producto.nombre }}</h2>
+        <p>{{ producto.descripcion }}</p>
+      </div>
+      <h3 class="precio-destacado">Precio: ${{ producto.precio | number: '1.2-2' }}</h3>
+      <button class="reset-button" (click)="viewProductDetails(producto.id)">Ver más Información</button>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<app-footer></app-footer>

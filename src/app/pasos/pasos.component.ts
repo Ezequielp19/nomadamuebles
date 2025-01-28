@@ -665,7 +665,7 @@ selectModule(module: string, step: number) {
       return;
     }
 
-    console.log('Código ingresado:', this.searchCode);
+    // console.log('Código ingresado:', this.searchCode);
 
     // Regex actualizado para validar prefijos de 1 o 2 letras y más colores de módulos
     const regex = /^(\d{2,3})([A-Z]{1,2})([ID])-(B|VS|S)([A-C]\d{2})([A-C]\d{2})?([A-C]\d{2})?$/;
@@ -723,10 +723,6 @@ selectModule(module: string, step: number) {
     }
 
     sendPaymentData(): void {
-
-      console.log(this.totalPrice)
-      console.log(this.codigoFinal)
-
       if (
         this.guestData.nombre &&
         this.guestData.telefono &&
@@ -734,17 +730,11 @@ selectModule(module: string, step: number) {
       ) {
         // Usuario invitado
         const paymentData = {
-          description: "Compra tu isla",
           totalAmount: this.totalPrice,
-          currency_id: "ARS",
           codigoFinal: this.codigoFinal,
-          guestData: {
-            nombre: this.guestData.nombre,
-            telefono: this.guestData.telefono,
-            email: this.guestData.email
-          },
-          userId: this.guestData.email, // Asignamos el email como userId
-          telefono: this.guestData.telefono // Teléfono del invitado
+          nombre: this.guestData.nombre,
+          telefono: this.guestData.telefono,
+          email: this.guestData.email,
         };
 
         console.log('Guest Purchase Data:', paymentData);

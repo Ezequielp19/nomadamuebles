@@ -7,10 +7,10 @@
     </p>
     <div class="buttons">
       <button (click)="navigateTo('pasos')" class="primary-button">Combina y crea tu isla</button>
+      <button class="secondary-button" (click)="navigateTo('catalogo')">Ver catálogo</button>
     </div>
   </div>
 
-  <!-- <button class="secondary-button">Ver catálogo</button> -->
   <div class="carousel">
     <div #carouselTrack class="carousel-track">
       <div class="carousel-item" *ngFor="let image of images">

@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'Walkway';
+  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Walkway Cursiva';
+  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-weight: bold;
+  font-style: normal;
+}
+
+.catalogo-container {
+  padding: 20px;
+  font-family: 'Walkway', sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #20200F;
+}
+
+.productos-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr); /* 4 columnas por fila */
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .productos-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 columna por fila en móviles */
+  }
+}
+
+.producto-card {
+  background-color: #9F9F7B;
+  border: 2px solid #60603C;
+  border-radius: 10px;
+  padding: 15px;
+  transition: transform 0.2s;
+  text-align: left;
+  display: flex;
+  flex-direction: column; /* Alinear contenido verticalmente */
+  justify-content: space-between; /* Distribuir espacio entre elementos */
+
+}
+
+.producto-info {
+  flex-grow: 1; /* Permite que la descripción ocupe espacio disponible */
+}
+
+.producto-card button {
+  margin-top: auto; /* Mueve los botones al final de la card */
+}
+
+.producto-card:hover {
+  transform: scale(1.05);
+}
+.producto-imagen {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.producto-info h2 {
+  font-size: 1.5rem;
+  color: #20200F;
+  margin-bottom: 10px;
+}
+
+.producto-info h3 {
+  font-size: 1.2rem;
+  color: #60603C;
+  margin-bottom: 10px;
+}
+
+.producto-info p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.reset-button {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  /* margin-top: 1rem;  */
+  /* font-weight: bold;  */
+  font-family: 'Walkway', sans-serif;
+  color: #f4f4f4; /* Texto blanco */
+  background-color: #60603C; /* Marrón oscuro */
+  border: 2px solid #9F9F7B; /* Borde base */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  /* Hover */
+  &:hover {
+    background-color: #C7C7B2; /* Base clara */
+    color: #20200F; /* Texto oscuro */
+    transform: scale(1.02); /* Ligeramente más grande */
+  }
+
+  /* Active */
+  &:active {
+    background-color: #20200F; /* Más oscuro */
+    color: #f4f4f4; /* Texto blanco */
+    transform: scale(0.98); /* Ligeramente más pequeño */
+  }
+}
+
+.precio-destacado {
+  font-size: 1.5rem;
+  color: #2E7D32; /* Verde oscuro */
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}

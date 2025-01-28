@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+<div class="producto-detalle-container">
+  <div class="producto-info" *ngIf="producto; else noProducto">
+    <h1 class="producto-titulo">{{ producto.nombre }}</h1>
+    <div class="producto-header-content">
+      <!-- Contenedor principal para imagen y acciones -->
+      <div class="producto-header-row">
+        <!-- Imagen del producto -->
+        <div class="producto-imagen-container">
+          <img [src]="producto.imagen" [alt]="producto.nombre" class="producto-imagen" />
+          <p class="precio-destacado">Precio: $ {{ producto.precio | number:'1.0-0'}}</p>
+        </div>
+
+        <!-- Contenedor de botones y sección de pago -->
+        <div class="producto-acciones">
+          <div class="producto-botones">
+            <button class="payment-button1" (click)="shareFurnitureLink(producto)">
+              <img src="assets/wspLogo.png" alt="WhatsApp" /> Consultar con Asesor
+            </button>
+            <button class="payment-toggle-button" (click)="togglePaymentInputs(producto.id)">
+              {{ showPaymentInputs[producto.id] ? 'Ocultar sección de pago' : 'Pagar con MercadoPago' }}
+            </button>
+          </div>
+
+          <!-- Sección de pago -->
+          <div class="payment-section" *ngIf="showPaymentInputs[producto.id]">
+            <div class="user-inputs">
+              <label>
+                Nombre:
+                <input
+                  type="text"
+                  [(ngModel)]="guestData.nombre"
+                  placeholder="Ingresa tu nombre"
+                  (input)="validatePaymentData()"
+                />
+              </label>
+              <label>
+                Email:
+                <input
+                  type="email"
+                  [(ngModel)]="guestData.email"
+                  placeholder="Ingresa tu email"
+                  (input)="validatePaymentData()"
+                />
+              </label>
+              <label>
+                Teléfono:
+                <input
+                  type="text"
+                  [(ngModel)]="guestData.telefono"
+                  placeholder="Ingresa tu teléfono"
+                  (input)="validatePaymentData()"
+                />
+              </label>
+              <button class="payment-button" [disabled]="!canPay" (click)="sendPaymentData(producto)">
+                Pagar con MercadoPago
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+    <p><strong>Código:</strong> {{ producto.codigo }}</p>
+    <p><strong>Tiempos de Entrega:</strong> {{ producto.tiemposEntrega }}</p>
+    <h3>Características:</h3>
+    <ul>
+      <li *ngFor="let caracteristica of producto.caracteristicas">{{ caracteristica }}</li>
+    </ul>
+    <h3>Razones para Elegirlo:</h3>
+    <ul>
+      <li *ngFor="let razon of producto.razones">{{ razon }}</li>
+    </ul>
+  </div>
+  <ng-template #noProducto>
+    <p>Producto no encontrado.</p>
+  </ng-template>
+</div>
+<app-footer></app-footer>
