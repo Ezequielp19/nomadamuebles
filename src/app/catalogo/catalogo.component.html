@@ -1,23 +1,40 @@
 <app-navbar></app-navbar>
 <div class="catalogo-container">
-  <h1>Catálogo de Productos</h1>
-  <div class="productos-grid">
-    <div class="producto-card" *ngFor="let producto of productos">
-      <img
-        [src]="producto.imagen"
-        [alt]="producto.nombre"
-        class="producto-imagen"
-      />
-      <div class="producto-info">
-        <h2>{{ producto.nombre }}</h2>
-        <p>{{ producto.descripcion }}</p>
-      </div>
-      <h3 class="precio-destacado">Precio: ${{ producto.precio | number: '1.2-2' }}</h3>
-      <button class="reset-button" (click)="viewProductDetails(producto.id)">Ver más Información</button>
-    </div>
-  </div>
-</div>
+  <!-- Itera sobre los tipos de islas -->
+  <ng-container *ngFor="let tipo of tiposIsla">
+    <div class="tipo-isla">
+      <h1>ISLA {{ tipo.toUpperCase() }}</h1>
 
-<br>
+      <div class="productos-grid">
+        <!-- Itera sobre los productos de cada tipo -->
+        <div
+          class="producto-card"
+          *ngFor="let producto of productosPorTipo[tipo]"
+        >
+          <div class="producto-info">
+            <h2>{{ producto.nombre }}</h2>
+          </div>
+          <img
+            [src]="producto.imagen"
+            [alt]="producto.nombre"
+            class="producto-imagen"
+          />
+          <div class="producto-info">
+            <p>{{ producto.descrip_corta }}</p>
+          </div>
+          <h3 class="precio-destacado">
+            Precio: ${{ producto.precio | number: '1.2-2' }}
+          </h3>
+          <button
+            class="reset-button"
+            (click)="viewProductDetails(producto.id)"
+          >
+            COMPRAR
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
 
 <app-footer></app-footer>

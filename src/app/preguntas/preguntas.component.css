@@ -1,16 +1,17 @@
 @font-face {
-  font-family: 'Walkway';
-  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins';
+  src: url('../../assets/fonts/Poppins-Medium.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Walkway Cursiva';
-  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins Cursiva';
+  src: url('../../assets/fonts/Poppins-MediumItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
+
 /* Contenedor principal */
 .main-container {
   position: relative;
@@ -24,7 +25,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  font-family: 'Walkway', sans-serif; /* Aplicación de la fuente Walkway */
+  font-family: 'Poppins Cursiva', sans-serif;
 }
 
 /* Fondo semitransparente */
@@ -77,6 +78,7 @@
   cursor: pointer;
   outline: none;
   transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 .faq-header:hover {

@@ -1,18 +1,40 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../assets/fonts/Poppins-Medium.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins Cursiva';
+  src: url('../../assets/fonts/Poppins-MediumItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: #9f9f7b; /* Fondo verde aplicado al componente */
+}
+
 .producto-detalle-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   gap: 20px;
-  font-family: 'Walkway', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  /* Se elimina el background-color aquí */
 }
 
 .producto-info {
-  background-color: #9f9f7b;
+  background-color: white;
+  /* background-color: #9f9f7b;  */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

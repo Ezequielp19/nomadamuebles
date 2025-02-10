@@ -54,34 +54,34 @@ export class PasosComponent implements OnInit {
 
   // List of available island types
   tipoIslaOptions = [
-    { id: 'isla1', name: 'Soledad', price: 130000 , size: '57', imagePath: '../../assets/tipoIsla/1modulo.png' },
-    { id: 'isla2', name: 'Victoria', price: 180000 ,size: '107', imagePath: '../../assets/tipoIsla/2modulos.png' },
-    { id: 'isla3', name: 'Gran Malvina',price: 210000 , size: '157', imagePath: '../../assets/tipoIsla/2modulos2.png' },
-    { id: 'isla4', name: 'Trinidad',price: 210000 , size: '157', imagePath: '../../assets/tipoIsla/3modulos.png' },
+    { id: 'isla1', name: 'Soledad', price: 140000 , size: '57', imagePath: '../../assets/tipoIsla/1modulo.webp' },
+    { id: 'isla2', name: 'Victoria', price: 190000 ,size: '107', imagePath: '../../assets/tipoIsla/2modulos.webp' },
+    { id: 'isla3', name: 'Gran Malvina',price: 220000 , size: '157', imagePath: '../../assets/tipoIsla/2modulos2.webp' },
+    { id: 'isla4', name: 'Trinidad',price: 220000 , size: '157', imagePath: '../../assets/tipoIsla/3modulos.webp' },
   ];
 
 
   // List of available countertop colors
   colorOptions = [
-    { id: 'mesada_BN', name: 'Blanco Nature', prefix: 'BN', imagePath: '../../assets/colorMesadas/BlancoN.jpg' },
-    { id: 'mesada_SA', name: 'Negro Sauco', prefix: 'SA', imagePath: '../../assets/colorMesadas/NegroS.jpg' },
+    { id: 'mesada_BN', name: 'Blanco Nature', prefix: 'BN', imagePath: '../../assets/colorMesadas/BlancoN.webp' },
+    { id: 'mesada_SA', name: 'Negro Sauco', prefix: 'SA', imagePath: '../../assets/colorMesadas/NegroS.webp' },
     { id: 'mesada_K', name: 'Roble Kendall Natural', prefix: 'K', imagePath: '../../assets/colorMesadas/RobleK.webp' },
   ];
 
 
   moduleColorOptions = [
-    { id: 'modulo_B', name: 'Blanco Liso', prefix: 'B', imagePath: '../../assets/colorModulos/BlancoL.jpg' },
-    { id: 'modulo_S', name: 'Verde Safari', prefix: 'S', imagePath: '../../assets/colorModulos/VerdeS.jpg' },
+    { id: 'modulo_B', name: 'Blanco Liso', prefix: 'B', imagePath: '../../assets/colorModulos/BlancoL.webp' },
+    { id: 'modulo_S', name: 'Verde Safari', prefix: 'S', imagePath: '../../assets/colorModulos/VerdeS.webp' },
   ];
 
   MODULE_PRICES= [
-    { id: 'modulo_01', title: 'Módulo 01', price: 120000 },
-    { id: 'modulo_02', title: 'Módulo 02', price: 120000 },
-    { id: 'modulo_03', title: 'Módulo 03', price: 195000 },
-    { id: 'modulo_04', title: 'Módulo 04', price: 195000 },
-    { id: 'modulo_05', title: 'Módulo 05', price: 120000 },
-    { id: 'modulo_06', title: 'Módulo 06', price: 195000 },
-    { id: 'modulo_07', title: 'Módulo 07', price: 120000 }
+    { id: 'modulo_01', title: 'Módulo 01', price: 130000 },
+    { id: 'modulo_02', title: 'Módulo 02', price: 130000 },
+    { id: 'modulo_03', title: 'Módulo 03', price: 210000 },
+    { id: 'modulo_04', title: 'Módulo 04', price: 210000 },
+    { id: 'modulo_05', title: 'Módulo 05', price: 130000 },
+    { id: 'modulo_06', title: 'Módulo 06', price: 210000 },
+    { id: 'modulo_07', title: 'Módulo 07', price: 130000 }
   ]
 
   orientationImages: Record<string, string> = {
@@ -171,13 +171,13 @@ export class PasosComponent implements OnInit {
         { id: 'orientation_right', title: 'Orientación Derecha', description: 'La orientación derecha...' },
         { id: 'modulo_B', title: 'Blanco Liso', description: 'Un color neutro que combina con cualquier ambiente.' },
         { id: 'modulo_S', title: 'Verde Safari', description: 'Para crear el equilibrio perfecto entre la naturaleza y la armonía de las maderas, su tonalidad transmite la conexión con tus raíces.' },
-        { id: 'modulo_01', title: 'Módulo 01', price: 120000 ,description: 'Con 3 espacios de guardado exhibidores. Perfecta para canastos, ollas grandes y esos objetos únicos que son parte de tu vida que te encantaría tener a la vista y al alcance de tu mano. ¡Sentite orgulloso de tus tesoros y exhibilos!' },
-        { id: 'modulo_02', title: 'Módulo 02', price: 120000 ,description: 'Con 3 espacios de guardado y puerta. Para una experiencia más íntima con una visión minimalista y limpia del desorden cotidiano en tu cocina. ¿Qué esperás para cerrarle la puerta al caos y disfrutar de una cocina más ordenada?' },
-        { id: 'modulo_03', title: 'Módulo 03', price: 195000 ,description: 'Con 2 cajones grandes y profundos. Ideal para almacenar accesorios, utensilios voluminosos y electrodomésticos de mano. Todo al alcance sin necesidad de quedarte buscando en un montón de cosas apiladas. Abrí un cajón y encontrá fácilmente lo que buscás.' },
-        { id: 'modulo_04', title: 'Módulo 04', price: 195000 ,description: 'Con 2 cajones medianos y 1 grande. Ideal para tener siempre a mano lo que más usás: cubiertos, utensilios voluminosos, electrodomésticos de mano y accesorios de cocina. Disfrutá de una cocina bien organizada con espacio para todo.' },
-        { id: 'modulo_05', title: 'Módulo 05', price: 120000 ,description: 'Combina privacidad y organización con 2 estantes con puerta y un espacio “box”. Tené a la vista y al alcance de tu mano tus accesorios indispensables. Preparate para cocinar de una forma rápida y fácil. Disfrutá de una cocina siempre lista para vos.' },
-        { id: 'modulo_06', title: 'Módulo 06', price: 195000 ,description: 'Con 2 cajones y un espacio “box”. Combiná funcionalidad y orden. Tené tus utensilios y accesorios a la vista y guardados o siempre al alcance de tu mano. Disfrutá de manera eficiente tu cocina, organizála y dejála lista para usar.' },
-        { id: 'modulo_07', title: 'Módulo 07', price: 120000 ,description: 'Con estantes visibles y una cava lateral. Te permite almacenar 6 botellas, listas para disfrutar. Tené todo organizado y al alcance. ¡Perfecto para compartir momentos únicos!' }
+        { id: 'modulo_01', title: 'Módulo 01', price: 130000 ,description: 'Con 3 espacios de guardado exhibidores. Perfecta para canastos, ollas grandes y esos objetos únicos que son parte de tu vida que te encantaría tener a la vista y al alcance de tu mano. ¡Sentite orgulloso de tus tesoros y exhibilos!' },
+        { id: 'modulo_02', title: 'Módulo 02', price: 130000 ,description: 'Con 3 espacios de guardado y puerta. Para una experiencia más íntima con una visión minimalista y limpia del desorden cotidiano en tu cocina. ¿Qué esperás para cerrarle la puerta al caos y disfrutar de una cocina más ordenada?' },
+        { id: 'modulo_03', title: 'Módulo 03', price: 210000 ,description: 'Con 2 cajones grandes y profundos. Ideal para almacenar accesorios, utensilios voluminosos y electrodomésticos de mano. Todo al alcance sin necesidad de quedarte buscando en un montón de cosas apiladas. Abrí un cajón y encontrá fácilmente lo que buscás.' },
+        { id: 'modulo_04', title: 'Módulo 04', price: 210000 ,description: 'Con 2 cajones medianos y 1 grande. Ideal para tener siempre a mano lo que más usás: cubiertos, utensilios voluminosos, electrodomésticos de mano y accesorios de cocina. Disfrutá de una cocina bien organizada con espacio para todo.' },
+        { id: 'modulo_05', title: 'Módulo 05', price: 130000 ,description: 'Combina privacidad y organización con 2 estantes con puerta y un espacio “box”. Tené a la vista y al alcance de tu mano tus accesorios indispensables. Preparate para cocinar de una forma rápida y fácil. Disfrutá de una cocina siempre lista para vos.' },
+        { id: 'modulo_06', title: 'Módulo 06', price: 210000 ,description: 'Con 2 cajones y un espacio “box”. Combiná funcionalidad y orden. Tené tus utensilios y accesorios a la vista y guardados o siempre al alcance de tu mano. Disfrutá de manera eficiente tu cocina, organizála y dejála lista para usar.' },
+        { id: 'modulo_07', title: 'Módulo 07', price: 130000 ,description: 'Con estantes visibles y una cava lateral. Te permite almacenar 6 botellas, listas para disfrutar. Tené todo organizado y al alcance. ¡Perfecto para compartir momentos únicos!' }
     ];
 
    // Generar información dinámica para los módulos cargados
@@ -216,7 +216,7 @@ const dynamicCountertops = this.colorOptions.map((color) => {
 
 // Extrae el tipo de módulo dinámico basado en el nombre del archivo
 getModuleType(module: string): string {
-  return module.substring(1).replace(/\.(png|jpg|jpeg|svg)$/, ''); // Quita el prefijo y la extensión
+  return module.substring(1).replace(/\.(png|jpg|jpeg|svg|webp)$/, ''); // Quita el prefijo y la extensión
 }
 
 // Retorna el ID del módulo en base al tipo
@@ -260,13 +260,13 @@ private formatDescription(description: string): string[] {
 
     getModuleImagePath(module: string): string {
       const moduleColor = this.selectedOptions.moduleColor;
-      const moduleId = module.replace(`${moduleColor}`, '').replace('.png', '');
-      return `../../assets/modulos/${moduleColor}${moduleId}.png`;
+      const moduleId = module.replace(`${moduleColor}`, '').replace('.webp', '');
+      return `../../assets/modulos/${moduleColor}${moduleId}.webp`;
     }
 
     getInfoItemIdForModule(module: string): string {
       const moduleColor = this.selectedOptions.moduleColor;
-      return module.replace(`${moduleColor}`, '').replace('.png', '');
+      return module.replace(`${moduleColor}`, '').replace('.webp', '');
     }
 
 
@@ -375,8 +375,8 @@ private formatDescription(description: string): string[] {
   const size = this.selectedOptions.size;
   if (size) {
     this.orientationImages = {
-      left: `../../assets/sentidoMedida/${prefix}${size}.png`,
-      right: `../../assets/sentidoMedida/${prefix}${size}Opuesto.png`,
+      left: `../../assets/sentidoMedida/${prefix}${size}.webp`,
+      right: `../../assets/sentidoMedida/${prefix}${size}Opuesto.webp`,
     };
   }
 
@@ -394,7 +394,7 @@ selectModuleColor(color: string) {
   if (selectedColor) {
     this.selectedOptions.moduleColor = selectedColor.prefix;
     this.moduleOptions = this.availableModules.map(
-      (module) => `${selectedColor.prefix}${module}.png`
+      (module) => `${selectedColor.prefix}${module}.webp`
     );
   }
   this.initializeSteps(); // Recalcular pasos después de seleccionar color de módulo
@@ -475,9 +475,9 @@ selectModule(module: string, step: number) {
     // Determinar la orientación de la mesada
     let countertopImage: string;
     if (this.selectedOptions.orientation === 'left') {
-      countertopImage = `../../assets/finalFrente/${colorOption.prefix}${size}FRENTE.png`;
+      countertopImage = `../../assets/finalFrente/${colorOption.prefix}${size}FRENTE.webp`;
     } else if (this.selectedOptions.orientation === 'right') {
-      countertopImage = `../../assets/finalFrente/${colorOption.prefix}${size}FRENTEOpuesto.png`;
+      countertopImage = `../../assets/finalFrente/${colorOption.prefix}${size}FRENTEOpuesto.webp`;
     } else {
       console.error('La orientación de la mesada no es válida.');
       countertopImage = ''; // Imagen vacía en caso de error
@@ -486,8 +486,8 @@ selectModule(module: string, step: number) {
     // Generar imágenes de módulos
     const modulesImages = this.selectedOptions.modules.map((module) => {
       // Quitar el prefijo duplicado y la extensión .png
-      const moduleId = module.replace(`${moduleColor}`, '').replace('.png', '');
-      return `../../assets/finalFrente/${moduleColor}${moduleId}FRENTE.png`;
+      const moduleId = module.replace(`${moduleColor}`, '').replace('.webp', '');
+      return `../../assets/finalFrente/${moduleColor}${moduleId}FRENTE.webp`;
     });
 
     return {
@@ -509,12 +509,12 @@ selectModule(module: string, step: number) {
     }
 
     // Generar la imagen de la mesada
-    const countertopImage = `../../assets/sentidoMedida/${colorOption.prefix}${size}.png`;
+    const countertopImage = `../../assets/sentidoMedida/${colorOption.prefix}${size}.webp`;
 
     // Generar imágenes de los módulos seleccionados
     const modulesImages = this.selectedOptions.modules.map((module) => {
-      const moduleId = module.replace(`${moduleColor}`, '').replace('.png', '');
-      return `../../assets/modulos/${moduleColor}${moduleId}.png`;
+      const moduleId = module.replace(`${moduleColor}`, '').replace('.webp', '');
+      return `../../assets/modulos/${moduleColor}${moduleId}.webp`;
     });
 
     return {
@@ -645,7 +645,7 @@ selectModule(module: string, step: number) {
     const colorModulo = this.selectedOptions.moduleColor || ''; // Prefijo del color de módulo
     const modules = this.selectedOptions.modules?.map((module, index) => {
       const position = ['A', 'B', 'C'][index] || ''; // Asignar posición: A, B, C
-      const moduleNumber = module.replace(`${colorModulo}`, '').replace('.png', ''); // Número de módulo sin prefijo
+      const moduleNumber = module.replace(`${colorModulo}`, '').replace('.webp', ''); // Número de módulo sin prefijo
       return `${position}${moduleNumber}`;
     }).join(''); // Unir módulos con sus posiciones
 
@@ -712,7 +712,7 @@ selectModule(module: string, step: number) {
 
       return modules.map(module => {
         const number = module.slice(1); // Obtener número del módulo (ej. "02")
-        const modulePath = `../../assets/finalFrente/${this.selectedOptions.moduleColor}${number}FRENTE.png`; // Ruta del módulo
+        const modulePath = `../../assets/finalFrente/${this.selectedOptions.moduleColor}${number}FRENTE.webp`; // Ruta del módulo
         console.log('Path generado para el módulo:', modulePath);
         return modulePath;
       });

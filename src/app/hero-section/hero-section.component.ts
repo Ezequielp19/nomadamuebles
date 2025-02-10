@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,30 +11,50 @@ import { Router } from '@angular/router';
   templateUrl: './hero-section.component.html',
   styleUrls: ['./hero-section.component.css']
 })
-export class HeroSectionComponent {
+export class HeroSectionComponent implements OnInit, OnDestroy {
   @ViewChild('carouselTrack') carouselTrack!: ElementRef;
   images = [
-    '../../assets/carru1.png',
-    '../../assets/carru2.png',
-    '../../assets/carru3.png',
+    '../../assets/carru1.webp',
+    '../../assets/carru2.webp',
+    '../../assets/carru3.webp',
+    '../../assets/carru4.webp',
   ];
+  currentIndex = 0;
+  private autoSlideInterval: any;
 
-   currentIndex = 0;
-  constructor(
-    private router: Router
-  ) {}
+  constructor(private router: Router) {}
 
-  moveSlide(direction: number) {
+  ngOnInit(): void {
+    this.startAutoSlide();
+  }
+
+  ngOnDestroy(): void {
+    this.stopAutoSlide();
+  }
+
+  moveSlide(direction: number): void {
     const totalImages = this.images.length;
     this.currentIndex = (this.currentIndex + direction + totalImages) % totalImages;
 
-    const carouselTrack = document.querySelector(".carousel-track") as HTMLElement;
+    const carouselTrack = this.carouselTrack.nativeElement as HTMLElement;
     const offset = -this.currentIndex * 100;
     carouselTrack.style.transform = `translateX(${offset}%)`;
   }
 
-    // Navegar entre vistas
-    navigateTo(route: string) {
-      this.router.navigate([`/${route}`]);
+  startAutoSlide(): void {
+    this.autoSlideInterval = setInterval(() => {
+      this.moveSlide(1); // Mover al siguiente slide
+    }, 4000); // Cambiar cada 4 segundos
+  }
+
+  stopAutoSlide(): void {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
     }
+  }
+
+  // Navegar entre vistas
+  navigateTo(route: string): void {
+    this.router.navigate([`/${route}`]);
+  }
 }

@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Walkway';
-  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins';
+  src: url('../../assets/fonts/Poppins-Medium.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Walkway Cursiva';
-  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins Cursiva';
+  src: url('../../assets/fonts/Poppins-MediumItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -36,21 +36,21 @@
   min-width: 300px;
   max-width: 500px;
   color: #20200F; /* Texto oscuro */
-  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
+  font-family: 'Poppins', sans-serif; /* Fuente aplicada */
 }
 
 h2 {
   margin-bottom: 10px;
   font-size: 2rem;
   color: #20200F; /* Título en color oscuro */
-  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
+  font-family: 'Poppins', sans-serif; /* Fuente aplicada */
 }
 
 p {
   font-size: 20px;
   margin-bottom: 20px;
   color: #333; /* Texto secundario en un tono gris */
-  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
+  font-family: 'Poppins', sans-serif; /* Fuente aplicada */
 }
 
 .close-button {
@@ -62,7 +62,7 @@ p {
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  font-family: 'Walkway', sans-serif; /* Fuente aplicada */
+  font-family: 'Poppins', sans-serif; /* Fuente aplicada */
 }
 
 .close-button:hover {

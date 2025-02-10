@@ -1,26 +1,25 @@
 @font-face {
-  font-family: 'Walkway';
-  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins';
+  src: url('../../assets/fonts/Poppins-Medium.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Walkway Cursiva';
-  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins Cursiva';
+  src: url('../../assets/fonts/Poppins-MediumItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
-/* Estilos base */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  font-family: 'Walkway', sans-serif; /* Aplicar fuente a todos los textos */
+  background-color: #878768; /* Color de fondo del navbar */
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Logo styling */
@@ -42,30 +41,31 @@
   gap: 20px;
 }
 
-.navbar-links a {
+.navbar-link {
+  color: white;
   text-decoration: none;
-  color: #000; /* Cambiar a negro puro para mayor contraste */
-  font-weight: bold; /* Aumentar el grosor del texto */
-  font-size: 18px; /* Aumentar el tamaño de fuente */
-  font-family: 'Walkway', sans-serif; /* Fuente personalizada */
-  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease; /* Suavizar las transiciones */
+  font-weight: bold;
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Efecto hover para destacar */
-.navbar-links a:hover {
-  color: #60603C; /* Cambiar a un color resaltado */
-  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Añadir un efecto de sombra */
-  transform: scale(1.1); /* Aumentar ligeramente el tamaño al pasar el cursor */
-  text-decoration: underline; /* Subrayar el texto al pasar el cursor */
-  cursor: pointer;
+.navbar-link:hover {
+  background-color: #60603C; /* Color de hover */
 }
 
+.navbar-link.highlighted {
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 5px 15px;
+}
 
 .navbar-icons a {
   color: transparent;
   font-size: 24px;
   margin-left: 20px;
-  font-family: Arial, sans-serif; /* Mantener la fuente estándar para los íconos */
+  font-family: 'Poppins', sans-serif; /* Mantener la fuente estándar para los íconos */
 }
 
 /* Menú desplegado (clase responsive) */
@@ -86,6 +86,8 @@
   color: #333;
   cursor: pointer;
 }
+
+
 /* Media Query para pantallas medianas (tablets) */
 @media (max-width: 768px) {
   .navbar-links {
@@ -106,6 +108,7 @@
   .navbar {
     flex-direction: column;
     align-items: center;
+
   }
 
   /* Logo centrado y ajustado */
@@ -128,6 +131,45 @@
     width: 100%;
     text-align: center;
     padding: 10px 0;
-    background-color: #fff;
+    background-color: #9F9F7B;
   }
 }
+
+
+.primary-button {
+  background-color: #9F9F7B; /* Fondo oscuro translúcido para contraste adicional */
+  color: #fff; /* Asegura que el texto sea blanco */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para resaltar más */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid #000;
+  padding: 10px;
+  font-size: 25px;
+}
+
+.primary-button:hover {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.primary-button1,
+.primary-button2 {
+  background-color: transparent;
+  color: #fff;
+  text-decoration: none; /* Elimina cualquier decoración previa */
+  border: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.primary-button1:hover,
+.primary-button2:hover {
+  text-decoration: underline; /* Aplica subrayado al hover */
+}
+
+.primary-button2 {
+  margin-left: 20px; /* Separación entre botones */
+}
+

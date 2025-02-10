@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
@@ -11,232 +11,225 @@ import { Router } from '@angular/router';
   templateUrl: './catalogo.component.html',
   styleUrls: ['./catalogo.component.css'],
 })
-export class CatalogoComponent {
+export class CatalogoComponent implements OnInit {
   productos = [
     {
       id: 1,
-      nombre: 'Isla Soledad con tres cajones',
-      imagen: 'assets/catalogo/prod1.png',
-      descripcion: 'La solución ideal para espacios pequeños. Transformá tu cocina con la Isla Soledad de Más Nómada. Diseñada especialmente para optimizar el espacio, esta isla es compacta, funcional y estéticamente atractiva.',
-      precio: 325000,
-      codigo: '57SAI-BA04',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
+      tipo_isla: "soledad",
+      nombre: 'Isla Soledad con estantería + CAVA',
+      imagen: 'assets/catalogo/prod1.webp',
+      descrip_corta: 'Módulo cava y estantería. Blanco, mesada Kendal natural. Ruedas con freno.',
+      descripcion: 'La solución ideal para quienes aman compartir momentos únicos. Transformá tu cocina con la Isla Soledad de Más Nómada. Diseñada para combinar funcionalidad y estilo, esta isla te permite organizar, disfrutar y optimizar tus espacios con elegancia.',
+      precio: 270000,
+      codigo: '57KI-BA07',
       caracteristicas: [
-        'Módulo: 2 Cajones amplios de 13x40 y un super cajón de 25x40',
-        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina negra con textura BARK (Madera quemada)',
-        'Ruedas de alta resistencia con FRENO: Adaptá tu isla a diferentes espacios según lo necesites.'
-      ],
-      razones: [
-        'Aprovechás cada centímetro de tu cocina, incluso en espacios reducidos.',
-        'Movilidad total para rediseñar y organizar tu hogar a tu manera.',
-        'Materiales de calidad que combinan diseño y durabilidad.'
+        'Módulo: Módulo Cava con estantería.',
+        'Color Cuerpo: blanco liso.',
+        'Color Mesada: Roble Kendall Natural, Tono suave y luminoso, similar a la madera veteada, pero con un toque tenue y delicado.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptala a diferentes espacios según lo necesites.'
       ]
     },
     {
       id: 2,
+      tipo_isla: "soledad",
       nombre: 'Isla Soledad con estantería + CAVA',
-      imagen: 'assets/catalogo/prod2.png',
-      descripcion: 'La solución ideal para quienes aman compartir momentos únicos. Transformá tu cocina con la Isla Soledad de Más Nómada. Diseñada para combinar funcionalidad y estilo, esta isla te permite organizar, disfrutar y optimizar tus espacios con elegancia.',
-      precio: 250000,
-      codigo: '57KI-BA07',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
+      imagen: 'assets/catalogo/prod2.webp',
+      descrip_corta: 'Módulo Box y estantería con puerta (cierre suave). Verde safari, mesada Kendal natural. Ruedas con freno.',
+      descripcion: 'Transformá tu cocina con la Isla Soledad de Más Nómada. Diseñada especialmente para optimizar el espacio, esta isla es compacta, funcional y estéticamente atractiva.',
+      precio: 270000,
+      codigo: '57KI-SA05',
       caracteristicas: [
-        'Módulo: 2 estantes amplios, ideales para vajilla o utensilios grandes como licuadoras.',
-        'Cava lateral con capacidad para 6 botellas de vino (cubículos de 11 cm).',
-        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina color Kendall Natural con acabado natural.',
-        'Ruedas de alta resistencia: Mové tu isla con facilidad y adaptala a cada ocasión.'
-      ],
-      razones: [
-        'Organización: Guardá vajilla, accesorios y vinos en un diseño funcional.',
-        'Estilo único: Combiná elegancia y practicidad en tu cocina.',
-        'Versatilidad total: Rediseñá y organizá tus espacios según lo necesites.'
+        'Módulo: Estantería con puerta con cierre suave y espacio box exhibidor.',
+        'Color Cuerpo: verde safari.',
+        'Color Mesada: Roble Kendall Natural, Tono suave y luminoso, similar a la madera veteada, pero con un toque tenue y delicado.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptala a diferentes espacios según lo necesites.',
+        'Materiales: Melamina, herrajes de cierre suave y tiradores negros.'
       ]
     },
     {
       id: 3,
-      nombre: 'Isla Victoria con Maxi Cajonera',
-      imagen: 'assets/catalogo/prod3.png',
-      descripcion: 'La solución para una cocina organizada y funcional. Descubrí la Isla de Cocina Victoria de Más Nómada. Este diseño de 107x50 cm combina capacidad de almacenamiento, estilo moderno y versatilidad, ideal para transformar tu espacio.',
-      precio: 570000,
-      codigo: '107KI-BA03B04',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
+      tipo_isla: "soledad",
+      nombre: 'Isla Soledad con tres cajones',
+      imagen: 'assets/catalogo/prod3.webp',
+      descrip_corta: 'Módulo con 2 cajones (13x40 cm) y 1 gran cajón (25x40 cm), cierre suave. Blanco, mesada negro Sauco. Ruedas con freno.',
+      descripcion: 'La solución ideal para espacios pequeños. Transformá tu cocina con la Isla Soledad de Más Nómada. Diseñada especialmente para optimizar el espacio, esta isla es compacta, funcional y estéticamente atractiva.',
+      precio: 350000,
+      codigo: '57SAI-BA04',
       caracteristicas: [
-        'Primer módulo: 2 cajones grandes y profundos con una altura de 25cm, perfectos para utensilios voluminosos, electrodomésticos de mano o accesorios grandes.',
-        'Segundo módulo: 2 cajones de 13cm de altura y 1 cajón grande de 25cm de altura, ideales para organizar cubiertos, utensilios de uso frecuente y otros accesorios de cocina.',
-        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina color Kendall Natural con acabado natural.',
-        'Color de cuerpo del mueble blanco liso.',
-        'Ruedas de alta resistencia con FRENO: Mové tu isla según lo necesites, adaptándola a diferentes espacios y momentos.'
-      ],
-      razones: [
-        'Mantené todo al alcance: Organizá tus utensilios y accesorios de manera práctica.',
-        'Versatilidad: Movilidad total para rediseñar tu espacio según lo que necesites.',
-        'Estilo y calidad: Materiales duraderos y diseño contemporáneo que destacan en cualquier cocina.'
+        'Módulo: Cajonera 2 Cajones amplios de 13x40 y un gran cajón de 25x40.',
+        'Color Cuerpo: blanco.',
+        'Color Mesada: Negro Sauco, de color intenso, este diseño de madera negra quemada resalta a la perfección la textura BARK.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptala a diferentes espacios según lo necesites.',
+        'Materiales: Melamina, herrajes de cierre suave y tiradores blancos.'
       ]
     },
     {
       id: 4,
+      tipo_isla: "victoria",
       nombre: 'Isla Victoria Estantería + CAVA',
-      imagen: 'assets/catalogo/prod4.png',
+      imagen: 'assets/catalogo/prod4.webp',
+      descrip_corta: 'Módulo cava y estantería + Módulo estantería con puerta (cierre suave). Blanco, mesada negro Sauco. Ruedas con freno.',
       descripcion: 'La mezcla perfecta entre funcionalidad y estilo. Descubrí la Isla de Cocina Victoria de Más Nómada. Este diseño de 107x50 cm es ideal para quienes buscan una cocina organizada, elegante y lista para momentos únicos.',
-      precio: 420000,
+      precio: 450000,
       codigo: '107SAI-BA07B02',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
       caracteristicas: [
-        'Estantes visibles para organizar vajilla, utensilios grandes o elementos decorativos, perfectos para canastos.',
-        'Cava lateral con capacidad para 6 botellas de vino, listas para disfrutar.',
-        'Estantes con puerta que te ofrecen una solución minimalista y ordenada.',
-        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina color Sauco Negro, con un acabado que imita la textura de madera quemada.',
-        'Ruedas de alta resistencia con FRENO: Mové tu isla con facilidad y adaptala a diferentes espacios según tus necesidades.'
-      ],
-      razones: [
-        'Elegancia y orden: Cerrale la puerta al caos y disfrutá de una cocina más limpia y funcional.',
-        'Espacio optimizado: Organizá botellas, utensilios y accesorios en un diseño práctico y moderno.',
-        'Materiales premium: Diseño duradero que se adapta a cualquier estilo de cocina.'
+        'Módulos: módulo cava y estantería + Módulo de estantería con puerta con cierre suave.',
+        'Color Cuerpo: blanco liso.',
+        'Color Mesada: Negro Sauco, de color intenso, este diseño de madera negra quemada resalta a la perfección la textura BARK.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptarla a diferentes espacios según lo necesites.'
       ]
     },
     {
       id: 5,
+      tipo_isla: "victoria",
       nombre: 'Isla Victoria Cajonera + Estantes',
-      imagen: 'assets/catalogo/prod5.png',
+      imagen: 'assets/catalogo/prod5.webp',
+      descrip_corta: 'Módulo 3 cajones (cierre suave)+ estantería con puerta (cierre suave). Verde safari, mesada blanco Nature. Ruedas con freno.',
       descripcion: 'La mezcla perfecta entre funcionalidad y estilo. Descubrí la Isla de Cocina Victoria de Más Nómada. Este diseño de 107x50 cm es ideal para quienes buscan una cocina organizada, elegante y lista para momentos únicos.',
-      precio: 495000,
+      precio: 530000,
       codigo: '107BNI-SA02B04',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
       caracteristicas: [
-        'Primer módulo: Estantes con puerta que te ofrecen una solución minimalista y ordenada.',
-        'Segundo módulo: 2 cajones de 13cm de alto y 1 cajón grande de 25cm de alto, ideales para organizar cubiertos, utensilios de uso frecuente y otros accesorios de cocina como batidora de mano etc.',
-        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina color Blanco Nature, con un acabado que imita la textura de madera en color blanco.',
-        'El cuerpo del mueble es color verde safari.',
-        'Ruedas de alta resistencia con FRENO: Move tu isla con facilidad y adáptala a diferentes espacios según tus necesidades.'
-      ],
-      razones: [
-        'Elegancia y orden: Cerrale la puerta al caos y disfrutá de una cocina más limpia y funcional.',
-        'Espacio optimizado: Organizá botellas, utensilios y accesorios en un diseño práctico y moderno.',
-        'Materiales premium: Diseño duradero que se adapta a cualquier estilo de cocina.',
-        'Estética: Agregale ese toque único con el color verde safari y destaca por sobre los demás.'
+        'Módulos:  módulo de 2 Cajones amplios de 13x40 y un gran cajón de 25 x 40 con cierre suave + Módulo de estantería con puerta también con cierre suave.',
+        'Color Cuerpo: Verde safari.',
+        'Color Mesada: Blanco Nature, tono de blanco con un sutil veteado que imita la textura de la madera natural.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptarla a diferentes espacios según lo necesites.'
       ]
     },
     {
       id: 6,
-      nombre: 'Isla Gran Malvina Estantes + Cajones + Box',
-      imagen: 'assets/catalogo/prod6.png',
-      descripcion: 'El equilibrio perfecto entre funcionalidad y diseño. Transformá tu cocina con esta isla de 157x50 cm de Más Nómada. Ideal para quienes necesitan espacio extra sin renunciar al estilo, esta isla es la solución perfecta para optimizar y organizar cualquier ambiente te regala un espacio de la mesada para que puedas usarlo como mesa.',
-      precio: 525000,
-      codigo: '157SAI-BA06B05',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
+      tipo_isla: "victoria",
+      nombre: 'Isla Victoria con Maxi Cajonera',
+      imagen: 'assets/catalogo/prod6.webp',
+      descrip_corta: '2 módulos de cajones (5 en total, cierre suave). Blanco, mesada blanco Nature. Ruedas con freno.',
+      descripcion: 'La solución para una cocina organizada y funcional. Descubrí la Isla de Cocina Victoria de Más Nómada. Este diseño de 107x50 cm combina capacidad de almacenamiento, estilo moderno y versatilidad, ideal para transformar tu espacio.',
+      precio: 610000,
+      codigo: '107KI-BA03B04',
       caracteristicas: [
-        'Primer módulo: Espacio cerrado con puerta + estante box, ideal para mantener el orden y almacenar utensilios o accesorios de manera discreta, dejando lo que mas necesitas al alcance de tu mano en el box.',
-        'Segundo módulo: Espacio box abierto + cajones, perfecto para exhibir elementos decorativos, electrodomésticos de uso diario o utensilios de fácil acceso.',
-        'Mesada en cascada: Diseñada en melamina color Sauco Negro, con un acabado que imita la textura de madera quemada.',
-        'Ruedas de alta resistencia con FRENO: Mové tu isla fácilmente para adaptarla a tus necesidades.'
-      ],
-      razones: [
-        'Espacio optimizado: Combiná almacenamiento cerrado y accesible para una cocina más práctica.',
-        'Diseño minimalista: Su combinación de blanco liso y madera negra se adapta a cualquier estilo de decoración.',
-        'Versatilidad: Movilidad total para rediseñar tu cocina según lo necesites.'
+        'Módulos:  módulo de 2 Cajones amplios de 13x40 y un super cajón de 25x40 + Módulo de 2 super cajones de 25x40 todos con cierre suave.',
+        'Color Cuerpo: Blanco liso.',
+        'Color Mesada: Roble Kendall Natural, Tono suave y luminoso, similar a la madera veteada, pero con un toque tenue y delicado.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptarla a diferentes espacios según lo necesites.'
       ]
     },
     {
       id: 7,
-      nombre: 'Isla Gran Malvina MaxiCajonera',
-      imagen: 'assets/catalogo/prod7.png',
-      descripcion: 'El equilibrio perfecto entre funcionalidad y diseño. Transformá tu cocina con esta isla de 157x50 cm de Más Nómada. Ideal para quienes necesitan espacio extra sin renunciar al estilo, esta isla es la solución perfecta para optimizar y organizar cualquier ambiente. Una sección de la mesada está diseñada para que puedas usarla como mesa, ideal para comidas rápidas o momentos compartidos.',
-      precio: 600000,
-      codigo: '157KI-SA04B04',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
+      tipo_isla: "malvina",
+      nombre: 'Isla Gran Malvina Estantes + Cajones + Box',
+      imagen: 'assets/catalogo/prod7.webp',
+      descrip_corta: 'Módulo Box + estanterías con puertas (cierre suave). Blanco, mesada blanco Nature. Ruedas con freno.',
+      descripcion: 'Funcionalidad y diseño en equilibrio. Esta isla de 157x50 cm de Más Nómada optimiza tu cocina, ofreciendo espacio extra sin perder estilo. Una sección de la mesada está estratégicamente diseñada para funcionar como mesa que se adapta a tu día a día.',
+      precio: 480000,
+      codigo: '157BNI-BA02B05',
       caracteristicas: [
-        'Doble módulo Maxi cajonera con 4 cajones con 13cm de altura y 2 super cajones de 25cm de altura perfectos para utensilios voluminosos, electrodomésticos de mano o accesorios grandes.',
-        'Mesada en cascada: Diseñada en melamina color Kendall Natural con acabado natural.',
-        'Cuerpo del mueble color verde Safari para los que les encanta tener un toque de color en su cocina.',
-        'Ruedas de alta resistencia con FRENO: Mové tu isla fácilmente para adaptarla a tus necesidades.'
-      ],
-      razones: [
-        'Espacio optimizado: Combiná almacenamiento cerrado y accesible para una cocina más práctica.',
-        'Versatilidad: Movilidad total para rediseñar tu cocina según lo necesites.',
-        'Estilo Rustic Modern: Un estilo que combina elementos rústicos (como la madera) con detalles más modernos, donde el verde añade un toque de vida y frescura.'
+        'Módulos: estanterías con puertas + box.',
+        'Color Cuerpo: Blanco liso.',
+        'Color Mesada: Blanco Nature, tono de blanco con un sutil veteado que imita la textura de la madera natural.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptarla a diferentes espacios según lo necesites.'
       ]
     },
     {
       id: 8,
-      nombre: 'Isla Gran Malvina Estantería con puertas + Box',
-      imagen: 'assets/catalogo/prod8.png',
-      descripcion: 'El equilibrio perfecto entre funcionalidad y diseño. Transformá tu cocina con esta isla de 157x50 cm de Más Nómada. Ideal para quienes necesitan espacio extra sin renunciar al estilo, esta isla es la solución perfecta para optimizar y organizar cualquier ambiente. Una sección de la mesada está diseñada para que puedas usarla como mesa, ideal para comidas rápidas o momentos compartidos.',
-      precio: 450000,
+      tipo_isla: "malvina",
+      nombre: 'Isla Gran Malvina MaxiCajonera',
+      imagen: 'assets/catalogo/prod8.webp',
+      descrip_corta: 'Módulo Box + estantería con puerta (cierre suave) + Box con cajones (cierre suave). Blanco, mesada negro Sauco. Ruedas con freno.',
+      descripcion: 'Funcionalidad y diseño en equilibrio. Esta isla de 157x50 cm de Más Nómada optimiza tu cocina, ofreciendo espacio extra sin perder estilo. Una sección de la mesada está estratégicamente diseñada para funcionar como mesa que se adapta a tu día a día.',
+      precio: 560000,
       codigo: '157BNI-BA02B05',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
       caracteristicas: [
-        'Primer módulo: Estantería con puerta, ideal para mantener el orden y almacenar utensilios o accesorios de manera discreta.',
-        'Segundo módulo: Espacio box abierto, perfecto para exhibir elementos decorativos, electrodomésticos de uso diario o utensilios de fácil acceso y estantería con puerta.',
-        'Mesada en cascada: Diseñada en melamina color Blanco Nature, con un acabado que imita la textura de madera en color blanco.',
-        'Ruedas de alta resistencia con FRENO: Mové tu isla fácilmente para adaptarla a tus necesidades.'
-      ],
-      razones: [
-        'Espacio optimizado: Combiná almacenamiento cerrado y accesible para una cocina más práctica.',
-        'Diseño minimalista: Su combinación de blanco liso y madera clara se adapta a cualquier estilo de decoración.',
-        'Versatilidad: Movilidad total para rediseñar tu cocina según lo necesites.'
+        'Módulos: módulo de box y estantería con puerta + módulo box con un cajón de 13x40cm y  super cajón de 25x40cm con cierre suave.',
+        'Color Cuerpo: Negro Sauco, de color intenso, este diseño de madera negra quemada resalta a la perfección la textura BARK.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina .',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptarla a diferentes espacios según lo necesites.'
       ]
     },
     {
       id: 9,
-      nombre: 'Isla Trinidad Doble Cajonera + Estantería + Box',
-      imagen: 'assets/catalogo/prod9.png',
-      descripcion: 'Transformá tu cocina con la Isla Trinidad de 157x50 cm. Diseñada con tres módulos, es ideal para quienes buscan espacio extra sin renunciar al estilo.',
-      precio: 720000,
-      codigo: '157BNI-SA04B05C04',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
+      tipo_isla: "malvina",
+      nombre: 'Isla Gran Malvina Estantería con puertas + Box',
+      imagen: 'assets/catalogo/prod9.webp',
+      descrip_corta: '2 módulos de 3 cajones (6 en total, cierre suave). Verde safari, mesada Kendal natural. Ruedas con freno.',
+      descripcion: 'Funcionalidad y diseño en equilibrio. Esta isla de 157 x 50 cm de Más Nómada optimiza tu cocina, ofreciendo espacio extra sin perder estilo. Una sección de la mesada está estratégicamente diseñada para funcionar como mesa que se adapta a tu día a día.',
+      precio: 640000,
+      codigo: '157BNI-BA02B05',
       caracteristicas: [
-        'Cuatro cajones pequeños de 13cm de altura y dos grandes de 25cm para almacenamiento discreto.',
-        'Espacio box abierto y estantería con puerta para almacenamiento accesible.',
-        'Mesada en cascada: Melamina color Blanco Nature, con textura de madera blanca, combinada con un cuerpo color verde safari.',
-        'Ruedas de alta resistencia con freno para adaptarla a cualquier espacio.'
-      ],
-      razones: [
-        'Espacio optimizado: Combiná almacenamiento cerrado y accesible para mayor practicidad.',
-        'Versatilidad: Movilidad total para reorganizar tu cocina según tus necesidades.',
-        'Estilo Rustic Modern: Combina detalles rústicos y modernos con un toque de color verde fresco.'
+        'Módulos: 4 cajones de 13x40cm y 2 cajones grandes de 25x40cm todos con cierre suave.',
+        'Color cuerpo: verde safari.',
+        'Color mesada: Roble Kendall Natural, Tono suave y luminoso, similar a la madera veteada, pero con un toque tenue y delicado.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptarla a diferentes espacios según lo necesites.'
       ]
     },
     {
       id: 10,
-      nombre: 'Isla Trinidad con Estantería con y sin Puerta',
-      imagen: 'assets/catalogo/prod10.png',
-      descripcion: 'La Isla Trinidad de 157x50 cm es ideal para quienes necesitan espacio adicional sin sacrificar el diseño. Perfecta para organizar y optimizar tu cocina.',
-      precio: 570000,
+      tipo_isla: "trinidad",
+      nombre: 'Isla Trinidad Doble Cajonera + Estantería + Box',
+      imagen: 'assets/catalogo/prod10.webp',
+      descrip_corta: '3 módulos: 2 estanterías con puerta (cierre suave) y 1 estantería abierta. Blanco, mesada Kendal natural. Ruedas con freno.',
+      descripcion: 'Está diseñada para quienes buscan el máximo. Para quienes lo quieren todo: funcionalidad, estilo y el mejor lugar para compartir. Con tres módulos, es nuestra opción más grande, el punto de encuentro donde todos querrán estar.',
+      precio: 610000,
       codigo: '157KI-BA02B02C01',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
       caracteristicas: [
-        'Espacio box abierto ideal para decoración o utensilios de uso diario.',
-        'Estantería con puerta para almacenamiento cerrado.',
-        'Mesada en cascada: Melamina color Kendall Natural, con un cuerpo en blanco liso.',
-        'Ruedas de alta resistencia con freno para facilitar el movimiento.'
-      ],
-      razones: [
-        'Espacio optimizado: Combiná almacenamiento cerrado y accesible para mayor funcionalidad.',
-        'Versatilidad: Movilidad total para rediseñar tu cocina.',
-        'Estilo y calidad: Diseño contemporáneo con materiales duraderos que destacan en cualquier cocina.'
+        'Módulos: Estanterías con puertas + 3 espacios de guardado exhibidores.',
+        'Color mesada: Roble Kendall Natural, Tono suave y luminoso, similar a la madera veteada, pero con un toque tenue y delicado.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptarla a diferentes espacios según lo necesites.'
       ]
     },
     {
       id: 11,
-      nombre: 'Isla Trinidad con Triple Cajonera',
-      imagen: 'assets/catalogo/prod11.png',
-      descripcion: 'Transformá tu cocina con la Isla Trinidad de 157x50 cm. Con un diseño minimalista y almacenamiento optimizado, es perfecta para organizar cualquier ambiente.',
-      precio: 795000,
-      codigo: '157SAI-BA04B04C04',
-      tiemposEntrega: 'Tu isla se fabricará especialmente para vos. Una vez confirmada la compra, tiene un tiempo de armado de 12 días hábiles. El despacho se realiza dentro de este plazo.',
+      tipo_isla: "trinidad",
+      nombre: 'Isla Trinidad con Estantería con y sin Puerta',
+      imagen: 'assets/catalogo/prod11.webp',
+      descrip_corta: '3 módulos: 2 con triple cajonera (6 cajones, cierre suave) y 1 módulo Box con puerta (cierre suave). Verde, mesada blanco Nature. Ruedas con freno.',
+      descripcion: 'Está diseñada para quienes buscan el máximo. Para quienes lo quieren todo: funcionalidad, estilo y el mejor lugar para compartir. Con tres módulos, es nuestra opción más grande, el punto de encuentro donde todos querrán estar.',
+      precio: 770000,
+      codigo: '157BNI-SA04B05C04',
       caracteristicas: [
-        'Triple cajonera con 6 cajones de 13cm y 3 súper cajones de 25cm.',
-        'Mesada en cascada: Melamina color Sauco Negro, con textura de madera quemada.',
-        'Cuerpo del mueble color blanco.',
-        'Ruedas de alta resistencia con freno para adaptarla a cualquier espacio.'
-      ],
-      razones: [
-        'Espacio optimizado: Combiná almacenamiento cerrado y accesible para mayor practicidad.',
-        'Diseño minimalista: Blanco liso y madera negra que se adaptan a cualquier estilo.',
-        'Versatilidad: Movilidad total para reorganizar tu cocina según tus necesidades.'
+        'Módulos: box con puerta + 4 cajones de 13x40cm y 2 super cajones de 25x40cm todos con cierre suave.',
+        'Color mesada:  Blanco Nature, tono de blanco con un sutil veteado que imita la textura de la madera.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptarla a diferentes espacios según lo necesites.'
       ]
-    }
+    },
+    {
+      id: 12,
+      tipo_isla: "trinidad",
+      nombre: 'Isla Trinidad con Triple Cajonera',
+      imagen: 'assets/catalogo/prod12.webp',
+      descrip_corta: '3 módulos con triple cajonera: 6 cajones (13x40 cm) y 3 cajones (25x40 cm), todos con cierre suave. Blanco, mesada negro Sauco. Ruedas con freno.',
+      descripcion: 'Está diseñada para quienes buscan el máximo. Para quienes lo quieren todo: funcionalidad, estilo y el mejor lugar para compartir. Con tres módulos, es nuestra opción más grande, el punto de encuentro donde todos querrán estar.',
+      precio: 850000,
+      codigo: '157SAI-BA04B04C04',
+      caracteristicas: [
+        'Módulos: 6 cajones de 13x40cm y 3 super cajones de 25x40cm todos con cierre suave.',
+        'Color mesada: Negro Sauco, de color intenso, este diseño de madera negra quemada resalta a la perfección la textura BARK.',
+        'Mesada en cascada: Sofisticada y moderna, diseñada en melamina.',
+        'Ruedas de alta resistencia con freno: Mové tu isla fácilmente y adaptarla a diferentes espacios según lo necesites.'
+      ]
+    },
   ];
+  tiposIsla: string[] = [];
+  productosPorTipo: { [tipo: string]: any[] } = {};
+
+  ngOnInit(): void {
+    // Obtén una lista única de tipos de islas
+    this.tiposIsla = [...new Set(this.productos.map((p) => p.tipo_isla))];
+
+    // Agrupa los productos por tipo
+    this.tiposIsla.forEach((tipo) => {
+      this.productosPorTipo[tipo] = this.productos.filter(
+        (producto) => producto.tipo_isla === tipo
+      );
+    });
+  }
 
   constructor(private router:Router) {}
 

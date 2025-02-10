@@ -61,18 +61,49 @@
       </div>
     </div>
 
-
+    <!-- Información adicional del producto -->
     <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
     <p><strong>Código:</strong> {{ producto.codigo }}</p>
-    <p><strong>Tiempos de Entrega:</strong> {{ producto.tiemposEntrega }}</p>
     <h3>Características:</h3>
     <ul>
       <li *ngFor="let caracteristica of producto.caracteristicas">{{ caracteristica }}</li>
     </ul>
-    <h3>Razones para Elegirlo:</h3>
+
+    <h3>Tiempos de Entrega:</h3>
     <ul>
-      <li *ngFor="let razon of producto.razones">{{ razon }}</li>
+      <li>Fabricación a pedido: Tu isla se fabricará especialmente para vos.</li>
+      <li>Tiempo de armado: 12 días hábiles desde la confirmación de compra.</li>
+      <li>Despacho: Se realiza dentro de este plazo.</li>
+      <li>Retiro disponible en Barrio Munro, Vicente López.</li>
     </ul>
+
+    <h3>¿Cómo puedo saber cuál es la isla ideal para mi espacio?</h3>
+    <p>
+      Consultá nuestras guías de diseño o contacta a nuestro equipo de asesoramiento para obtener
+      recomendaciones personalizadas. Tu consulta siempre es bien recibida.
+    </p>
+
+    <h3>¿Por qué elegir este producto?</h3>
+    <ul>
+      <li>Aprovecha cada centímetro de tu cocina, incluso en espacios reducidos.</li>
+      <li>Movilidad total para diseñar y organizar tu hogar a tu manera.</li>
+      <li>Materiales de calidad que combinan diseño y durabilidad.</li>
+      <li>Diseño minimalista y funcional, adaptable a cualquier estilo.</li>
+    </ul>
+
+    <h3>¿Se entrega armada?</h3>
+    <p>
+      Los módulos se entregan armados, solo tenés que atornillar las ruedas (incluyen tornillos).
+      Si tu isla tiene más de un módulo, solo necesitás ensamblarlos entre sí y luego colocar la tapa
+      para finalizar el armado y disfrutarla. Se entregan con todos los tornillos y herrajes; solo vas
+      a necesitar un destornillador.
+    </p>
+
+    <h3>¿Cómo es la limpieza y mantenimiento?</h3>
+    <p>
+      Utiliza un paño húmedo y productos suaves para limpieza. Evitá productos abrasivos que puedan
+      dañar el acabado.
+    </p>
   </div>
   <ng-template #noProducto>
     <p>Producto no encontrado.</p>

@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Walkway';
-  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins';
+  src: url('../../assets/fonts/Poppins-Medium.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Walkway Cursiva';
-  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins Cursiva';
+  src: url('../../assets/fonts/Poppins-MediumItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -24,7 +24,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: 'Walkway', sans-serif; /* Cambiado a Walkway */
+  font-family: 'Poppins', sans-serif; /* Cambiado a Walkway */
 }
 
 .container {
@@ -98,27 +98,27 @@ body {
   transform: translateY(20px);
   opacity: 0;
   animation: textAppear 1s ease forwards 0.6s;
-  font-family: 'Walkway', sans-serif; /* Aplicado a los textos */
+  font-family: 'Poppins', sans-serif; /* Aplicado a los textos */
 }
 
 .text-content h2 {
   font-weight: bold;
   color: #333;
-  font-size: 30px;
-  font-family: 'Walkway', sans-serif; /* Aplicado */
+  font-size: 25px;
+  font-family: 'Poppins', sans-serif; /* Aplicado */
 }
 
 .text-content span {
   font-weight: normal;
-  font-size: 20px;
-  font-family: 'Walkway', sans-serif; /* Aplicado */
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif; /* Aplicado */
 }
 
 .text-content p {
   color: #333;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.6;
-  font-family: 'Walkway Cursiva', sans-serif; /* Aplicado */
+  font-family: 'Poppins Cursiva', sans-serif; /* Aplicado */
 }
 
 /* Estilos responsivos */
@@ -148,7 +148,7 @@ body {
   .text-content {
     max-width: 100%;
     margin-left: 0;
-    font-family: 'Walkway', sans-serif; /* Aplicado */
+    font-family: 'Poppins', sans-serif; /* Aplicado */
   }
 
   .text-content h2 {

@@ -1,43 +1,42 @@
 @font-face {
-  font-family: 'Walkway';
-  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins';
+  src: url('../../assets/fonts/Poppins-Medium.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Walkway Cursiva';
-  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins Cursiva';
+  src: url('../../assets/fonts/Poppins-MediumItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
-
 /* Aplicación Global */
 * {
-  font-family: 'Walkway', sans-serif; /* Aplica la fuente por defecto */
+  font-family: 'Poppins', sans-serif; /* Aplica la fuente por defecto */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Walkway', sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.5;
 }
 
 /* Estilos Específicos */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Walkway', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
 }
 
 p, span, a, button {
-  font-family: 'Walkway', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 i, em {
-  font-family: 'Walkway Cursiva', sans-serif;
+  font-family: 'Poppins Cursiva', sans-serif;
   font-style: italic;
 }
 

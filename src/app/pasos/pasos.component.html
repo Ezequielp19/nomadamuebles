@@ -213,7 +213,7 @@
     >
       <img [src]="'../../assets/modulos/' + module" [alt]="module" />
       <span class="name">{{ getModuleDisplayName(module) }}</span>
-      <span class="price">Precio: ${{ getModulePrice(module) }}</span>
+      <span class="price">Precio: ${{ getModulePrice(module) | number:'1.0-0' }}</span>
       <!-- Botón Info -->
       <button class="info-button" (click)="openInfoModal(getModuleId(module)); $event.stopPropagation()">
         <span class="info-icon">i</span>

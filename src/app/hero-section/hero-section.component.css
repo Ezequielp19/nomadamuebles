@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Walkway';
-  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins';
+  src: url('../../assets/fonts/Poppins-Medium.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Walkway Cursiva';
-  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins Cursiva';
+  src: url('../../assets/fonts/Poppins-MediumItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -17,11 +17,11 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  background-image: url('../../assets/fondoCarru.jpg'); /* Ruta de la imagen de fondo */
+  background-image: url('../../assets/fondoCarru.webp'); /* Ruta de la imagen de fondo */
   background-size: cover;
   background-position: center;
   padding: 40px;
-  font-family: 'Walkway', sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #333;
   overflow: hidden;
 }
@@ -49,7 +49,7 @@ h1 {
   font-weight: bold;
   margin: 0;
   line-height: 1.2;
-  font-family: 'Walkway', sans-serif;
+  font-family: 'Poppins', sans-serif;
   z-index: 2;
 }
 
@@ -58,16 +58,21 @@ h2 {
   margin: 10px 0;
   font-weight: normal;
   color: #333;
-  font-family: 'Walkway Cursiva', sans-serif;
+  font-family: 'Poppins Cursiva', sans-serif;
   z-index: 2;
 }
 
 .description {
-  font-size: 22px;
+  font-size: 24px;
   color: #333;
   margin-bottom: 20px;
-  font-family: 'Walkway Cursiva', sans-serif;
+  font-family: 'Poppins Cursiva', sans-serif;
   z-index: 2;
+}
+
+.items {
+font-size: 22px;
+font-family: 'Poppins Cursiva', sans-serif;
 }
 
 .primary-button, .secondary-button {
@@ -76,20 +81,22 @@ h2 {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  font-family: 'Walkway', sans-serif; /* Fuente personalizada */
+  font-family: 'Poppins', sans-serif; /* Fuente personalizada */
 }
 
 .primary-button {
-  background-color: transparent;
-  color: #fff;
-  border: 3px solid #fff;
+  background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro translúcido para contraste adicional */
+  color: #fff; /* Asegura que el texto sea blanco */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para resaltar más */
   transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid #fff;
+  font-size: 25px;
 }
 
 .primary-button:hover {
   background-color: #fff;
   color: #000;
-  border-color: #fff;
+  border: 1px solid #000;
 }
 
 .buttons {
@@ -105,6 +112,12 @@ h2 {
   background-color: #fff;
   color: #333;
   border: 1px solid #333;
+  font-size: 25px;
+}
+.secondary-button:hover {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
 }
 
 .carousel {
@@ -142,7 +155,7 @@ h2 {
   padding: 10px;
   border-radius: 50%;
   z-index: 10;
-  font-family: 'Walkway', sans-serif; /* Fuente personalizada */
+  font-family: 'Poppins', sans-serif; /* Fuente personalizada */
 }
 
 .carousel-button.prev {
@@ -164,7 +177,7 @@ h2 {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Walkway', sans-serif; /* Fuente personalizada */
+  font-family: 'Poppins', sans-serif; /* Fuente personalizada */
 }
 
 /* Media Queries (igual estructura que la original) */
@@ -255,4 +268,13 @@ h2 {
   .carousel-item img {
     border-radius: 5px;
   }
+}
+
+h1, h2, .description, .items li {
+  padding: 5px; /* Espacio interno para evitar que el texto toque el borde */
+  color: #fff; /* Asegura que el texto sea blanco */
+}
+
+.items li {
+  margin-bottom: 10px; /* Separación entre elementos de la lista */
 }

@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Walkway';
-  src: url('../../assets/fonts/Walkway UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins';
+  src: url('../../assets/fonts/Poppins-Medium.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Walkway Cursiva';
-  src: url('../../assets/fonts/Walkway\ Oblique\ UltraBold.ttf') format('truetype'); /* Cambia la ruta según la ubicación de tu archivo */
+  font-family: 'Poppins Cursiva';
+  src: url('../../assets/fonts/Poppins-MediumItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -20,7 +20,7 @@
   background-color: #000; /* Fondo negro */
   color: #fff; /* Texto blanco */
   padding: 20px;
-  font-family: 'Walkway', sans-serif; /* Cambia la fuente */
+  font-family: 'Poppins', sans-serif; /* Cambia la fuente */
 }
 
 /* Sección individual del footer */
@@ -46,7 +46,7 @@
   gap: 10px;
   font-size: 24px; /* Tamaño de los íconos */
   color: white;
-  font-family: Arial, sans-serif; /* Asegura que los íconos no usen la fuente personalizada */
+  font-family: 'Poppins', sans-serif; /* Asegura que los íconos no usen la fuente personalizada */
 }
 
 .social-icons i {
