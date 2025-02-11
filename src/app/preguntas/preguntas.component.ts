@@ -13,7 +13,11 @@ import { FooterComponent } from '../footer/footer.component';
 })
 export class PreguntasComponent {
   backgroundImage = 'url("../../assets/TRAMAS_1.png")';
-  openSections: { [key: string]: boolean } = {};
+
+    // Marca la sección 'muebles' como abierta por defecto
+    openSections: { [key: string]: boolean } = {
+      muebles: true, // La sección 'muebles' estará abierta por defecto
+    };
 
   toggleSection(section: string): void {
     this.openSections[section] = !this.openSections[section];

@@ -33,7 +33,7 @@ export class CatalogoComponent implements OnInit {
     {
       id: 2,
       tipo_isla: "soledad",
-      nombre: 'Isla Soledad con estantería + CAVA',
+      nombre: 'Isla Soledad con puerta + box',
       imagen: 'assets/catalogo/prod2.webp',
       descrip_corta: 'Módulo Box y estantería con puerta (cierre suave). Verde safari, mesada Kendal natural. Ruedas con freno.',
       descripcion: 'Transformá tu cocina con la Isla Soledad de Más Nómada. Diseñada especialmente para optimizar el espacio, esta isla es compacta, funcional y estéticamente atractiva.',

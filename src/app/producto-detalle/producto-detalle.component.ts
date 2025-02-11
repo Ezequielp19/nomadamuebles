@@ -15,6 +15,7 @@ import { MercadoPagoService } from '../../service/mercadopago.service';
   styleUrl: './producto-detalle.component.css'
 })
 export class ProductoDetalleComponent {
+  isLoading: boolean = false;
   producto: any | null = null;
   showPaymentInputs: { [key: number]: boolean } = {};
   guestData = { nombre: '', email: '', telefono: '' };
@@ -252,6 +253,8 @@ export class ProductoDetalleComponent {
   }
 
   sendPaymentData(producto: any): void {
+    this.isLoading = true; // Activar el estado de carga
+
     const paymentData = {
       totalAmount: producto.precio,
       codigoFinal: producto.codigo,
@@ -262,6 +265,8 @@ export class ProductoDetalleComponent {
 
     this.mercadoPagoService.sendPaymentData(paymentData).subscribe(
       (response: any) => {
+        this.isLoading = false; // Desactivar el estado de carga
+
         if (response.init_point) {
           // Redireccionar al punto de inicio de pago de MercadoPago
           window.location.href = response.init_point;
@@ -270,16 +275,10 @@ export class ProductoDetalleComponent {
         }
       },
       (error: any) => {
+        this.isLoading = false; // Desactivar el estado de carga
         console.error('Error al enviar el pago', error);
       }
     );
   }
 
-  shareFurnitureLink(producto: any): void {
-    const message = `Hola, estoy interesado en el producto "${producto.nombre}" que cuesta $${producto.precio}. ¿Me podrían dar más información?`;
-    const encodedMessage = encodeURIComponent(message);
-    const numeroWhatsApp = "5491134802328";
-    const whatsappUrl = `https://wa.me/${numeroWhatsApp}?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
-  }
 }

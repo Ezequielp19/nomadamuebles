@@ -12,4 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'nomadamuebles';
+
+  shareFurnitureLink(): void {
+    const numeroWhatsApp = "5491134802328"; // Reemplaza con el número de WhatsApp del asesor
+    const mensaje = `Hola, me gustaría obtener más información. ¿Podría ayudarme, por favor?`;
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, "_blank");
+}
 }

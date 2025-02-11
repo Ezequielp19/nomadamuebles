@@ -5,14 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { ModalService } from '../../service/modal.service';
 import { ActivatedRoute } from '@angular/router';
 import { MercadoPagoService } from '../../service/mercadopago.service';
+import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-pasos',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FormsModule, DecimalPipe],
+  imports: [CommonModule, NavbarComponent, FormsModule, DecimalPipe,  FooterComponent],
   templateUrl: './pasos.component.html',
   styleUrls: ['./pasos.component.css'],
 })
 export class PasosComponent implements OnInit {
+  isLoading: boolean = false;
   currentStep: number = 1;
   orientations: ('left' | 'right')[] = ['left', 'right'];
   steps: { id: number; title: string }[] = [];
@@ -719,6 +721,7 @@ selectModule(module: string, step: number) {
     }
 
     sendPaymentData(): void {
+      this.isLoading = true; // Activar el estado de carga
       if (
         this.guestData.nombre &&
         this.guestData.telefono &&
@@ -733,28 +736,24 @@ selectModule(module: string, step: number) {
           email: this.guestData.email,
         };
 
-        console.log('Guest Purchase Data:', paymentData);
-        this.procesarPago(paymentData);
-      } else {
-        console.error('Faltan datos del invitado para procesar el pago');
-      }
-    }
+        this.mercadoPagoService.sendPaymentData(paymentData).subscribe(
+          (response: any) => {
+            this.isLoading = false; // Desactivar el estado de carga
 
-    private procesarPago(paymentData: any): void {
-      // Usar el servicio para enviar la orden de pago
-      this.mercadoPagoService.sendPaymentData(paymentData).subscribe(
-        (response: any) => {
-          if (response.init_point) {
-            // Redireccionar al punto de inicio de pago de MercadoPago
-            window.location.href = response.init_point;
-          } else {
-            console.error('Error en la respuesta del servidor:', response);
+            if (response.init_point) {
+              // Redireccionar al punto de inicio de pago de MercadoPago
+              window.location.href = response.init_point;
+            } else {
+              console.error('Error en la respuesta del servidor:', response);
+            }
+          },
+          (error: any) => {
+            this.isLoading = false; // Desactivar el estado de carga
+            console.error('Error al enviar el pago', error);
           }
-        },
-        (error: any) => {
-          console.error('Error al enviar el pago', error);
-        }
-      );
+        );
     }
+  }
+
 
 }

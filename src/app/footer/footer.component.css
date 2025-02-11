@@ -16,29 +16,33 @@
 .footer-container {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start; /* Asegura que todas las columnas comiencen a la misma altura */
   flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
   background-color: #000; /* Fondo negro */
   color: #fff; /* Texto blanco */
   padding: 20px;
   font-family: 'Poppins', sans-serif; /* Cambia la fuente */
+
 }
 
 /* Sección individual del footer */
 .footer-section {
   flex: 1; /* Los elementos ocupan la misma proporción */
-  margin: 10px;
+  margin: 0 10px; /* Margen entre columnas */
   min-width: 250px; /* Ancho mínimo para pantallas pequeñas */
 }
 
+/* Ajusta el margen inferior para que los títulos queden alineados */
 .footer-section h4 {
   font-size: 18px;
-  margin-bottom: 10px;
+  margin: 0 0 10px; /* Solo margen inferior */
 }
 
 .footer-section p {
   font-size: 14px;
   margin: 5px 0;
 }
+
 
 /* Iconos de redes sociales */
 .social-icons {
@@ -64,6 +68,7 @@
   .footer-container {
     flex-direction: column; /* Las secciones se apilan en pantallas pequeñas */
     text-align: center;
+    align-items: center; /* Centra las columnas en pantallas pequeñas */
   }
 
   .footer-section {
@@ -87,4 +92,15 @@
   .footer-section p {
     font-size: 16px;
   }
+}
+
+/* Logo styling */
+.footer-logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo img {
+  width: 200px;
+  margin-right: 10px;
 }

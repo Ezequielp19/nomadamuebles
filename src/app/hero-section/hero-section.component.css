@@ -45,7 +45,7 @@
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 45px;
   font-weight: bold;
   margin: 0;
   line-height: 1.2;
@@ -54,7 +54,7 @@ h1 {
 }
 
 h2 {
-  font-size: 35px;
+  font-size: 25px;
   margin: 10px 0;
   font-weight: normal;
   color: #333;
@@ -63,7 +63,7 @@ h2 {
 }
 
 .description {
-  font-size: 24px;
+  font-size: 20px;
   color: #333;
   margin-bottom: 20px;
   font-family: 'Poppins Cursiva', sans-serif;
@@ -71,7 +71,7 @@ h2 {
 }
 
 .items {
-font-size: 22px;
+font-size: 20px;
 font-family: 'Poppins Cursiva', sans-serif;
 }
 

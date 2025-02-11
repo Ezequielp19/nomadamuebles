@@ -318,6 +318,11 @@
         Pagar ahora
       </button>
 
+      <div *ngIf="isLoading" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Estamos creando el pago, por favor espera...</p>
+      </div>
+
     </div>
     <!-- Botón de Gift Card -->
     <button
@@ -373,3 +378,6 @@
 </div>
 
 
+<br>
+
+<app-footer></app-footer>

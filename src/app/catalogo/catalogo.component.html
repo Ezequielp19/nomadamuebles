@@ -11,9 +11,6 @@
           class="producto-card"
           *ngFor="let producto of productosPorTipo[tipo]"
         >
-          <div class="producto-info">
-            <h2>{{ producto.nombre }}</h2>
-          </div>
           <img
             [src]="producto.imagen"
             [alt]="producto.nombre"

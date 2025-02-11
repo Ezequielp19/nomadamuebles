@@ -14,11 +14,8 @@
         <!-- Contenedor de botones y sección de pago -->
         <div class="producto-acciones">
           <div class="producto-botones">
-            <button class="payment-button1" (click)="shareFurnitureLink(producto)">
-              <img src="assets/wspLogo.png" alt="WhatsApp" /> Consultar con Asesor
-            </button>
             <button class="payment-toggle-button" (click)="togglePaymentInputs(producto.id)">
-              {{ showPaymentInputs[producto.id] ? 'Ocultar sección de pago' : 'Pagar con MercadoPago' }}
+              {{ showPaymentInputs[producto.id] ? 'Ocultar sección de pago' : 'Comprar Ahora' }}
             </button>
           </div>
 
@@ -54,7 +51,13 @@
               </label>
               <button class="payment-button" [disabled]="!canPay" (click)="sendPaymentData(producto)">
                 Pagar con MercadoPago
+                <img src="assets/mpLogo.png" alt="MercadoPago" />
               </button>
+
+              <div *ngIf="isLoading" class="loading-overlay">
+                <div class="spinner"></div>
+                <p>Estamos creando el pago, por favor espera...</p>
+              </div>
             </div>
           </div>
         </div>
