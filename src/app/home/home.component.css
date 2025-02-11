@@ -37,3 +37,37 @@
   color: #555;
   margin: 0;
 }
+
+
+.muebles-container {
+  max-width: 1200px; /* Ajusta el ancho máximo según sea necesario */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px; /* Espaciado entre elementos */
+  padding: 20px; /* Espaciado interno */
+}
+
+.muebles-intro {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.muebles-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.muebles-description {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .muebles-container {
+    max-width: 100%;
+    padding: 10px;
+  }
+}

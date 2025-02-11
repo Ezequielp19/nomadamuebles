@@ -12,17 +12,30 @@
   font-style: normal;
 }
 
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif; /* Cambiado a Walkway */
+}
 
 .container {
   display: flex;
-  flex-wrap: nowrap; /* Asegura que el texto y la imagen permanezcan en la misma fila */
   align-items: center;
-  justify-content: flex-start; /* Mantiene los elementos juntos en la parte izquierda */
   position: relative;
   padding: 20px;
   opacity: 0;
   animation: fadeIn 1s ease forwards;
 }
+
 /* Animaciones */
 @keyframes fadeIn {
   to {
@@ -50,13 +63,16 @@
   }
 }
 
+/* Fondo y contenedor de la imagen */
 .background-frame {
   background-color: #9F9F7B;
   position: absolute;
   width: 360px;
   height: 360px;
   top: 4px;
-  right: 0;
+  bottom: 10px;
+  left: 5px;
+  right: 10px;
   z-index: 1;
   transform: scale(0.8);
   animation: frameAppear 0.8s ease forwards 0.2s;
@@ -67,24 +83,22 @@
   height: auto;
   position: relative;
   z-index: 2;
-  margin-left: 30px; /* Se asegura de que ocupe el espacio necesario */
-  transform: translateX(50px); /* Mantiene el desplazamiento */
+  margin-right: 30px;
+  transform: translateX(-50px);
   opacity: 0;
   animation: slideIn 0.8s ease forwards 0.4s;
-  order: 2;
 }
 
+/* Contenido de texto */
 .text-content {
   max-width: 500px;
   z-index: 3;
   color: #333;
+  margin-left: 80px;
   transform: translateY(20px);
   opacity: 0;
   animation: textAppear 1s ease forwards 0.6s;
-  font-family: 'Poppins', sans-serif;
-  order: 1;
-  flex-grow: 1; /* Permite que el texto ocupe el espacio restante */
-  margin-left: 700px;
+  font-family: 'Poppins', sans-serif; /* Aplicado a los textos */
 }
 
 .text-content h2 {
@@ -111,8 +125,9 @@
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    align-items: center;
+    margin-left: 0;
     text-align: center;
-    gap: 20px; /* Reduce el espacio entre texto e imagen */
   }
 
   .background-frame {
@@ -126,15 +141,14 @@
 
   .kitchen-image {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     transform: translateX(0);
-    order: 1;
   }
 
   .text-content {
     max-width: 100%;
     margin-left: 0;
-    order: 2;
+    font-family: 'Poppins', sans-serif; /* Aplicado */
   }
 
   .text-content h2 {
@@ -155,9 +169,7 @@
     width: 260px;
     height: 260px;
   }
-  .container {
-    gap: 10px; /* Reduce aún más el espaciado */
-  }
+
   .kitchen-image {
     width: 90%;
   }
@@ -172,48 +184,5 @@
 
   .text-content p {
     font-size: 16px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1479px) {
-  .container {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-  }
-
-  .background-frame {
-    width: 360px;
-    height: 360px;
-    top: 4px;
-    right: 0;
-    transform: scale(0.8);
-  }
-
-  .kitchen-image {
-    width: 400px;
-    margin-left: 30px;
-    transform: translateX(50px);
-    order: 2;
-  }
-
-  .text-content {
-    max-width: 500px;
-    margin-left: 0; /* Ajusta según lo necesario */
-    order: 1;
-    flex-grow: 1;
-  }
-
-  .text-content h2 {
-    font-size: 30px;
-  }
-
-  .text-content span {
-    font-size: 20px;
-  }
-
-  .text-content p {
-    font-size: 24px;
-    line-height: 1.6;
   }
 }
