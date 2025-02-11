@@ -85,18 +85,25 @@ font-family: 'Poppins Cursiva', sans-serif;
 }
 
 .primary-button {
-  background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro translúcido para contraste adicional */
+  background-color: #60603C;
   color: #fff; /* Asegura que el texto sea blanco */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para resaltar más */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s, transform 0.2s;
   border: 1px solid #fff;
   font-size: 25px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
 }
 
 .primary-button:hover {
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #000;
+  background-color: #9F9F7B;
+  transform: scale(1.05);
+}
+
+
+.tab:hover {
+  background-color: #9F9F7B;
+  transform: scale(1.05);
 }
 
 .buttons {
