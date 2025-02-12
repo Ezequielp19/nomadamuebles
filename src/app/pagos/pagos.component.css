@@ -266,3 +266,48 @@ input:focus {
   box-shadow: 0 0 5px #5F5F3B;
   color: #000;
 }
+
+.warning-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.delivery-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2e7d32; /* Verde oscuro */
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.delivery-method {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.delivery-option {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9; /* Fondo claro */
+  border: 2px solid #2e7d32; /* Borde verde */
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.delivery-option input {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.option-text {
+  font-size: 18px;
+  color: #333;
+}

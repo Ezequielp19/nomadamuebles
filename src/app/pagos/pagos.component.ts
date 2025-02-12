@@ -22,6 +22,7 @@ export class PagosComponent implements OnInit {
   discountAmount: number = 0; // Valor del descuento aplicado
   showWarning: boolean = false;
   selectedDeliveryMethod: string | null = null;
+  showDeliveryWarning: boolean = false;
   totalAmount: number = 0; // Precio total con descuento aplicado
   invalidCoupon: boolean = false;
 
@@ -96,6 +97,7 @@ export class PagosComponent implements OnInit {
 
   setDeliveryMethod(method: string) {
     this.selectedDeliveryMethod = method;
+    this.showDeliveryWarning = false; // Oculta la advertencia si el usuario elige una opción
     this.validateForm();
   }
 
@@ -144,12 +146,18 @@ export class PagosComponent implements OnInit {
       this.userFormData.provincia.trim() !== '';
   }
 
-attemptPayment(userForm: NgForm) {
+  attemptPayment(userForm: NgForm) {
     this.validateForm(); // Asegurar que se valida antes del pago
-    if (!this.isFormComplete || !userForm.valid) {
+
+    if (!this.selectedDeliveryMethod) {
+      this.showDeliveryWarning = true; // Muestra advertencia si no hay selección
+    }
+
+    if (!this.isFormComplete || !userForm.valid || !this.selectedDeliveryMethod) {
       this.showWarning = true;
       return;
     }
+
     this.processPayment();
 }
 
