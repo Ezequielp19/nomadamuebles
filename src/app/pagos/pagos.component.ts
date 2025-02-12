@@ -33,6 +33,7 @@ export class PagosComponent implements OnInit {
     dni: '',
     nombre: '',
     apellido: '',
+    email: '',
     telefono: '',
     ciudad: '',
     codigoPostal: '',
@@ -46,12 +47,28 @@ export class PagosComponent implements OnInit {
     const storedData = localStorage.getItem('productData');
     if (storedData) {
       this.productData = JSON.parse(storedData);
-      this.totalAmount = this.productData.totalAmount; // Asignar el precio base
+      this.totalAmount = this.productData.totalAmount;
+
+      // Crear una copia para los campos editables
+      this.userForm = {
+        pais: 'Argentina',
+        dni: '',
+        nombre: '',
+        apellido: '',
+        email: '',
+        telefono: '',
+        ciudad: '',
+        codigoPostal: '',
+        provincia: '',
+        departamento: ''
+      };
+
       console.log('Datos recuperados de localStorage:', this.productData);
     } else {
       console.error('No se recibieron datos del producto');
     }
   }
+
 
   async validateCoupon() {
     if (!this.discountCode.trim()) {
@@ -110,16 +127,18 @@ export class PagosComponent implements OnInit {
   }
 
   validateForm() {
-    this.isFormComplete = !!(
-      this.userForm.dni &&
-      this.userForm.nombre &&
-      this.userForm.apellido &&
-      this.userForm.telefono &&
-      this.userForm.ciudad &&
-      this.userForm.codigoPostal &&
-      this.userForm.provincia &&
-      this.selectedDeliveryMethod
-    );
+    this.isFormComplete =
+      this.userForm.dni.trim() !== '' &&
+      this.userForm.nombre.trim() !== '' &&
+      this.userForm.apellido.trim() !== '' &&
+      this.userForm.email.trim() !== '' &&
+      this.userForm.telefono.trim() !== '' &&
+      this.userForm.ciudad.trim() !== '' &&
+      this.userForm.codigoPostal.trim() !== '' &&
+      this.userForm.provincia.trim() !== '' &&
+      this.selectedDeliveryMethod !== null;
+
+    this.showWarning = !this.isFormComplete;
   }
 
   attemptPayment() {
@@ -138,7 +157,7 @@ export class PagosComponent implements OnInit {
       codigoFinal: this.productData.codigoFinal,
       nombreProducto: this.productData.nombre,
       deliveryMethod: this.selectedDeliveryMethod,
-      discountCode: this.discountCode,
+      discountAmount: this.discountAmount,
       userData: { ...this.userForm },
     };
 

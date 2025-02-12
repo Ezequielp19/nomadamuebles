@@ -18,52 +18,53 @@
     </div>
 
     <h2>Datos del Usuario</h2>
-    <form (input)="validateForm()">
-      <div class="form-group">
-        <label for="pais">País</label>
-        <input type="text" id="pais" value="Argentina" readonly />
-      </div>
-
+    <form>
       <div class="form-group">
         <label for="dni">DNI o CUIT</label>
-        <input type="text" id="dni" placeholder="Ingrese su DNI o CUIT" (input)="validateForm()" />
+        <input type="text" id="dni" placeholder="Ingrese su DNI o CUIT" [(ngModel)]="userForm.dni" (ngModelChange)="validateForm()" name="dni" />
       </div>
 
       <div class="form-group">
         <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" placeholder="Ingrese su nombre" (input)="validateForm()" />
+        <input type="text" id="nombre" placeholder="Ingrese su nombre" [(ngModel)]="userForm.nombre" (ngModelChange)="validateForm()" name="nombre" />
       </div>
 
       <div class="form-group">
         <label for="apellido">Apellido</label>
-        <input type="text" id="apellido" placeholder="Ingrese su apellido" (input)="validateForm()" />
+        <input type="text" id="apellido" placeholder="Ingrese su apellido" [(ngModel)]="userForm.apellido" (ngModelChange)="validateForm()" name="apellido" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="Ingrese su email" [(ngModel)]="userForm.email" (ngModelChange)="validateForm()" name="email" />
       </div>
 
       <div class="form-group">
         <label for="telefono">Teléfono</label>
-        <input type="text" id="telefono" placeholder="Ingrese su teléfono" (input)="validateForm()" />
+        <input type="text" id="telefono" placeholder="Ingrese su teléfono" [(ngModel)]="userForm.telefono" (ngModelChange)="validateForm()" name="telefono" />
       </div>
 
       <div class="form-group">
         <label for="ciudad">Ciudad</label>
-        <input type="text" id="ciudad" placeholder="Ingrese su ciudad" (input)="validateForm()" />
+        <input type="text" id="ciudad" placeholder="Ingrese su ciudad" [(ngModel)]="userForm.ciudad" (ngModelChange)="validateForm()" name="ciudad" />
       </div>
 
       <div class="form-group">
         <label for="codigo-postal">Código Postal</label>
-        <input type="text" id="codigo-postal" placeholder="Ingrese su código postal" (input)="validateForm()" />
+        <input type="text" id="codigo-postal" placeholder="Ingrese su código postal" [(ngModel)]="userForm.codigoPostal" (ngModelChange)="validateForm()" name="codigoPostal" />
       </div>
 
       <div class="form-group">
         <label for="provincia">Provincia</label>
-        <input type="text" id="provincia" placeholder="Ingrese su provincia" (input)="validateForm()" />
+        <input type="text" id="provincia" placeholder="Ingrese su provincia" [(ngModel)]="userForm.provincia" (ngModelChange)="validateForm()" name="provincia" />
       </div>
 
       <div class="form-group">
         <label for="departamento">Número de Departamento (Opcional)</label>
-        <input type="text" id="departamento" placeholder="Ingrese su número de departamento" />
+        <input type="text" id="departamento" placeholder="Ingrese su número de departamento" [(ngModel)]="userForm.departamento" name="departamento" />
       </div>
     </form>
+
   </div>
 
   <div class="product-summary">
@@ -95,13 +96,10 @@
       <p>⚠️ Debes completar todos los campos y seleccionar un método de entrega antes de pagar.</p>
     </div>
 
-    <button
-      class="submit-button"
-      [disabled]="!isFormComplete"
-      (click)="attemptPayment()"
-    >
+    <button class="submit-button" [disabled]="!isFormComplete" (click)="attemptPayment()">
       Pagar
     </button>
+
 
     <div *ngIf="isLoading" class="loading-overlay">
       <div class="spinner"></div>
