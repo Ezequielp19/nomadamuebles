@@ -269,61 +269,12 @@
     <!-- Botón para mostrar/ocultar la sección de pago -->
     <button
       class="payment-toggle-button"
-      (click)="showPaymentInputs = !showPaymentInputs"
+      (click)="sendPaymentData()"
     >
-      <span>{{ showPaymentInputs ? 'Ocultar sección de pago' : 'Pagar con MercadoPago' }}</span>
-      <img src="assets/mpLogo.png" alt="MercadoPago" />
+     Comprar Ahora
     </button>
 
-    <!-- Sección de pago -->
-    <div class="payment-section" *ngIf="showPaymentInputs">
-      <!-- Inputs para nombre, email y teléfono -->
-      <div class="user-inputs">
-        <label>
-          Nombre:
-          <input
-            type="text"
-            [(ngModel)]="guestData.nombre"
-            placeholder="Ingresa tu nombre"
-            (input)="validatePaymentData()"
-          />
-        </label>
-        <label>
-          Email:
-          <input
-            type="email"
-            [(ngModel)]="guestData.email"
-            placeholder="Ingresa tu email"
-            (input)="validatePaymentData()"
-          />
-        </label>
-        <label>
-          Teléfono:
-          <input
-            type="text"
-            [(ngModel)]="guestData.telefono"
-            placeholder="Ingresa tu teléfono"
-            (input)="validatePaymentData()"
-          />
-        </label>
-      </div>
 
-      <!-- Botón de pago1 -->
-      <button
-        [disabled]="!canPay"
-        (click)="sendPaymentData()"
-        class="payment-button"
-      >
-        <img src="assets/mpLogo.png" alt="MercadoPago" />
-        Pagar ahora
-      </button>
-
-      <div *ngIf="isLoading" class="loading-overlay">
-        <div class="spinner"></div>
-        <p>Estamos creando el pago, por favor espera...</p>
-      </div>
-
-    </div>
     <!-- Botón de Gift Card -->
     <button
     class="payment-button"
@@ -370,10 +321,8 @@
     </div>
 
   </div>
+  </ng-container>
 </ng-container>
-
-
-    </ng-container>
   </div>
 </div>
 

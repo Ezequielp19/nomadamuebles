@@ -3,7 +3,7 @@ import { CommonModule, DecimalPipe } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { ModalService } from '../../service/modal.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MercadoPagoService } from '../../service/mercadopago.service';
 import { FooterComponent } from '../footer/footer.component';
 @Component({
@@ -14,7 +14,7 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrls: ['./pasos.component.css'],
 })
 export class PasosComponent implements OnInit {
-  isLoading: boolean = false;
+
   currentStep: number = 1;
   orientations: ('left' | 'right')[] = ['left', 'right'];
   steps: { id: number; title: string }[] = [];
@@ -27,12 +27,6 @@ export class PasosComponent implements OnInit {
     moduleColor?: string;
     modules?: string[];
   } = { modules: [] };
-
-  guestData = {
-    nombre: '',
-    email: '',
-    telefono: ''
-  };
 
   moduleSteps: number = 0; // Número de módulos según la isla seleccionada
   moduleOptions: string[] = []; // Opciones de módulos según el color
@@ -93,7 +87,8 @@ export class PasosComponent implements OnInit {
 
   constructor(private modalService: ModalService,
     private mercadoPagoService: MercadoPagoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.initializeSteps();
     this.initializeInfoItems();
@@ -122,11 +117,6 @@ export class PasosComponent implements OnInit {
     }
   }
 
-  validatePaymentData(): void {
-    this.canPay = this.guestData.nombre.trim() !== '' &&
-                  this.guestData.email.trim() !== '' &&
-                  this.guestData.telefono.trim() !== '';
-  }
 
   shareFurnitureLink(): void {
     if (!this.codigoFinal) {
@@ -721,39 +711,19 @@ selectModule(module: string, step: number) {
     }
 
     sendPaymentData(): void {
-      this.isLoading = true; // Activar el estado de carga
-      if (
-        this.guestData.nombre &&
-        this.guestData.telefono &&
-        this.guestData.email
-      ) {
-        // Usuario invitado
-        const paymentData = {
-          totalAmount: this.totalPrice,
-          codigoFinal: this.codigoFinal,
-          nombre: this.guestData.nombre,
-          telefono: this.guestData.telefono,
-          email: this.guestData.email,
-        };
+      const productData = {
+        totalAmount: this.totalPrice,
+        codigoFinal: this.codigoFinal,
+      };
 
-        this.mercadoPagoService.sendPaymentData(paymentData).subscribe(
-          (response: any) => {
-            this.isLoading = false; // Desactivar el estado de carga
 
-            if (response.init_point) {
-              // Redireccionar al punto de inicio de pago de MercadoPago
-              window.location.href = response.init_point;
-            } else {
-              console.error('Error en la respuesta del servidor:', response);
-            }
-          },
-          (error: any) => {
-            this.isLoading = false; // Desactivar el estado de carga
-            console.error('Error al enviar el pago', error);
-          }
-        );
+      console.log('Enviando datos del producto:', productData);
+
+      // Guardar los datos en localStorage antes de navegar
+      localStorage.setItem('productData', JSON.stringify(productData));
+
+      this.router.navigate(['/pagos']);
     }
-  }
-
 
 }
+

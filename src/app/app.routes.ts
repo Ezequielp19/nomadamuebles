@@ -26,6 +26,10 @@ export const routes: Routes = [
     loadComponent: () => import('./producto-detalle/producto-detalle.component').then((m) => m.ProductoDetalleComponent),
   },
   {
+    path: 'pagos',
+    loadComponent: () => import('./pagos/pagos.component').then((m) => m.PagosComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

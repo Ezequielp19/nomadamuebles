@@ -912,34 +912,30 @@ p {
   }
 }
 
-
 .payment-toggle-button {
-  display: flex; /* Usar flexbox para alinear contenido */
-  align-items: center; /* Centrar texto e imagen verticalmente */
-  justify-content: center; /* Centrar contenido horizontalmente */
-  padding: 10px 20px; /* Ajustar espacio interno */
-  font-size: 16px; /* Tamaño de fuente más legible */
-  font-weight: bold; /* Texto en negrita */
-  color: #ffffff; /* Texto blanco */
-  background-color: #009ee3; /* Color principal de MercadoPago */
-  border: none; /* Eliminar bordes por defecto */
-  border-radius: 8px; /* Bordes redondeados */
-  cursor: pointer; /* Cambiar cursor al pasar por encima */
-  transition: background-color 0.3s ease; /* Animación suave al cambiar color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ddd;
+  background-color: #9f9f7b;
+  color: #fff;
 }
 
 .payment-toggle-button:hover {
-  background-color: #007bb6; /* Color más oscuro al pasar el mouse */
+  border-color: #9f9f7b;
+  background-color: #DEDECD;
+  box-shadow: 0 0 5px #5F5F3B;
+  color: #000;
 }
 
-.payment-toggle-button img {
-  height: 20px; /* Altura fija para el logo */
-  margin-left: 10px; /* Espacio entre el texto y el logo */
-}
-
-.payment-toggle-button span {
-  white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
-}
 
 
 .payment-button {
@@ -1098,41 +1094,5 @@ html, body {
 
   .price-description {
     font-size: 13px; /* Ajustar la fuente de la descripción */
-  }
-}
-
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-}
-
-.spinner {
-  border: 4px solid rgba(255, 255, 255, 0.2);
-  border-top: 4px solid white;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }

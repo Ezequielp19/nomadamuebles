@@ -4,7 +4,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MercadoPagoService } from '../../service/mercadopago.service';
 
 @Component({
@@ -20,10 +20,9 @@ export class ProductoDetalleComponent {
   showPaymentInputs: { [key: number]: boolean } = {};
   guestData = { nombre: '', email: '', telefono: '' };
   canPay = false;
-  apiUrl = 'https://api.mercadopago.com/create-payment'; // Ajusta tu URL de backend
 
   constructor(private route: ActivatedRoute, private http: HttpClient,
-      private mercadoPagoService: MercadoPagoService,
+      private mercadoPagoService: MercadoPagoService, private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -241,44 +240,27 @@ export class ProductoDetalleComponent {
     this.producto = productos.find((prod) => prod.id === id) || null;
   }
 
-  togglePaymentInputs(productId: number): void {
-    this.showPaymentInputs[productId] = !this.showPaymentInputs[productId];
-  }
-
-  validatePaymentData(): void {
-    this.canPay =
-      this.guestData.nombre.trim() !== '' &&
-      this.guestData.email.trim() !== '' &&
-      this.guestData.telefono.trim() !== '';
-  }
 
   sendPaymentData(producto: any): void {
-    this.isLoading = true; // Activar el estado de carga
+    if (!producto) {
+      console.error('El producto no está definido');
+      return;
+    }
 
-    const paymentData = {
+    const productData = {
       totalAmount: producto.precio,
       codigoFinal: producto.codigo,
-      nombre: this.guestData.nombre,
-      telefono: this.guestData.telefono,
-      email: this.guestData.email,
+      imagen: producto.imagen,
+      nombre: producto.nombre
     };
 
-    this.mercadoPagoService.sendPaymentData(paymentData).subscribe(
-      (response: any) => {
-        this.isLoading = false; // Desactivar el estado de carga
+    console.log('Enviando datos del producto:', productData);
 
-        if (response.init_point) {
-          // Redireccionar al punto de inicio de pago de MercadoPago
-          window.location.href = response.init_point;
-        } else {
-          console.error('Error en la respuesta del servidor:', response);
-        }
-      },
-      (error: any) => {
-        this.isLoading = false; // Desactivar el estado de carga
-        console.error('Error al enviar el pago', error);
-      }
-    );
+    // Guardar los datos en localStorage antes de navegar
+    localStorage.setItem('productData', JSON.stringify(productData));
+
+    this.router.navigate(['/pagos']);
   }
+
 
 }

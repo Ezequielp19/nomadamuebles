@@ -29,12 +29,28 @@
   padding: 20px;
   gap: 20px;
   font-family: 'Poppins', sans-serif;
-  /* Se elimina el background-color aquí */
 }
+
+.producto-imagen-container {
+  display: flex;
+  flex-direction: column; /* Elementos en columna */
+  align-items: center; /* Centrar horizontalmente */
+  justify-content: center; /* Centrar verticalmente */
+  text-align: center; /* Centrar texto */
+  position: sticky; /* Mantiene el contenedor fijo */
+  top: 20px; /* Espaciado desde la parte superior */
+  background-color: #ffffff; /* Asegura que el fondo no sea transparente */
+  padding: 20px; /* Espaciado interno */
+  border: 1px solid #dedede; /* Borde similar a .product-summary */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+  z-index: 100; /* Asegura que se mantenga por encima de otros elementos */
+}
+
+
 
 .producto-info {
   background-color: white;
-  /* background-color: #9f9f7b;  */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -62,9 +78,9 @@
   width: 100%;
 }
 .producto-imagen {
-  width: 300px;
+  width: 600px;
   height: auto;
-  max-height: 250px;
+  max-height: 500px;
   object-fit: contain;
   border-radius: 10px;
 }
@@ -75,7 +91,7 @@
   align-items: flex-start;
   gap: 20px;
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
 }
 .producto-botones {
   display: flex;
@@ -109,47 +125,19 @@
   margin: 10px 0;
 }
 
-.user-inputs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-}
 
-.user-inputs {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 10px;
-  width: 100%;
-}
-
-.user-inputs input {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  width: 100%;
-}
-
-.payment-toggle-button,
-.payment-button,
-.payment-button1 {
+.payment-toggle-button {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
   border-radius: 8px;
   font-size: 16px;
-  font-family: 'Walkway', sans-serif;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
   max-width: 300px;
-}
-
-.payment-toggle-button {
   border: 1px solid #ddd;
   background-color: #9f9f7b;
   color: #fff;
@@ -160,42 +148,6 @@
   background-color: #DEDECD;
   box-shadow: 0 0 5px #5F5F3B;
   color: #000;
-}
-
-.payment-button {
-  background-color: #00aef0;
-  border: none;
-  color: #fff;
-  margin-top: 5px;
-}
-
-.payment-button:hover {
-  background-color: #009edc;
-  box-shadow: 0 0 5px rgba(0, 174, 240, 0.5);
-}
-
-.payment-button:disabled {
-  background-color: #ddd;
-  cursor: not-allowed;
-}
-
-.payment-button1 {
-  background-color: #3baf4a;
-  color: #fff;
-}
-
-.payment-button1:hover {
-  background-color: #34a043;
-  box-shadow: 0 0 5px rgba(0, 174, 240, 0.5);
-}
-
-.payment-toggle-button img,
-.payment-button img,
-.payment-button1 img {
-  height: 20px;
-  width: auto;
-  vertical-align: middle;
-  margin-right: 10px;
 }
 
 /* Estilos responsivos */
@@ -226,9 +178,7 @@
     gap: 15px;
   }
 
-  .payment-toggle-button,
-  .payment-button,
-  .payment-button1 {
+  .payment-toggle-button {
     font-size: 14px;
     padding: 8px 15px;
     max-width: 100%;
@@ -240,15 +190,6 @@
 
   .precio-destacado {
     font-size: 1.5rem;
-  }
-
-  .user-inputs {
-    gap: 8px;
-  }
-
-  .user-inputs input {
-    font-size: 12px;
-    padding: 8px;
   }
 
   .producto-info {
@@ -278,51 +219,8 @@
     max-height: 150px;
   }
 
-  .payment-toggle-button,
-  .payment-button,
-  .payment-button1 {
+  .payment-toggle-button{
     font-size: 12px;
     padding: 6px 10px;
-  }
-
-  .user-inputs input {
-    font-size: 10px;
-    padding: 6px;
-  }
-}
-
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-}
-
-.spinner {
-  border: 4px solid rgba(255, 255, 255, 0.2);
-  border-top: 4px solid white;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }
