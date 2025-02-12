@@ -30,6 +30,7 @@
           required
           pattern="^\d{7,11}$"
           #dni="ngModel"
+          (ngModelChange)="validateForm()"
         />
         <p *ngIf="dni.invalid && dni.touched" class="error-message">⚠️ Ingrese un DNI o CUIT válido (7 a 11 dígitos).</p>
       </div>
@@ -45,6 +46,7 @@
           required
           pattern="^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$"
           #nombre="ngModel"
+          (ngModelChange)="validateForm()"
         />
         <p *ngIf="nombre.invalid && nombre.touched" class="error-message">⚠️ Ingrese un nombre válido (solo letras).</p>
       </div>
@@ -60,6 +62,7 @@
           required
           pattern="^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$"
           #apellido="ngModel"
+          (ngModelChange)="validateForm()"
         />
         <p *ngIf="apellido.invalid && apellido.touched" class="error-message">⚠️ Ingrese un apellido válido (solo letras).</p>
       </div>
@@ -75,6 +78,7 @@
           required
           pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
           #email="ngModel"
+          (ngModelChange)="validateForm()"
         />
         <p *ngIf="email.invalid && email.touched" class="error-message">
           ⚠️ Ingrese un email válido.
@@ -92,6 +96,7 @@
           required
           pattern="^\+?\d{10,15}$"
           #telefono="ngModel"
+          (ngModelChange)="validateForm()"
         />
         <p *ngIf="telefono.invalid && telefono.touched" class="error-message">⚠️ Ingrese un teléfono válido (10 a 15 dígitos).</p>
       </div>
@@ -107,6 +112,7 @@
           required
           pattern="^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$"
           #ciudad="ngModel"
+          (ngModelChange)="validateForm()"
         />
         <p *ngIf="ciudad.invalid && ciudad.touched" class="error-message">⚠️ Ingrese una ciudad válida (solo letras).</p>
       </div>
@@ -122,6 +128,7 @@
           required
           pattern="^\d{4,8}$"
           #codigoPostal="ngModel"
+          (ngModelChange)="validateForm()"
         />
         <p *ngIf="codigoPostal.invalid && codigoPostal.touched" class="error-message">⚠️ Ingrese un código postal válido (4 a 8 dígitos).</p>
       </div>
@@ -137,6 +144,7 @@
           required
           pattern="^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$"
           #provincia="ngModel"
+          (ngModelChange)="validateForm()"
         />
         <p *ngIf="provincia.invalid && provincia.touched" class="error-message">⚠️ Ingrese una provincia válida (solo letras).</p>
       </div>

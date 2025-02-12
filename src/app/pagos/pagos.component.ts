@@ -96,7 +96,7 @@ export class PagosComponent implements OnInit {
 
   setDeliveryMethod(method: string) {
     this.selectedDeliveryMethod = method;
-    // this.validateForm();
+    this.validateForm();
   }
 
   async applyDiscount() {
@@ -105,6 +105,7 @@ export class PagosComponent implements OnInit {
       this.discountAmount = 0;
       this.discountedTotal = this.productData.totalAmount;
       this.discountApplied = false;
+      this.validateForm(); // Verificar después de aplicar el cupón
       return;
     }
 
@@ -127,15 +128,31 @@ export class PagosComponent implements OnInit {
       this.discountedTotal = this.productData.totalAmount;
       this.discountApplied = false;
     }
+    this.validateForm(); // Verificar después de aplicar el cupón
   }
 
-  attemptPayment(userForm: NgForm) {
-    if (userForm.valid) {
-      this.processPayment();
-    } else {
-      userForm.form.markAllAsTouched(); // Marca todos los campos para mostrar errores
-    }
+  validateForm() {
+    this.isFormComplete =
+      !!this.selectedDeliveryMethod &&
+      this.userFormData.dni.trim() !== '' &&
+      this.userFormData.nombre.trim() !== '' &&
+      this.userFormData.apellido.trim() !== '' &&
+      this.userFormData.email.trim() !== '' &&
+      this.userFormData.telefono.trim() !== '' &&
+      this.userFormData.ciudad.trim() !== '' &&
+      this.userFormData.codigoPostal.trim() !== '' &&
+      this.userFormData.provincia.trim() !== '';
   }
+
+attemptPayment(userForm: NgForm) {
+    this.validateForm(); // Asegurar que se valida antes del pago
+    if (!this.isFormComplete || !userForm.valid) {
+      this.showWarning = true;
+      return;
+    }
+    this.processPayment();
+}
+
 
   processPayment(): void {
     this.isLoading = true;
