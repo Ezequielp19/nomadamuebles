@@ -37,8 +37,6 @@
   align-items: center; /* Centrar horizontalmente */
   justify-content: center; /* Centrar verticalmente */
   text-align: center; /* Centrar texto */
-  position: sticky; /* Mantiene el contenedor fijo */
-  top: 20px; /* Espaciado desde la parte superior */
   background-color: #ffffff; /* Asegura que el fondo no sea transparente */
   padding: 20px; /* Espaciado interno */
   border: 1px solid #dedede; /* Borde similar a .product-summary */
@@ -149,6 +147,15 @@
   box-shadow: 0 0 5px #5F5F3B;
   color: #000;
 }
+
+/* Aplica position: sticky solo en pantallas grandes */
+@media (min-width: 769px) {
+  .producto-imagen-container {
+    position: sticky;
+    top: 20px;
+  }
+}
+
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
