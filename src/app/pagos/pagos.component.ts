@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MercadoPagoService } from '../../service/mercadopago.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Firestore, collection, query, where, getDocs } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-pagos',
   standalone: true,
-  imports: [CommonModule, FooterComponent, NavbarComponent, FormsModule],
+  imports: [CommonModule, FooterComponent, NavbarComponent, FormsModule, DecimalPipe],
   templateUrl: './pagos.component.html',
   styleUrls: ['./pagos.component.css'],
 })
@@ -28,7 +28,7 @@ export class PagosComponent implements OnInit {
   discountApplied: boolean = false; // Indica si el descuento fue aplicado
   discountedTotal: number = 0; // Precio con descuento
 
-  userForm = {
+  userFormData = {
     pais: 'Argentina',
     dni: '',
     nombre: '',
@@ -38,7 +38,7 @@ export class PagosComponent implements OnInit {
     ciudad: '',
     codigoPostal: '',
     provincia: '',
-    departamento: '', // Campo opcional
+    departamento: ''
   };
 
   constructor(private router: Router, private mercadoPagoService: MercadoPagoService, private firestore: Firestore) {}
@@ -50,7 +50,7 @@ export class PagosComponent implements OnInit {
       this.totalAmount = this.productData.totalAmount;
 
       // Crear una copia para los campos editables
-      this.userForm = {
+      this.userFormData = {
         pais: 'Argentina',
         dni: '',
         nombre: '',
@@ -96,7 +96,7 @@ export class PagosComponent implements OnInit {
 
   setDeliveryMethod(method: string) {
     this.selectedDeliveryMethod = method;
-    this.validateForm();
+    // this.validateForm();
   }
 
   async applyDiscount() {
@@ -115,7 +115,10 @@ export class PagosComponent implements OnInit {
     if (!querySnapshot.empty) {
       const cuponData = querySnapshot.docs[0].data();
       this.discountAmount = cuponData['valor'];
-      this.discountedTotal = this.productData.totalAmount * (1 - this.discountAmount / 100);
+
+      // Calculamos el total con descuento y redondeamos a 3 decimales
+      this.discountedTotal = Number((this.productData.totalAmount * (1 - this.discountAmount / 100)).toFixed(3));
+
       this.invalidCoupon = false;
       this.discountApplied = true;
     } else {
@@ -126,26 +129,11 @@ export class PagosComponent implements OnInit {
     }
   }
 
-  validateForm() {
-    this.isFormComplete =
-      this.userForm.dni.trim() !== '' &&
-      this.userForm.nombre.trim() !== '' &&
-      this.userForm.apellido.trim() !== '' &&
-      this.userForm.email.trim() !== '' &&
-      this.userForm.telefono.trim() !== '' &&
-      this.userForm.ciudad.trim() !== '' &&
-      this.userForm.codigoPostal.trim() !== '' &&
-      this.userForm.provincia.trim() !== '' &&
-      this.selectedDeliveryMethod !== null;
-
-    this.showWarning = !this.isFormComplete;
-  }
-
-  attemptPayment() {
-    if (!this.isFormComplete) {
-      this.showWarning = true;
-    } else {
+  attemptPayment(userForm: NgForm) {
+    if (userForm.valid) {
       this.processPayment();
+    } else {
+      userForm.form.markAllAsTouched(); // Marca todos los campos para mostrar errores
     }
   }
 
@@ -158,7 +146,7 @@ export class PagosComponent implements OnInit {
       nombreProducto: this.productData.nombre,
       deliveryMethod: this.selectedDeliveryMethod,
       discountAmount: this.discountAmount,
-      userData: { ...this.userForm },
+      userData: { ...this.userFormData },
     };
 
     this.mercadoPagoService.sendPaymentData(paymentData).subscribe(

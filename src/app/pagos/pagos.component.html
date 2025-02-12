@@ -18,52 +18,135 @@
     </div>
 
     <h2>Datos del Usuario</h2>
-    <form>
+    <form #userForm="ngForm">
       <div class="form-group">
         <label for="dni">DNI o CUIT</label>
-        <input type="text" id="dni" placeholder="Ingrese su DNI o CUIT" [(ngModel)]="userForm.dni" (ngModelChange)="validateForm()" name="dni" />
+        <input
+          type="text"
+          id="dni"
+          placeholder="Ingrese su DNI o CUIT"
+          [(ngModel)]="userFormData.dni"
+          name="dni"
+          required
+          pattern="^\d{7,11}$"
+          #dni="ngModel"
+        />
+        <p *ngIf="dni.invalid && dni.touched" class="error-message">⚠️ Ingrese un DNI o CUIT válido (7 a 11 dígitos).</p>
       </div>
 
       <div class="form-group">
         <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" placeholder="Ingrese su nombre" [(ngModel)]="userForm.nombre" (ngModelChange)="validateForm()" name="nombre" />
+        <input
+          type="text"
+          id="nombre"
+          placeholder="Ingrese su nombre"
+          [(ngModel)]="userFormData.nombre"
+          name="nombre"
+          required
+          pattern="^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$"
+          #nombre="ngModel"
+        />
+        <p *ngIf="nombre.invalid && nombre.touched" class="error-message">⚠️ Ingrese un nombre válido (solo letras).</p>
       </div>
 
       <div class="form-group">
         <label for="apellido">Apellido</label>
-        <input type="text" id="apellido" placeholder="Ingrese su apellido" [(ngModel)]="userForm.apellido" (ngModelChange)="validateForm()" name="apellido" />
+        <input
+          type="text"
+          id="apellido"
+          placeholder="Ingrese su apellido"
+          [(ngModel)]="userFormData.apellido"
+          name="apellido"
+          required
+          pattern="^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$"
+          #apellido="ngModel"
+        />
+        <p *ngIf="apellido.invalid && apellido.touched" class="error-message">⚠️ Ingrese un apellido válido (solo letras).</p>
       </div>
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" id="email" placeholder="Ingrese su email" [(ngModel)]="userForm.email" (ngModelChange)="validateForm()" name="email" />
+        <input
+          type="email"
+          id="email"
+          placeholder="Ingrese su email"
+          [(ngModel)]="userFormData.email"
+          name="email"
+          required
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+          #email="ngModel"
+        />
+        <p *ngIf="email.invalid && email.touched" class="error-message">
+          ⚠️ Ingrese un email válido.
+        </p>
       </div>
 
       <div class="form-group">
         <label for="telefono">Teléfono</label>
-        <input type="text" id="telefono" placeholder="Ingrese su teléfono" [(ngModel)]="userForm.telefono" (ngModelChange)="validateForm()" name="telefono" />
+        <input
+          type="tel"
+          id="telefono"
+          placeholder="Ingrese su teléfono"
+          [(ngModel)]="userFormData.telefono"
+          name="telefono"
+          required
+          pattern="^\+?\d{10,15}$"
+          #telefono="ngModel"
+        />
+        <p *ngIf="telefono.invalid && telefono.touched" class="error-message">⚠️ Ingrese un teléfono válido (10 a 15 dígitos).</p>
       </div>
 
       <div class="form-group">
         <label for="ciudad">Ciudad</label>
-        <input type="text" id="ciudad" placeholder="Ingrese su ciudad" [(ngModel)]="userForm.ciudad" (ngModelChange)="validateForm()" name="ciudad" />
+        <input
+          type="text"
+          id="ciudad"
+          placeholder="Ingrese su ciudad"
+          [(ngModel)]="userFormData.ciudad"
+          name="ciudad"
+          required
+          pattern="^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$"
+          #ciudad="ngModel"
+        />
+        <p *ngIf="ciudad.invalid && ciudad.touched" class="error-message">⚠️ Ingrese una ciudad válida (solo letras).</p>
       </div>
 
       <div class="form-group">
         <label for="codigo-postal">Código Postal</label>
-        <input type="text" id="codigo-postal" placeholder="Ingrese su código postal" [(ngModel)]="userForm.codigoPostal" (ngModelChange)="validateForm()" name="codigoPostal" />
+        <input
+          type="text"
+          id="codigo-postal"
+          placeholder="Ingrese su código postal"
+          [(ngModel)]="userFormData.codigoPostal"
+          name="codigoPostal"
+          required
+          pattern="^\d{4,8}$"
+          #codigoPostal="ngModel"
+        />
+        <p *ngIf="codigoPostal.invalid && codigoPostal.touched" class="error-message">⚠️ Ingrese un código postal válido (4 a 8 dígitos).</p>
       </div>
 
       <div class="form-group">
         <label for="provincia">Provincia</label>
-        <input type="text" id="provincia" placeholder="Ingrese su provincia" [(ngModel)]="userForm.provincia" (ngModelChange)="validateForm()" name="provincia" />
+        <input
+          type="text"
+          id="provincia"
+          placeholder="Ingrese su provincia"
+          [(ngModel)]="userFormData.provincia"
+          name="provincia"
+          required
+          pattern="^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$"
+          #provincia="ngModel"
+        />
+        <p *ngIf="provincia.invalid && provincia.touched" class="error-message">⚠️ Ingrese una provincia válida (solo letras).</p>
       </div>
 
       <div class="form-group">
         <label for="departamento">Número de Departamento (Opcional)</label>
-        <input type="text" id="departamento" placeholder="Ingrese su número de departamento" [(ngModel)]="userForm.departamento" name="departamento" />
+        <input type="text" id="departamento" placeholder="Ingrese su número de departamento" [(ngModel)]="userFormData.departamento" name="departamento" />
       </div>
     </form>
+
 
   </div>
 
@@ -76,10 +159,10 @@
         class="product-image"
       />
       <p><strong>Producto:</strong> {{ productData.nombre || productData.codigoFinal }}</p>
-      <p><strong>Precio:</strong> ${{ productData.totalAmount }}</p>
-      <p *ngIf="discountApplied; else originalTotal"><strong>Total con descuento:</strong> ${{ discountedTotal }}</p>
+      <p><strong>Precio:</strong> ${{ productData.totalAmount | number:'1.0-0' }}</p>
+      <p *ngIf="discountApplied; else originalTotal"><strong>Total con descuento:</strong> ${{ discountedTotal | number:'1.0-0' }}</p>
       <ng-template #originalTotal>
-        <p><strong>Total:</strong> ${{ productData.totalAmount }}</p>
+        <p><strong>Total:</strong> ${{ productData.totalAmount | number:'1.0-0' }}</p>
       </ng-template>
 
       <!-- Cupón de Descuento -->
@@ -96,10 +179,9 @@
       <p>⚠️ Debes completar todos los campos y seleccionar un método de entrega antes de pagar.</p>
     </div>
 
-    <button class="submit-button" [disabled]="!isFormComplete" (click)="attemptPayment()">
+    <button class="submit-button" [disabled]="!isFormComplete" (click)="attemptPayment(userForm)">
       Pagar
     </button>
-
 
     <div *ngIf="isLoading" class="loading-overlay">
       <div class="spinner"></div>
