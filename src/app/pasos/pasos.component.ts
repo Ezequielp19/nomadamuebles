@@ -125,7 +125,7 @@ export class PasosComponent implements OnInit {
     }
 
     const link = `${window.location.origin}/pasos?code=${this.codigoFinal}`;
-    const numeroWhatsApp = "5491134802328"; // Reemplaza con el número de WhatsApp
+    const numeroWhatsApp = "5491131387808"; // Reemplaza con el número de WhatsApp
     const mensaje = `Hola, mira esta isla que he creado: ${link}`;
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
@@ -139,7 +139,7 @@ export class PasosComponent implements OnInit {
     }
 
     const link = `${window.location.origin}/pasos?code=${this.codigoFinal}`;
-    const numeroWhatsApp = "5491134802328"; // Reemplaza con el número de WhatsApp
+    const numeroWhatsApp = "5491131387808"; // Reemplaza con el número de WhatsApp
     const mensaje = `Hola, quiero adquirir una Gift Card para la isla con este enlace: ${link}`;
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
