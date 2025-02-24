@@ -995,54 +995,87 @@ html, body {
   box-sizing: border-box; /* Incluir padding y border en el tamaño total */
 }
 
+/* Contenedor principal */
 .results-container {
-  display: flex; /* Activar flexbox */
-  flex-direction: column; /* Alinear elementos en columna */
-  align-items: center; /* Centrar horizontalmente */
-  gap: 20px; /* Espaciado vertical entre bloques */
-  margin-top: 20px; /* Separación superior */
-  width: 100%; /* Asegurarse de que ocupe todo el ancho del contenedor */
-  padding: 0 15px; /* Añadir padding lateral para prevenir bordes pegados */
-  box-sizing: border-box; /* Incluir padding en el tamaño del contenedor */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
+/* Bloques de información (precio y código de isla) */
 .highlighted-result,
 .price-container {
-  font-size: 18px; /* Tamaño uniforme para ambos bloques */
-  font-weight: bold; /* Negrita */
-  color: #60603C; /* Verde oscuro */
-  background-color: #f1f8e9; /* Fondo suave */
-  padding: 20px; /* Espaciado interno consistente */
-  border-radius: 8px; /* Bordes redondeados */
-  border: 2px solid #60603C; /* Borde */
-  text-align: center; /* Centrar texto */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  width: 100%; /* Ocupa todo el ancho disponible */
-  max-width: 400px; /* Ancho máximo uniforme */
-  box-sizing: border-box; /* Evitar que padding exceda el tamaño */
+  font-size: 18px;
+  font-weight: bold;
+  color: #60603C;
+  background-color: #f1f8e9;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #60603C;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
 }
 
-.price-container {
-  line-height: 1.5; /* Espaciado entre líneas para mejor legibilidad */
-}
-
+/* Título del precio */
 .price-label {
-  font-size: 20px; /* Tamaño mayor para el título */
-  color: #60603C; /* Verde oscuro */
+  font-size: 20px;
+  color: #60603C;
 }
 
-.price-value {
-  font-size: 24px; /* Tamaño extra grande */
-  font-weight: bold; /* Negrita */
-  color: #283618; /* Verde más oscuro */
-  margin: 10px 0; /* Separación entre el título y el precio */
+/* Precio con descuento */
+.discounted-price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2E7D32; /* Verde oscuro */
+  margin: 10px 0;
+  border: 2px solid #2E7D32;
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-block;
+  background-color: #f1f8e9;
 }
 
+/* Contenedor del precio original */
+.original-price-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Precio original tachado */
+.original-price {
+  font-size: 18px;
+  color: #888;
+  text-decoration: line-through;
+}
+
+/* Insignia del descuento (-14%) */
+.discount-badge {
+  background-color: #2ecc71;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+/* Descripción del precio */
 .price-description {
-  font-size: 16px; /* Tamaño de fuente estándar */
-  color: #333; /* Texto gris oscuro */
-  margin-top: 10px; /* Separación superior */
+  font-size: 16px;
+  color: #333;
+  margin-top: 10px;
 }
+
 
 /* Estilos para vistas móviles */
 @media screen and (max-width: 768px) {

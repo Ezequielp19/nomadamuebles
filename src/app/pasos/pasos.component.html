@@ -250,21 +250,32 @@
         </div>
       </div>
     </div>
+
+
     <div class="results-container">
       <p class="highlighted-result">
-        Código de isla: <br>
+        Código de isla: <br />
         {{ generateFinalCode() }}
       </p>
+
       <div class="price-container">
-        <p class="price-label">Precio final:</p>
-        <p class="price-value">$ {{ totalPrice | number:'1.0-0' }}</p>
+        <p class="price-label">Precio con descuento:</p>
+        <p class="discounted-price">$ {{ discountedTotal | number:'1.0-0' }}</p>
+
+        <div class="original-price-container">
+          <span class="original-price">Precio Original: ${{ totalPrice | number:'1.0-0' }}</span>
+          <span class="discount-badge">-14%</span>
+        </div>
+
         <p class="price-description">
-          Incluye todos los módulos y la mesada que seleccionaste. <br>
-          ¡Solo queda un paso más para que sea tuya! <br>
+          Incluye todos los módulos y la mesada que seleccionaste. <br />
+          ¡Solo queda un paso más para que sea tuya! <br />
           Pronto estarás disfrutando de tu isla Más Nómada.
         </p>
       </div>
     </div>
+
+
 
     <!-- Botón para mostrar/ocultar la sección de pago -->
     <button

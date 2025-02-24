@@ -42,7 +42,7 @@ export class PasosComponent implements OnInit {
   isMobileView = window.innerWidth <= 768; // Detectar vista móvil
   menuOpen = false;
   totalPrice: number = 0; // Variable para almacenar el precio total
-
+  discountedTotal: number = 0; // Nueva variable para el precio con descuento
   showPaymentInputs: boolean = false; // Agregar esta propiedad
   canPay: boolean = false; // Para controlar la habilitación del botón de pago
   isMobileView1 = window.innerWidth <= 768; // Detectar vista móvil
@@ -50,10 +50,10 @@ export class PasosComponent implements OnInit {
 
   // List of available island types
   tipoIslaOptions = [
-    { id: 'isla1', name: 'Soledad', price: 140000 , size: '57', imagePath: '../../assets/tipoIsla/1modulo.webp' },
-    { id: 'isla2', name: 'Victoria', price: 190000 ,size: '107', imagePath: '../../assets/tipoIsla/2modulos.webp' },
-    { id: 'isla3', name: 'Gran Malvina',price: 220000 , size: '157', imagePath: '../../assets/tipoIsla/2modulos2.webp' },
-    { id: 'isla4', name: 'Trinidad',price: 220000 , size: '157', imagePath: '../../assets/tipoIsla/3modulos.webp' },
+    { id: 'isla1', name: 'Soledad', price: 109000 , size: '57', imagePath: '../../assets/tipoIsla/1modulo.webp' },
+    { id: 'isla2', name: 'Victoria', price: 151000 ,size: '107', imagePath: '../../assets/tipoIsla/2modulos.webp' },
+    { id: 'isla3', name: 'Gran Malvina',price: 186000 , size: '157', imagePath: '../../assets/tipoIsla/2modulos2.webp' },
+    { id: 'isla4', name: 'Trinidad',price: 186000 , size: '157', imagePath: '../../assets/tipoIsla/3modulos.webp' },
   ];
 
 
@@ -71,13 +71,13 @@ export class PasosComponent implements OnInit {
   ];
 
   MODULE_PRICES= [
-    { id: 'modulo_01', title: 'Módulo 01', price: 130000 },
-    { id: 'modulo_02', title: 'Módulo 02', price: 130000 },
-    { id: 'modulo_03', title: 'Módulo 03', price: 210000 },
-    { id: 'modulo_04', title: 'Módulo 04', price: 210000 },
-    { id: 'modulo_05', title: 'Módulo 05', price: 130000 },
-    { id: 'modulo_06', title: 'Módulo 06', price: 210000 },
-    { id: 'modulo_07', title: 'Módulo 07', price: 130000 }
+    { id: 'modulo_01', title: 'Módulo 01', price: 163000 },
+    { id: 'modulo_02', title: 'Módulo 02', price: 163000 },
+    { id: 'modulo_03', title: 'Módulo 03', price: 314000 },
+    { id: 'modulo_04', title: 'Módulo 04', price: 314000 },
+    { id: 'modulo_05', title: 'Módulo 05', price: 163000 },
+    { id: 'modulo_06', title: 'Módulo 06', price: 314000 },
+    { id: 'modulo_07', title: 'Módulo 07', price: 163000 }
   ]
 
   orientationImages: Record<string, string> = {
@@ -151,11 +151,11 @@ export class PasosComponent implements OnInit {
       // Datos estáticos
       const staticInfoItems = [
         {
-          id: 'isla1', title: 'Soledad', price: 130000 , description: 'Tamaño: Mesada de 57x50 cm | Módulo: 1 a elección. Perfecta para espacios pequeños La Isla Soledad es el diseño compacto de Más Nómada, ideal para esos rincones donde parece que no hay lugar para nada más, pero vos sabés que un poco de funcionalidad extra hace toda la diferencia. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. Compacta y funcional, pensada para vos'
+          id: 'isla1', title: 'Soledad', price: 109000 , description: 'Tamaño: Mesada de 57x50 cm | Módulo: 1 a elección. Perfecta para espacios pequeños La Isla Soledad es el diseño compacto de Más Nómada, ideal para esos rincones donde parece que no hay lugar para nada más, pero vos sabés que un poco de funcionalidad extra hace toda la diferencia. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. Compacta y funcional, pensada para vos'
         },
-        { id: 'isla2', title: 'Victoria', price: 180000 ,description: 'Tamaño: Mesada de 107x50 cm | Módulos: 2 a elección. La Isla Victoria es ese toque de espacio que siempre quisiste en tu cocina. Con dos módulos a medida y con ese extra de mesada es práctica, funcional y diseñada para facilitarte el día a día. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. Más almacenamiento, más estilo, más espacio para vos.'},
-        { id: 'isla3', title: 'Gran Malvina',price: 210000 , description: 'Tamaño: Mesada de 157x50 cm | Módulos: 2 a elección. Si buscás un espacio que lo tenga todo, la Isla Gran Malvina es para vos. Su gran mesada con vuelo y sus módulos personalizables la convierten en un centro de actividades para toda la casa. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. La Isla Gran Malvina es más que una isla: es tu nuevo espacio favorito.' },
-        { id: 'isla4', title: 'Trinidad', price: 210000 ,description: 'Tamaño: Mesada de 157x50cm| Módulos: 3 a elección. Con la Isla Trinidad, tu cocina no solo será más funcional, será el lugar donde todos querrán estar. Amplia, organizada y completamente personalizable, está diseñada para quienes buscan el máximo. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. Para quienes quieren todo: funcionalidad, estilo y el mejor lugar para compartir.' },
+        { id: 'isla2', title: 'Victoria', price: 151000 ,description: 'Tamaño: Mesada de 107x50 cm | Módulos: 2 a elección. La Isla Victoria es ese toque de espacio que siempre quisiste en tu cocina. Con dos módulos a medida y con ese extra de mesada es práctica, funcional y diseñada para facilitarte el día a día. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. Más almacenamiento, más estilo, más espacio para vos.'},
+        { id: 'isla3', title: 'Gran Malvina',price: 186000 , description: 'Tamaño: Mesada de 157x50 cm | Módulos: 2 a elección. Si buscás un espacio que lo tenga todo, la Isla Gran Malvina es para vos. Su gran mesada con vuelo y sus módulos personalizables la convierten en un centro de actividades para toda la casa. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. La Isla Gran Malvina es más que una isla: es tu nuevo espacio favorito.' },
+        { id: 'isla4', title: 'Trinidad', price: 186000 ,description: 'Tamaño: Mesada de 157x50cm| Módulos: 3 a elección. Con la Isla Trinidad, tu cocina no solo será más funcional, será el lugar donde todos querrán estar. Amplia, organizada y completamente personalizable, está diseñada para quienes buscan el máximo. Sofisticación en cada detalle: Su mesada en cascada es moderna y elegante. Movilidad total: Rediseñá y aprovechá tus espacios al máximo; las ruedas de tu isla te permiten moverla con facilidad y adaptarla a cada momento. Para quienes quieren todo: funcionalidad, estilo y el mejor lugar para compartir.' },
         { id: 'mesada_BN', title: 'Blanco Nature', description: 'Tono de blanco con un sutil veteado que imita la textura de la madera natural.' },
         { id: 'mesada_SA', title: 'Negro Sauco', description: 'De color intenso, este diseño de madera negra quemada resalta a la perfección la textura BARK.' },
         { id: 'mesada_K', title: 'Roble Kendall Natural', description: 'Tono suave y luminoso, similar a la madera veteada, pero con un toque tenue y delicado.' },
@@ -163,13 +163,13 @@ export class PasosComponent implements OnInit {
         { id: 'orientation_right', title: 'Orientación Derecha', description: 'La orientación derecha...' },
         { id: 'modulo_B', title: 'Blanco Liso', description: 'Un color neutro que combina con cualquier ambiente.' },
         { id: 'modulo_S', title: 'Verde Safari', description: 'Para crear el equilibrio perfecto entre la naturaleza y la armonía de las maderas, su tonalidad transmite la conexión con tus raíces.' },
-        { id: 'modulo_01', title: 'Módulo 01', price: 130000 ,description: 'Con 3 espacios de guardado exhibidores. Perfecta para canastos, ollas grandes y esos objetos únicos que son parte de tu vida que te encantaría tener a la vista y al alcance de tu mano. ¡Sentite orgulloso de tus tesoros y exhibilos!' },
-        { id: 'modulo_02', title: 'Módulo 02', price: 130000 ,description: 'Con 3 espacios de guardado y puerta. Para una experiencia más íntima con una visión minimalista y limpia del desorden cotidiano en tu cocina. ¿Qué esperás para cerrarle la puerta al caos y disfrutar de una cocina más ordenada?' },
-        { id: 'modulo_03', title: 'Módulo 03', price: 210000 ,description: 'Con 2 cajones grandes y profundos. Ideal para almacenar accesorios, utensilios voluminosos y electrodomésticos de mano. Todo al alcance sin necesidad de quedarte buscando en un montón de cosas apiladas. Abrí un cajón y encontrá fácilmente lo que buscás.' },
-        { id: 'modulo_04', title: 'Módulo 04', price: 210000 ,description: 'Con 2 cajones medianos y 1 grande. Ideal para tener siempre a mano lo que más usás: cubiertos, utensilios voluminosos, electrodomésticos de mano y accesorios de cocina. Disfrutá de una cocina bien organizada con espacio para todo.' },
-        { id: 'modulo_05', title: 'Módulo 05', price: 130000 ,description: 'Combina privacidad y organización con 2 estantes con puerta y un espacio “box”. Tené a la vista y al alcance de tu mano tus accesorios indispensables. Preparate para cocinar de una forma rápida y fácil. Disfrutá de una cocina siempre lista para vos.' },
-        { id: 'modulo_06', title: 'Módulo 06', price: 210000 ,description: 'Con 2 cajones y un espacio “box”. Combiná funcionalidad y orden. Tené tus utensilios y accesorios a la vista y guardados o siempre al alcance de tu mano. Disfrutá de manera eficiente tu cocina, organizála y dejála lista para usar.' },
-        { id: 'modulo_07', title: 'Módulo 07', price: 130000 ,description: 'Con estantes visibles y una cava lateral. Te permite almacenar 6 botellas, listas para disfrutar. Tené todo organizado y al alcance. ¡Perfecto para compartir momentos únicos!' }
+        { id: 'modulo_01', title: 'Módulo 01', price: 163000 ,description: 'Con 3 espacios de guardado exhibidores. Perfecta para canastos, ollas grandes y esos objetos únicos que son parte de tu vida que te encantaría tener a la vista y al alcance de tu mano. ¡Sentite orgulloso de tus tesoros y exhibilos!' },
+        { id: 'modulo_02', title: 'Módulo 02', price: 163000 ,description: 'Con 3 espacios de guardado y puerta. Para una experiencia más íntima con una visión minimalista y limpia del desorden cotidiano en tu cocina. ¿Qué esperás para cerrarle la puerta al caos y disfrutar de una cocina más ordenada?' },
+        { id: 'modulo_03', title: 'Módulo 03', price: 314000 ,description: 'Con 2 cajones grandes y profundos. Ideal para almacenar accesorios, utensilios voluminosos y electrodomésticos de mano. Todo al alcance sin necesidad de quedarte buscando en un montón de cosas apiladas. Abrí un cajón y encontrá fácilmente lo que buscás.' },
+        { id: 'modulo_04', title: 'Módulo 04', price: 314000 ,description: 'Con 2 cajones medianos y 1 grande. Ideal para tener siempre a mano lo que más usás: cubiertos, utensilios voluminosos, electrodomésticos de mano y accesorios de cocina. Disfrutá de una cocina bien organizada con espacio para todo.' },
+        { id: 'modulo_05', title: 'Módulo 05', price: 163000 ,description: 'Combina privacidad y organización con 2 estantes con puerta y un espacio “box”. Tené a la vista y al alcance de tu mano tus accesorios indispensables. Preparate para cocinar de una forma rápida y fácil. Disfrutá de una cocina siempre lista para vos.' },
+        { id: 'modulo_06', title: 'Módulo 06', price: 314000 ,description: 'Con 2 cajones y un espacio “box”. Combiná funcionalidad y orden. Tené tus utensilios y accesorios a la vista y guardados o siempre al alcance de tu mano. Disfrutá de manera eficiente tu cocina, organizála y dejála lista para usar.' },
+        { id: 'modulo_07', title: 'Módulo 07', price: 163000 ,description: 'Con estantes visibles y una cava lateral. Te permite almacenar 6 botellas, listas para disfrutar. Tené todo organizado y al alcance. ¡Perfecto para compartir momentos únicos!' }
     ];
 
    // Generar información dinámica para los módulos cargados
@@ -644,6 +644,7 @@ selectModule(module: string, step: number) {
     this.codigoFinal = `${size}${colorMesada}${orientation}-${colorModulo}${modules}`;
 
     console.log('Código generado:', this.codigoFinal);
+    this.calcularDescuento();
     return this.codigoFinal;
   }
 
@@ -711,6 +712,7 @@ selectModule(module: string, step: number) {
     }
 
     sendPaymentData(): void {
+      this.calcularDescuento();
       const productData = {
         totalAmount: this.totalPrice,
         codigoFinal: this.codigoFinal,
@@ -725,5 +727,10 @@ selectModule(module: string, step: number) {
       this.router.navigate(['/pagos']);
     }
 
+
+    calcularDescuento() {
+      const descuento = 0.14; // 14% de descuento
+      this.discountedTotal = this.totalPrice - (this.totalPrice * descuento);
+    }
 }
 

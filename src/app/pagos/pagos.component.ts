@@ -29,6 +29,8 @@ export class PagosComponent implements OnInit {
   discountApplied: boolean = false; // Indica si el descuento fue aplicado
   discountedTotal: number = 0; // Precio con descuento
 
+  readonly DESCUENTO = 0.14;
+
   userFormData = {
     pais: 'Argentina',
     dni: '',
@@ -37,8 +39,9 @@ export class PagosComponent implements OnInit {
     email: '',
     telefono: '',
     ciudad: '',
-    codigoPostal: '',
     provincia: '',
+    codigoPostal: '',
+    direccion: '',
     departamento: ''
   };
 
@@ -59,8 +62,9 @@ export class PagosComponent implements OnInit {
         email: '',
         telefono: '',
         ciudad: '',
-        codigoPostal: '',
         provincia: '',
+        codigoPostal: '',
+        direccion:'',
         departamento: ''
       };
 
@@ -68,69 +72,23 @@ export class PagosComponent implements OnInit {
     } else {
       console.error('No se recibieron datos del producto');
     }
+
+    if (this.productData) {
+      this.calcularPrecioConDescuento();
+    }
   }
 
-
-  async validateCoupon() {
-    if (!this.discountCode.trim()) {
-      this.invalidCoupon = false;
-      this.discountAmount = 0;
-      this.totalAmount = this.productData.totalAmount;
-      return;
-    }
-
-    const cuponRef = collection(this.firestore, 'cupon');
-    const q = query(cuponRef, where('codigo', '==', this.discountCode.trim()));
-    const querySnapshot = await getDocs(q);
-
-    if (!querySnapshot.empty) {
-      const cuponData = querySnapshot.docs[0].data();
-      this.discountAmount = cuponData['valor'];
-      this.totalAmount = this.productData.totalAmount * (1 - this.discountAmount / 100);
-      this.invalidCoupon = false;
-    } else {
-      this.invalidCoupon = true;
-      this.discountAmount = 0;
-      this.totalAmount = this.productData.totalAmount;
-    }
+    // Aplica el descuento a todos los productos automáticamente
+  calcularPrecioConDescuento() {
+    this.discountAmount = this.productData.totalAmount * this.DESCUENTO;
+    this.discountedTotal = this.productData.totalAmount * (1 - this.DESCUENTO);
+    this.discountedTotal = Number(this.discountedTotal.toFixed(2)); // Redondear a 2 decimales
   }
 
   setDeliveryMethod(method: string) {
     this.selectedDeliveryMethod = method;
     this.showDeliveryWarning = false; // Oculta la advertencia si el usuario elige una opción
     this.validateForm();
-  }
-
-  async applyDiscount() {
-    if (!this.discountCode.trim()) {
-      this.invalidCoupon = false;
-      this.discountAmount = 0;
-      this.discountedTotal = this.productData.totalAmount;
-      this.discountApplied = false;
-      this.validateForm(); // Verificar después de aplicar el cupón
-      return;
-    }
-
-    const cuponRef = collection(this.firestore, 'cupon');
-    const q = query(cuponRef, where('codigo', '==', this.discountCode.trim()));
-    const querySnapshot = await getDocs(q);
-
-    if (!querySnapshot.empty) {
-      const cuponData = querySnapshot.docs[0].data();
-      this.discountAmount = cuponData['valor'];
-
-      // Calculamos el total con descuento y redondeamos a 3 decimales
-      this.discountedTotal = Number((this.productData.totalAmount * (1 - this.discountAmount / 100)).toFixed(3));
-
-      this.invalidCoupon = false;
-      this.discountApplied = true;
-    } else {
-      this.invalidCoupon = true;
-      this.discountAmount = 0;
-      this.discountedTotal = this.productData.totalAmount;
-      this.discountApplied = false;
-    }
-    this.validateForm(); // Verificar después de aplicar el cupón
   }
 
   validateForm() {
@@ -142,8 +100,9 @@ export class PagosComponent implements OnInit {
       this.userFormData.email.trim() !== '' &&
       this.userFormData.telefono.trim() !== '' &&
       this.userFormData.ciudad.trim() !== '' &&
+      this.userFormData.provincia.trim() !== '' &&
       this.userFormData.codigoPostal.trim() !== '' &&
-      this.userFormData.provincia.trim() !== '';
+      this.userFormData.direccion.trim() !== ''
   }
 
   attemptPayment(userForm: NgForm) {
@@ -162,32 +121,33 @@ export class PagosComponent implements OnInit {
 }
 
 
-  processPayment(): void {
-    this.isLoading = true;
+processPayment(): void {
+  this.isLoading = true;
 
-    const paymentData = {
-      totalAmount: this.totalAmount,
-      codigoFinal: this.productData.codigoFinal,
-      nombreProducto: this.productData.nombre,
-      deliveryMethod: this.selectedDeliveryMethod,
-      discountAmount: this.discountAmount,
-      userData: { ...this.userFormData },
-    };
+  const paymentData = {
+    totalAmount: this.discountedTotal, // Usamos el precio con descuento
+    codigoFinal: this.productData.codigoFinal,
+    nombreProducto: this.productData.nombre,
+    deliveryMethod: this.selectedDeliveryMethod,
+    discountAmount: this.discountAmount, // Mantenemos el valor del descuento
+    userData: { ...this.userFormData },
+  };
 
-    this.mercadoPagoService.sendPaymentData(paymentData).subscribe(
-      (response: any) => {
-        this.isLoading = false;
+  this.mercadoPagoService.sendPaymentData(paymentData).subscribe(
+    (response: any) => {
+      this.isLoading = false;
 
-        if (response.init_point) {
-          window.location.href = response.init_point;
-        } else {
-          console.error('Error en la respuesta del servidor:', response);
-        }
-      },
-      (error: any) => {
-        this.isLoading = false;
-        console.error('Error al enviar el pago', error);
+      if (response.init_point) {
+        window.location.href = response.init_point;
+      } else {
+        console.error('Error en la respuesta del servidor:', response);
       }
-    );
-  }
+    },
+    (error: any) => {
+      this.isLoading = false;
+      console.error('Error al enviar el pago', error);
+    }
+  );
+}
+
 }

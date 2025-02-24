@@ -131,6 +131,47 @@ input:focus {
   color: #2e7d32;
 }
 
+.producto-seguro {
+  display: block; /* Para centrar correctamente con margin auto */
+  max-width: 130px; /* Ajusta el tamaño máximo de la imagen */
+  height: auto; /* Mantiene la proporción */
+  margin: 0 auto; /* Centra horizontalmente */
+}
+
+/* Contenedor de precios para alinearlos bien */
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el precio original y el descuento */
+}
+
+/* Precio original tachado */
+.original-price {
+  font-size: 1rem;
+  color: #333; /* Mantiene el mismo color que los otros textos */
+  text-decoration: line-through;
+}
+
+/* Badge del descuento */
+.discount-badge {
+  background-color: #2ecc71; /* Rojo llamativo */
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+/* Precio final con descuento */
+.discounted-price {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2ecc71; /* Verde llamativo */
+}
+
+
+
+
 /* Responsiveness */
 @media (max-width: 768px) {
   .form-container {

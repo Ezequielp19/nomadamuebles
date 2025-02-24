@@ -17,7 +17,7 @@
       <label class="delivery-option">
         <input type="radio" name="delivery" (change)="setDeliveryMethod('Contactar por WhatsApp')" />
         <span class="option-text">
-          <strong>Contactar por WhatsApp</strong> - Un asesor se pondrá en contacto contigo
+          Quiero que me lo envíen - Contactar a un vendedor para cotizar envío - Whatsapp
         </span>
       </label>
     </div>
@@ -130,22 +130,6 @@
       </div>
 
       <div class="form-group">
-        <label for="codigo-postal">Código Postal</label>
-        <input
-          type="text"
-          id="codigo-postal"
-          placeholder="Ingrese su código postal"
-          [(ngModel)]="userFormData.codigoPostal"
-          name="codigoPostal"
-          required
-          pattern="^\d{4,8}$"
-          #codigoPostal="ngModel"
-          (ngModelChange)="validateForm()"
-        />
-        <p *ngIf="codigoPostal.invalid && codigoPostal.touched" class="error-message">⚠️ Ingrese un código postal válido (4 a 8 dígitos).</p>
-      </div>
-
-      <div class="form-group">
         <label for="provincia">Provincia</label>
         <input
           type="text"
@@ -162,6 +146,40 @@
       </div>
 
       <div class="form-group">
+        <label for="codigo-postal">Código Postal</label>
+        <input
+          type="text"
+          id="codigo-postal"
+          placeholder="Ingrese su código postal"
+          [(ngModel)]="userFormData.codigoPostal"
+          name="codigoPostal"
+          required
+          pattern="^\d{4,8}$"
+          #codigoPostal="ngModel"
+          (ngModelChange)="validateForm()"
+        />
+        <p *ngIf="codigoPostal.invalid && codigoPostal.touched" class="error-message">⚠️ Ingrese un código postal válido (4 a 8 dígitos).</p>
+      </div>
+
+      <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input
+          type="text"
+          id="direccion"
+          placeholder="Ingrese su calle y número"
+          [(ngModel)]="userFormData.direccion"
+          name="direccion"
+          required
+          pattern="^[A-Za-zÁÉÍÓÚÑáéíóúñ0-9\s]+$"
+          #direccion="ngModel"
+          (ngModelChange)="validateForm()"
+        />
+        <p *ngIf="direccion.invalid && direccion.touched" class="error-message">
+          ⚠️ Ingrese una dirección válida (solo letras, números y espacios).
+        </p>
+      </div>
+
+      <div class="form-group">
         <label for="departamento">Número de Departamento (Opcional)</label>
         <input type="text" id="departamento" placeholder="Ingrese su número de departamento" [(ngModel)]="userFormData.departamento" name="departamento" />
       </div>
@@ -171,28 +189,32 @@
   </div>
 
   <div class="product-summary">
-    <h2>Detalles del Producto</h2>
-    <div class="product-details" *ngIf="productData">
-      <img
-        [src]="productData.imagen || 'assets/default-product.webp'"
-        [alt]="productData.nombre || productData.codigoFinal"
-        class="product-image"
-      />
-      <p><strong>Producto:</strong> {{ productData.nombre || productData.codigoFinal }}</p>
-      <p><strong>Precio:</strong> ${{ productData.totalAmount | number:'1.0-0' }}</p>
-      <p *ngIf="discountApplied; else originalTotal"><strong>Total con descuento:</strong> ${{ discountedTotal | number:'1.0-0' }}</p>
-      <ng-template #originalTotal>
-        <p><strong>Total:</strong> ${{ productData.totalAmount | number:'1.0-0' }}</p>
-      </ng-template>
+    <img
+    [src]="'assets/sello1.png'"
+    class="producto-seguro"
+  />
+  <h2>Detalles del Producto</h2>
+  <div class="product-details" *ngIf="productData">
+    <img
+      [src]="productData.imagen || 'assets/default-product.webp'"
+      [alt]="productData.nombre || productData.codigoFinal"
+      class="product-image"
+    />
+    <p><strong>Producto:</strong> {{ productData.nombre || productData.codigoFinal }}</p>
 
-      <!-- Cupón de Descuento -->
-      <div class="discount-section">
-        <label for="discount-code"><strong>¿Tienes un cupón de descuento?</strong></label>
-        <input type="text" id="discount-code" [(ngModel)]="discountCode" placeholder="Ingrese su código" />
-        <button class="payment-toggle-button" (click)="applyDiscount()">Aplicar Cupón</button>
-        <p *ngIf="invalidCoupon" class="error-message">⚠️ Cupón inválido o expirado.</p>
-      </div>
+    <div class="price-container">
+      <p>
+        <strong>Precio Original: </strong>
+        <span class="original-price">${{ productData.totalAmount | number:'1.0-0' }}</span>
+      </p>
+      <span class="discount-badge">-14%</span>
     </div>
+
+    <p class="discounted-price"><strong>Total con descuento:</strong> ${{ discountedTotal | number:'1.0-0' }}</p>
+  </div>
+
+
+
 
     <!-- Advertencia si no se ha completado el formulario -->
     <div *ngIf="showWarning" class="warning-message">
